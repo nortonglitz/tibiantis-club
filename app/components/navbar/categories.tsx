@@ -24,8 +24,9 @@ const Categories = () => {
             <span className="cursor-pointer">
                 Items
             </span>
-            <menu className={`
-                    bg-stone-900/95
+            <menu
+                className={`
+                    bg-stone-900
                     absolute
                     invisible
                     group-hover:visible
@@ -40,7 +41,16 @@ const Categories = () => {
                 `}
             >
                 {items.map((item, i) => (
-                    <Link key={i} href={`/items/${item}`} className="hover:scale-105 transition capitalize">
+                    <Link
+                        key={i}
+                        href={`/items/${item}`}
+                        className="
+                            hover:scale-105 
+                            transition 
+                            capitalize
+                            border-b-1
+                        "
+                    >
                         {item}
                     </Link>
                 ))}

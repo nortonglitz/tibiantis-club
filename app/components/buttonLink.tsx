@@ -21,7 +21,7 @@ const ButtonLink: React.FC<ButtonProps> = ({
             className={`
                 py-2
                 px-4
-                rounded-lg
+                rounded-full
                 active:shadow-md
                 active:shadow-stone-950 
                 ${isStandard &&
@@ -32,8 +32,8 @@ const ButtonLink: React.FC<ButtonProps> = ({
                 ${isOutlined &&
                 `
                     border-[1px]
-                    border-stone-400
-                    hover:bg-stone-400/10
+                    border-stone-700
+                    hover:bg-stone-700/40
                 `}
             `}
         >
