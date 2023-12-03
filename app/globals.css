@@ -20,3 +20,8 @@
 *::-webkit-scrollbar-track-piece:end {
     background: transparent;
 }
+
+::selection {
+    color: #000000;
+    background: #eab308;
+}

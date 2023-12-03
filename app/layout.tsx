@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
-import { Piazzolla } from 'next/font/google'
+import { Sora, Yatra_One } from 'next/font/google'
 import Navbar from '@/app/components/navbar/navbar'
 import './globals.css'
+import ModalLogin from "./components/modals/login/modalLogin"
+import ModalRegister from "./components/modals/register/modalRegister"
 
-const piazzola = Piazzolla({ subsets: ['latin'] })
+const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
+const yatraOne = Yatra_One({ subsets: ['latin'], weight: '400', variable: '--font-yatra-one' })
 
 export const metadata: Metadata = {
   title: 'Tibiantis Club',
@@ -18,16 +21,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={
-          piazzola.className + `
-            bg-stone-900
-            text-white
-            font-semibold
-          `
-        }
+        className={`
+          ${sora.className}
+          ${sora.variable}
+          ${yatraOne.variable}
+          bg-stone-900
+          text-white
+        `}
       >
         <Navbar />
-        <div className="p-8" />
+        <ModalLogin />
+        <ModalRegister />
+        <div className="p-7" />
         {children}
       </body>
     </html >

@@ -1,12 +1,12 @@
 import Link from "next/link"
 
-interface ButtonProps {
+interface LinkButtonProps {
     children?: React.ReactNode
     href: string
     variant?: 'outlined' | 'standard'
 }
 
-const ButtonLink: React.FC<ButtonProps> = ({
+const LinkButton: React.FC<LinkButtonProps> = ({
     children,
     variant = "standard",
     href
@@ -24,6 +24,7 @@ const ButtonLink: React.FC<ButtonProps> = ({
                 rounded-full
                 active:shadow-md
                 active:shadow-stone-950 
+                active:border-stone-600/40
                 ${isStandard &&
                 `
                     hover:bg-stone-600
@@ -42,4 +43,4 @@ const ButtonLink: React.FC<ButtonProps> = ({
     )
 }
 
-export default ButtonLink
+export default LinkButton

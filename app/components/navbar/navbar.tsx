@@ -1,34 +1,39 @@
-import ButtonLink from '../buttonLink'
-import Categories from './categories'
+import ButtonMenu from './buttonMenu'
+import Logo from '../logo'
+import Sidebar from "../sidebar/sidebar"
+import ButtonLogin from "./buttonLogin"
+import ButtonRegister from "./buttonRegister"
 
 const Navbar = () => {
 
     return (
-        <nav className="
-            fixed
-            w-full
-            shadow-md
-        ">
-            <div className="
-                flex
-                bg-stone-900
-                py-4
-                justify-between
-                lg:px-10
+        <>
+            <nav className="
+                    z-[100]
+                    fixed
+                    w-full
+                    shadow-md
                 "
             >
-                Logo
-                <Categories />
-                <div className="space-x-2">
-                    <ButtonLink href="#">
-                        Register
-                    </ButtonLink>
-                    <ButtonLink variant="outlined" href="#">
-                        Login
-                    </ButtonLink>
+                <div className="
+                        flex
+                        bg-stone-900
+                        py-2
+                        justify-between
+                        items-center
+                        lg:px-10
+                    "
+                >
+                    <Logo />
+                    <div className="flex gap-2 items-center">
+                        <ButtonRegister />
+                        <ButtonLogin />
+                        <ButtonMenu />
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+            <Sidebar />
+        </>
     )
 }
 
