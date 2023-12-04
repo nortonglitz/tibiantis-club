@@ -38,6 +38,6 @@ export async function GET() {
 
         return new Response(null, { status: 200 })
     } catch (err: any) {
-        return new Response(null, { status: 500 })
+        return new Response(err, { status: 500 })
     }
 }
