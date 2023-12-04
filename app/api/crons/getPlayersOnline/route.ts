@@ -1,29 +1,38 @@
-import puppeteer from "puppeteer"
-import { PrismaClient, Prisma } from "@prisma/client"
+import * as cheerio from "cheerio"
 import { prisma } from '@/app/libs/dbClient'
+
+type PlayerStats = {
+    name: string
+    vocation: string
+    level: number
+}
 
 export async function GET() {
     const URL = "https://tibiantis.online/?page=whoisonline"
 
     try {
-        const browser = await puppeteer.launch({ headless: "new" })
-        const page = await browser.newPage()
+        const response = await fetch(URL, { cache: 'no-cache' })
+        const htmlString = await response.text()
+        const $ = cheerio.load(htmlString)
 
-        await page.goto(URL)
+        const playersOnline: PlayerStats[] = []
 
-        const playersOnline = await page.evaluate(() => {
-            const result: any[] = []
-            const data = Array.from(document.getElementsByClassName("hover"))
-            data.forEach(element => {
-                const fields = element.getElementsByTagName("td")
-                result.push({
-                    name: fields.item(0)?.innerText,
-                    vocation: fields.item(1)?.innerText,
-                    level: Number(fields.item(2)?.innerText)
-                })
+        $('.hover').each((i, tr) => {
+            const playerStats: PlayerStats = { name: '', vocation: '', level: 0 }
+            $(tr).find("td").each((i, td) => {
+                switch (i) {
+                    case 0:
+                        playerStats.name = $(td).text()
+                        break
+                    case 1:
+                        playerStats.vocation = $(td).text()
+                        break
+                    case 2:
+                        playerStats.level = Number($(td).text())
+                        break
+                }
             })
-
-            return result
+            playersOnline.push(playerStats)
         })
 
         await prisma.playersOnline.deleteMany({})
@@ -37,9 +46,15 @@ export async function GET() {
             }
         })
 
-        return Response.json(null, { status: 200, statusText: "Players online loaded." })
+        console.log(playersOnline.length)
+
+        return Response.json({
+            message: "Players online loaded."
+        }, { status: 200 })
     } catch (err: any) {
         console.error(err.message, err.code)
-        return Response.json(null, { status: 500 })
+        return Response.json({
+            message: "Could not load players online."
+        }, { status: 500 })
     }
 }
