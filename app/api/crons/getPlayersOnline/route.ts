@@ -36,8 +36,8 @@ export async function GET() {
             }
         })
 
-        return new Response(null, { status: 200 })
+        return Response.json(null, { status: 200, statusText: "Players online loaded." })
     } catch (err: any) {
-        return new Response(err, { status: 500 })
+        return Response.json({ ...err }, { status: 500 })
     }
 }
