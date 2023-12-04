@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer"
+import { PrismaClient, Prisma } from "@prisma/client"
 import { prisma } from '@/app/libs/dbClient'
 
 export async function GET() {
@@ -38,6 +39,7 @@ export async function GET() {
 
         return Response.json(null, { status: 200, statusText: "Players online loaded." })
     } catch (err: any) {
-        return Response.json({ ...err }, { status: 500 })
+        console.error(err.message, err.code)
+        return Response.json(null, { status: 500 })
     }
 }
