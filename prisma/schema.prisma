@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model PlayersHistory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  quantity  Int
+  createdAt DateTime @default(now())
+
+  @@map("playersHistory")
+}
+
+model PlayersOnline {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  vocation  String
+  level     Int
+  createdAt DateTime @default(now())
+
+  @@map("playersOnline")
+}
