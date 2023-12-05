@@ -10,7 +10,6 @@ type PlayerStats = {
 }
 
 export async function GET() {
-    console.log('Is this printed?')
     const URL = "https://tibiantis.online/?page=whoisonline"
 
     try {
