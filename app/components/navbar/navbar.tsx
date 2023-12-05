@@ -22,6 +22,8 @@ const Navbar = () => {
                         justify-between
                         items-center
                         lg:px-10
+                        sm:px-6
+                        px-4
                     "
                 >
                     <Logo />

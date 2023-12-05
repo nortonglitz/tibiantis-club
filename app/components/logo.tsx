@@ -12,13 +12,15 @@ const Logo = () => {
                     cursor-pointer
                 "
             >
-                Tibiantis
+                <div className="hidden sm:block">Tibiantis</div>
+                <div className="block sm:hidden text-4xl">T</div>
                 <span
                     className="
                         text-yellow-200
                         absolute
+                        left-[40%]
                         top-[20%]
-                        left-[90%]
+                        sm:left-[90%]
                         font-bold
                         italic
                         -rotate-12
