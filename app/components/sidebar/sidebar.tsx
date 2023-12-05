@@ -16,7 +16,7 @@ const Sidebar = () => {
     }
 
     const getPlayersOnline = async () => {
-        const data = await fetch("/api/playersHistory/latest")
+        const data = await fetch("/api/playersHistory/latest", { next: { revalidate: 180 } })
         const dataParsed = await data.json()
 
         setPlayersOnline(dataParsed.quantity)
