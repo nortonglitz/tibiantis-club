@@ -2,7 +2,8 @@ import { prisma } from '@/app/libs/dbClient'
 
 export async function GET() {
     try {
-        return Response.json({ ...await prisma.playersHistory.findFirst() }, { status: 200 })
+        const latestRegister = await prisma.playersHistory.findFirst({ orderBy: { id: "desc" } })
+        return Response.json({ ...latestRegister }, { status: 200 })
     } catch (err: any) {
         return Response.json({
             code: err.code,
