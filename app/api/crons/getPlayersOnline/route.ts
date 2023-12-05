@@ -46,6 +46,8 @@ export async function GET() {
             }
         })
 
+        console.log(playersOnline.length)
+
         return Response.json({
             message: "Players online loaded."
         }, { status: 200 })
