@@ -10,6 +10,8 @@ type PlayerStats = {
 export async function GET() {
     const URL = "https://tibiantis.online/?page=whoisonline"
 
+    console.log('triggered')
+
     try {
         const response = await fetch(URL, { cache: 'no-store', next: { revalidate: 0 } })
         const htmlString = await response.text()
@@ -45,8 +47,6 @@ export async function GET() {
                 quantity: playersOnline.length
             }
         })
-
-        console.log(playersOnline.length)
 
         return Response.json({
             message: "Players online loaded."
