@@ -8,9 +8,8 @@ type PlayerStats = {
 }
 
 export async function GET() {
+    console.log('Is this printed?')
     const URL = "https://tibiantis.online/?page=whoisonline"
-
-    console.log('triggered')
 
     try {
         const response = await fetch(URL, { cache: 'no-store', next: { revalidate: 0 } })
