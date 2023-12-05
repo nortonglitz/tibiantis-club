@@ -1,6 +1,8 @@
 import * as cheerio from "cheerio"
 import { prisma } from '@/app/libs/dbClient'
 
+export const dynamic = 'force-dynamic'
+
 type PlayerStats = {
     name: string
     vocation: string
