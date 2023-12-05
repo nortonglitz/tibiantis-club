@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Category from './category'
 import Image from "next/image"
 import useSidebarStore from "@/app/stores/useSidebarStore"
@@ -8,10 +9,22 @@ import ListenerClickOutside from "../listeners/listenerClickOutside"
 const Sidebar = () => {
 
     const { isOpen, setIsOpen } = useSidebarStore()
+    const [playersOnline, setPlayersOnline] = useState(0)
 
     const closeSidebar = () => {
         setIsOpen(false)
     }
+
+    const getPlayersOnline = async () => {
+        const data = await fetch("/api/playersHistory/latest")
+        const dataParsed = await data.json()
+
+        setPlayersOnline(dataParsed.quantity)
+    }
+
+    useEffect(() => {
+        getPlayersOnline()
+    }, [])
 
     return (
         <ListenerClickOutside onClickOutside={closeSidebar}>
@@ -33,6 +46,12 @@ const Sidebar = () => {
                     ${isOpen ? 'visible' : 'invisible'}
                 `}
             >
+                <div className="flex justify-between mx-2 font-yatra-one mb-2">
+                    Players Online
+                    <strong className="text-yellow-200">
+                        {playersOnline}
+                    </strong>
+                </div>
                 <button
                     className="
                         flex 
@@ -47,6 +66,7 @@ const Sidebar = () => {
                         border-stone-600/30
                         active:shadow-md
                         active:shadow-stone-950
+                        mt-10
                     "
                 >
                     <Image src="/assets/player-male.gif" className="w-[32px] h-[32px]" height={32} width={32} alt="player profile" />
