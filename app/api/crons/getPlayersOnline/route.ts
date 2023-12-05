@@ -11,7 +11,7 @@ export async function GET() {
     const URL = "https://tibiantis.online/?page=whoisonline"
 
     try {
-        const response = await fetch(URL, { cache: 'no-cache' })
+        const response = await fetch(URL, { cache: 'no-store' })
         const htmlString = await response.text()
         const $ = cheerio.load(htmlString)
 
