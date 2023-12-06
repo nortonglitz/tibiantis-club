@@ -8,7 +8,6 @@ export function usePlayersOnline() {
     const { data, isLoading, error } = useSWR('/api/playersHistory/latest', fetcher, {
         dedupingInterval: 120000,
         focusThrottleInterval: 120000,
-        revalidateOnFocus: false,
         revalidateOnMount: false
     })
 
