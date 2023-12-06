@@ -1,10 +1,4 @@
-"use client"
-
-import { usePlayersOnline } from "./hooks/usePlayersOnline"
-
 export default function Home() {
-
-  const { quantity } = usePlayersOnline()
 
   return (
     <main
@@ -14,7 +8,6 @@ export default function Home() {
         pt-10
       "
     >
-      {quantity}
     </main>
   )
 }
