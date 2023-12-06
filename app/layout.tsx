@@ -4,6 +4,7 @@ import Navbar from '@/app/components/navbar/navbar'
 import './globals.css'
 import ModalLogin from "./components/modals/login/modalLogin"
 import ModalRegister from "./components/modals/register/modalRegister"
+import Sidebar from "./components/sidebar/sidebar"
 
 const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
 const yatraOne = Yatra_One({ subsets: ['latin'], weight: '400', variable: '--font-yatra-one' })
@@ -30,6 +31,7 @@ export default function RootLayout({
         `}
       >
         <Navbar />
+        <Sidebar />
         <ModalLogin />
         <ModalRegister />
         <div className="p-7" />
