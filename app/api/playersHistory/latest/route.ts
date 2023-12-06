@@ -1,10 +1,10 @@
 import { prisma } from '@/app/libs/dbClient'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 300
 
 export async function GET() {
-    console.log('Called')
     try {
+        console.log('Called')
         const latestDoc = await prisma.playersHistory.findFirst({ orderBy: { id: "desc" } })
         return Response.json({ ...latestDoc }, { status: 200 })
     } catch (err: any) {
