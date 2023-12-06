@@ -1,6 +1,6 @@
 "use client"
 
-import { usePlayersOnline } from "@/app/hooks/getPlayersOnline"
+import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
 import Category from './category'
 import Image from "next/image"
 import useSidebarStore from "@/app/stores/useSidebarStore"
@@ -39,7 +39,7 @@ const Sidebar = () => {
                 <div className="flex justify-between mx-2 font-yatra-one mb-2">
                     Players Online
                     <strong className="text-yellow-200">
-                        {quantity}
+                        {quantity ? quantity : 0}
                     </strong>
                 </div>
                 <button
