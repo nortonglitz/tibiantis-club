@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 interface MenuCardProps {
     title: string
     src: string
@@ -30,7 +28,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
             "
         >
             {title}
-            <Image className="m-auto" src={src} alt={alt} width={48} height={48} />
+            <img className="m-auto" src={src} alt={alt} width={48} height={48} />
         </div>
     )
 }

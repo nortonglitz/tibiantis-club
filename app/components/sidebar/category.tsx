@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 
 interface CategoryProps {
@@ -41,7 +40,7 @@ const Category: React.FC<CategoryProps> = ({
                         via-transparent
                     `}
                 >
-                    <Image src={src} alt={title} height={32} width={32} />
+                    <img src={src} alt={title} height={32} width={32} />
                 </div>
                 <span
                     className="

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from "next/image"
 import LinkText from "@/app/components/links/linkText"
 
 const items = [
@@ -309,7 +308,7 @@ export default function MarketPage() {
                                 >
                                     <td>
                                         <div className="group relative  m-auto w-fit cursor-help">
-                                            <Image src={imgUrl} height={24} width={24} alt={name} />
+                                            <img src={imgUrl} height={24} width={24} alt={name} />
                                             <div
                                                 className="
                                                     flex 

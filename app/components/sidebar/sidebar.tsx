@@ -1,7 +1,6 @@
 "use client"
 
 import Category from './category'
-import Image from "next/image"
 import useSidebarStore from "@/app/stores/useSidebarStore"
 import ListenerClickOutside from "../listeners/listenerClickOutside"
 import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
@@ -59,7 +58,7 @@ const Sidebar = () => {
                         mt-10
                     "
                 >
-                    <Image src="/assets/player-male.gif" className="w-[32px] h-[32px]" height={32} width={32} alt="player profile" />
+                    <img src="/assets/player-male.gif" className="w-[32px] h-[32px]" height={32} width={32} alt="player profile" />
                     <div className="flex flex-col ml-4 font-sans overflow-clip">
                         <div
                             className="
@@ -89,6 +88,7 @@ const Sidebar = () => {
                     "
                 >
                     <Category onClick={closeSidebar} href="/market" src="/assets/bill.gif" title="market" />
+                    <Category onClick={closeSidebar} href="/market" src="/assets/bill.gif" title="community" />
                     <Category onClick={closeSidebar} href="#" src="/assets/slime.gif" title="creatures" />
                     <Category onClick={closeSidebar} href="#" src="/assets/abacus.gif" title="calculators" />
                     <Category onClick={closeSidebar} href="/experience" src="/assets/xp.webp" title="experience" />
