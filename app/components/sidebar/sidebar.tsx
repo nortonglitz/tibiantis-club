@@ -1,7 +1,5 @@
 "use client"
 
-export const dynamic = 'force-dynamic'
-
 import Category from './category'
 import Image from "next/image"
 import useSidebarStore from "@/app/stores/useSidebarStore"
