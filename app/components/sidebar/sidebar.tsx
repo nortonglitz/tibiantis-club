@@ -1,31 +1,22 @@
 "use client"
 
+export const dynamic = 'force-dynamic'
+
 import Category from './category'
 import Image from "next/image"
 import useSidebarStore from "@/app/stores/useSidebarStore"
 import ListenerClickOutside from "../listeners/listenerClickOutside"
-import { useEffect, useState, useCallback } from "react"
+import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
 
 const Sidebar = () => {
 
     const { isOpen, setIsOpen } = useSidebarStore()
-    const [playersOnline, setPlayersOnline] = useState(0)
-
-    const getPlayersOnline = async () => {
-        const res = await fetch('/api/playersHistory/latest')
-        const data = await res.json()
-        setPlayersOnline(data.quantity)
-    }
-
-    const callGetPlayersOnline = useCallback(getPlayersOnline, [getPlayersOnline])
-
-    useEffect(() => {
-        callGetPlayersOnline()
-    }, [callGetPlayersOnline])
 
     const closeSidebar = () => {
         setIsOpen(false)
     }
+
+    const { quantity } = usePlayersOnline()
 
     return (
         <ListenerClickOutside onClickOutside={closeSidebar}>
@@ -50,7 +41,7 @@ const Sidebar = () => {
                 <div className="flex justify-between mx-2 font-yatra-one mb-2">
                     Players Online
                     <strong className="text-yellow-200">
-                        {playersOnline}
+                        {quantity}
                     </strong>
                 </div>
                 <button
@@ -83,7 +74,7 @@ const Sidebar = () => {
                                 text-left
                             "
                         >
-                            Tonnor
+                            Player
                         </div>
                         <div className="flex flex-col text-xs [&>div]:w-fit text-stone-400">
                             <div>Level 100</div>
