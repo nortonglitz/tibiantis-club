@@ -1,16 +1,27 @@
 "use client"
 
-import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
 import Category from './category'
 import Image from "next/image"
 import useSidebarStore from "@/app/stores/useSidebarStore"
 import ListenerClickOutside from "../listeners/listenerClickOutside"
+import { useEffect, useState, useCallback } from "react"
 
 const Sidebar = () => {
 
     const { isOpen, setIsOpen } = useSidebarStore()
+    const [playersOnline, setPlayersOnline] = useState(0)
 
-    const { quantity } = usePlayersOnline()
+    const getPlayersOnline = async () => {
+        const res = await fetch('/api/playersHistory/latest')
+        const data = await res.json()
+        setPlayersOnline(data.quantity)
+    }
+
+    const callGetPlayersOnline = useCallback(getPlayersOnline, [getPlayersOnline])
+
+    useEffect(() => {
+        callGetPlayersOnline()
+    }, [callGetPlayersOnline])
 
     const closeSidebar = () => {
         setIsOpen(false)
@@ -39,7 +50,7 @@ const Sidebar = () => {
                 <div className="flex justify-between mx-2 font-yatra-one mb-2">
                     Players Online
                     <strong className="text-yellow-200">
-                        {quantity ? quantity : 0}
+                        {playersOnline}
                     </strong>
                 </div>
                 <button
