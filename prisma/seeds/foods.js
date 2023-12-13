@@ -79,8 +79,8 @@ const foods = [
     },
     {
         name: "?",
-        nutrition: 96,
-        weight: 1.8,
+        nutrition: 0,
+        weight: 0.0,
         imageSrc: '/assets/imgs/foods/red_orange.gif'
     },
     {
