@@ -67,7 +67,7 @@ const Table: React.FC = () => {
                         >
                             <th scope="col" className="min-w-[40px]"></th>
                             <th className="min-w-[100px]" scope="col" onClick={() => handleSort('name')}>
-                                <div className="w-fit relative m-auto [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
+                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block  [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Name
                                     {sortProps.field === 'name' ? sortProps.order === 'asc' ?
                                         <FaSortAlphaDown /> : <FaSortAlphaUp />
@@ -76,7 +76,7 @@ const Table: React.FC = () => {
                                 </div>
                             </th>
                             <th className="min-w-[100px]" scope="col" onClick={() => handleSort('nutrition')}>
-                                <div className="w-fit relative m-auto [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
+                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Nutrition
                                     {sortProps.field === 'nutrition' ? sortProps.order === 'asc' ?
                                         <FaSortNumericDown /> : <FaSortNumericUp />
@@ -85,7 +85,7 @@ const Table: React.FC = () => {
                                 </div>
                             </th>
                             <th className="text-stone-500 min-w-[100px]" scope="col" onClick={() => handleSort('weight')}>
-                                <div className="w-fit relative m-auto [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
+                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Weight
                                     {sortProps.field === 'weight' ? sortProps.order === 'asc' ?
                                         <FaSortNumericDown /> : <FaSortNumericUp />
