@@ -49,12 +49,12 @@ const Sidebar = () => {
                         rounded-xl 
                         w-full 
                         p-2 
-                        hover:bg-stone-700/50 
+                        active:bg-stone-700/50 
                         transition
                         border
                         border-stone-600/30
-                        active:shadow-md
-                        active:shadow-stone-950
+                        hover:shadow-md
+                        hover:shadow-stone-950
                         mt-10
                     "
                 >
@@ -95,7 +95,7 @@ const Sidebar = () => {
                     <Category onClick={closeSidebar} href="#" src="/assets/spellbook.gif" title="spells" />
                     <Category onClick={closeSidebar} href="#" src="/assets/gfb.gif" title="runes" />
                     <Category onClick={closeSidebar} href="/foods" src="/assets/cheese.gif" title="foods" />
-                    <Category onClick={closeSidebar} href="#" src="/assets/aol.png" title="equipments" />
+                    <Category onClick={closeSidebar} href="/equipments" src="/assets/aol.png" title="equipments" />
                     <Category onClick={closeSidebar} href="#" src="/assets/npc.gif" title="NPCs" />
                 </div>
             </div>
