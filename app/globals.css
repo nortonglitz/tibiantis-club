@@ -4,6 +4,7 @@
 
 *::-webkit-scrollbar {
     width: 7px;
+    height: 7px;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -12,6 +13,13 @@
     border: 1px solid #44403c90;
 }
 
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
 
 *::-webkit-scrollbar-track-piece:start {
     background: transparent;

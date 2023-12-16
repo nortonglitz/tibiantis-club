@@ -107,7 +107,7 @@ const Table: React.FC = () => {
                     </tbody>
                     <tfoot>
                         <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >
-                            <td colSpan={6} className="py-2" />
+                            <td colSpan={5} className="py-2" />
                         </tr>
                     </tfoot>
                 </table>
