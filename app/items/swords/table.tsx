@@ -114,8 +114,8 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort("twoHanded")}>
-                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
+                            <th className="min-w-[150px]" scope="col" onClick={() => handleSort("twoHanded")}>
+                                <div className="w-fit whitespace-nowrap relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Two Hands
                                     {sortProps.field === 'twoHanded' ? sortProps.order === 'asc' ?
                                         <FaSortAmountDown /> : <FaSortAmountUp />
