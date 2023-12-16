@@ -21,7 +21,7 @@ export default function EquipmentsPage() {
         >
             <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-5">
                 <LinkCategory
-                    href="#"
+                    href="/items/swords"
                     title="swords"
                     imgSrc="/assets/imgs/swords/foil.gif"
                     desc="The best option for those that don&apos;t want to spend much but still wanna deal some damage."
