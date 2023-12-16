@@ -109,7 +109,7 @@ const swords = [
         def: 5,
         weight: 4.2,
         twoHanded: false,
-        imageSrc: '/assets/imgs/swords/katana.gif',
+        imageSrc: '/assets/imgs/swords/knife.gif',
     },
     {
         name: "longsword",

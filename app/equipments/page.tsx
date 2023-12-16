@@ -27,7 +27,7 @@ export default function EquipmentsPage() {
                     desc="The best option for those that don&apos;t want to spend much but still wanna deal some damage."
                 />
                 <LinkCategory
-                    href="#"
+                    href="/items/clubs"
                     className=""
                     title="clubs"
                     imgSrc="/assets/imgs/clubs/hammer_of_wrath.gif"
