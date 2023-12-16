@@ -62,7 +62,7 @@ export default function EquipmentsPage() {
                 <LinkCategory
                     href="/items/rings"
                     title="rings"
-                    imgSrc="/assets/imgs/rings/ring_of_the_skies.gif"
+                    imgSrc="/assets/imgs/rings/ring_of_the_sky.gif"
                     desc="Can improve your skills, fast healing and a lot of special effects."
                 />
             </div>
