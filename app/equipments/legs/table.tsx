@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import helmetsData from '../../../prisma/seeds/helmets'
+import legsData from '../../../prisma/seeds/legs'
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 
@@ -10,7 +10,7 @@ type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [helmets, setHelmets] = useState([...helmetsData].sort((a, b) => a.name.localeCompare(b.name)))
+    const [legs, setLegs] = useState([...legsData].sort((a, b) => a.name.localeCompare(b.name)))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
         order: 'asc'
@@ -19,30 +19,30 @@ const Table: React.FC = () => {
     const handleSort = (field: Field) => {
         if (field === 'name') {
             if (sortProps.order === 'desc') {
-                setHelmets([...helmets].sort((a, b) => a.name.localeCompare(b.name)))
+                setLegs([...legs].sort((a, b) => a.name.localeCompare(b.name)))
                 setSortProps({ field: 'name', order: 'asc' })
             } else {
-                setHelmets([...helmets].sort((a, b) => b.name.localeCompare(a.name)))
+                setLegs([...legs].sort((a, b) => b.name.localeCompare(a.name)))
                 setSortProps({ field: 'name', order: 'desc' })
             }
         }
 
         if (field === 'arm') {
             if (sortProps.order === 'desc') {
-                setHelmets([...helmets].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
+                setLegs([...legs].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
                 setSortProps({ field: 'arm', order: 'asc' })
             } else {
-                setHelmets([...helmets].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
+                setLegs([...legs].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
                 setSortProps({ field: 'arm', order: 'desc' })
             }
         }
 
         if (field === 'weight') {
             if (sortProps.order === 'desc') {
-                setHelmets([...helmets].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
+                setLegs([...legs].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
                 setSortProps({ field: 'weight', order: 'asc' })
             } else {
-                setHelmets([...helmets].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
+                setLegs([...legs].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
                 setSortProps({ field: 'weight', order: 'desc' })
             }
         }
@@ -83,9 +83,6 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px]" scope="col">
-                                Attr
-                            </th>
                             <th className="text-stone-500 min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort("weight")}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Weight
@@ -98,7 +95,7 @@ const Table: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {helmets.map(({ weight, name, imageSrc, arm, attr }, i) => (
+                        {legs.map(({ weight, name, imageSrc, arm }, i) => (
                             <tr
                                 key={i}
                                 className="
@@ -115,14 +112,13 @@ const Table: React.FC = () => {
                                 </td>
                                 <td className="text-left capitalize text-base sm:text-lg">{name}</td>
                                 <td>{arm}</td>
-                                <td>{attr}</td>
                                 <td className="text-stone-500">{weight} oz</td>
                             </tr>
                         ))}
                     </tbody>
                     <tfoot>
                         <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >
-                            <td colSpan={5} className="py-2" />
+                            <td colSpan={4} className="py-2" />
                         </tr>
                     </tfoot>
                 </table>
