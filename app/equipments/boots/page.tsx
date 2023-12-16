@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     title: 'Boots - Tibiantis Club',
 }
 
-export default function FoodsPage() {
+export default function BootsPage() {
 
     return (
         <main

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import Table from './table'
+import Table from "./table"
 
 export const metadata: Metadata = {
-    title: 'Clubs - Tibiantis Club',
+    title: 'Helmets - Tibiantis Club',
 }
 
-export default function ClubsPage() {
+export default function HelmetsPage() {
 
     return (
         <main
