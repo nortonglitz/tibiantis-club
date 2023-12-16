@@ -34,7 +34,7 @@ export default function EquipmentsPage() {
                     desc="The cheapest weapon to get, you will probably use if you are a mage or low budget knight."
                 />
                 <LinkCategory
-                    href="#"
+                    href="/items/axes"
                     title="axes"
                     imgSrc="/assets/imgs/axes/dragon_lance.gif"
                     desc="This is the most expensive weapon, it will take a while until you be strong."
@@ -60,7 +60,7 @@ export default function EquipmentsPage() {
                     desc="You can block up to two monsters with them."
                 />
                 <LinkCategory
-                    href="#"
+                    href="/items/rings"
                     title="rings"
                     imgSrc="/assets/imgs/rings/ring_of_the_skies.gif"
                     desc="Can improve your skills, fast healing and a lot of special effects."

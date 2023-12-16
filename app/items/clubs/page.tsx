@@ -12,7 +12,7 @@ export default function FoodsPage() {
             className="
                 flex
                 justify-center
-                py-2
+                py-8
                 sm:p-10
             "
         >

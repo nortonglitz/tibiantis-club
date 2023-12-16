@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import swordsData from '../../../prisma/seeds/swords'
+import axesData from '../../../prisma/seeds/axes'
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaCheck, FaSortAmountDown, FaSortAmountUp } from "react-icons/fa"
 import { FaX } from "react-icons/fa6"
@@ -11,7 +11,7 @@ type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [swords, setSwords] = useState([...swordsData].sort((a, b) => a.name.localeCompare(b.name)))
+    const [axes, setAxes] = useState([...axesData].sort((a, b) => a.name.localeCompare(b.name)))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
         order: 'asc'
@@ -20,50 +20,50 @@ const Table: React.FC = () => {
     const handleSort = (field: Field) => {
         if (field === 'name') {
             if (sortProps.order === 'desc') {
-                setSwords([...swords].sort((a, b) => a.name.localeCompare(b.name)))
+                setAxes([...axes].sort((a, b) => a.name.localeCompare(b.name)))
                 setSortProps({ field: 'name', order: 'asc' })
             } else {
-                setSwords([...swords].sort((a, b) => b.name.localeCompare(a.name)))
+                setAxes([...axes].sort((a, b) => b.name.localeCompare(a.name)))
                 setSortProps({ field: 'name', order: 'desc' })
             }
         }
 
         if (field === 'atk') {
             if (sortProps.order === 'desc') {
-                setSwords([...swords].sort((a, b) => a.atk - b.atk))
+                setAxes([...axes].sort((a, b) => a.atk - b.atk))
                 setSortProps({ field: 'atk', order: 'asc' })
             } else {
-                setSwords([...swords].sort((a, b) => b.atk - a.atk))
+                setAxes([...axes].sort((a, b) => b.atk - a.atk))
                 setSortProps({ field: 'atk', order: 'desc' })
             }
         }
 
         if (field === 'def') {
             if (sortProps.order === 'desc') {
-                setSwords([...swords].sort((a, b) => a.def - b.def))
+                setAxes([...axes].sort((a, b) => a.def - b.def))
                 setSortProps({ field: 'def', order: 'asc' })
             } else {
-                setSwords([...swords].sort((a, b) => b.def - a.def))
+                setAxes([...axes].sort((a, b) => b.def - a.def))
                 setSortProps({ field: 'def', order: 'desc' })
             }
         }
 
         if (field === 'weight') {
             if (sortProps.order === 'desc') {
-                setSwords([...swords].sort((a, b) => a.weight - b.weight))
+                setAxes([...axes].sort((a, b) => a.weight - b.weight))
                 setSortProps({ field: 'weight', order: 'asc' })
             } else {
-                setSwords([...swords].sort((a, b) => b.weight - a.weight))
+                setAxes([...axes].sort((a, b) => b.weight - a.weight))
                 setSortProps({ field: 'weight', order: 'desc' })
             }
         }
 
         if (field === 'twoHanded') {
             if (sortProps.order === 'desc') {
-                setSwords([...swords].sort((a, b) => (a.twoHanded === b.twoHanded) ? 0 : a.twoHanded ? -1 : 1))
+                setAxes([...axes].sort((a, b) => (a.twoHanded === b.twoHanded) ? 0 : a.twoHanded ? -1 : 1))
                 setSortProps({ field: 'twoHanded', order: 'asc' })
             } else {
-                setSwords([...swords].sort((a, b) => (b.twoHanded === a.twoHanded) ? 0 : b.twoHanded ? -1 : 1))
+                setAxes([...axes].sort((a, b) => (b.twoHanded === a.twoHanded) ? 0 : b.twoHanded ? -1 : 1))
                 setSortProps({ field: 'twoHanded', order: 'desc' })
             }
         }
@@ -135,7 +135,7 @@ const Table: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {swords.map(({ weight, name, imageSrc, atk, def, twoHanded }, i) => (
+                        {axes.map(({ weight, name, imageSrc, atk, def, twoHanded }, i) => (
                             <tr
                                 key={i}
                                 className="
