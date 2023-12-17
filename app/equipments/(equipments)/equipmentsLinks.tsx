@@ -45,7 +45,7 @@ const EquipmentLink: React.FC<EquipmentLinkProps> = ({
 
 const EquipmentsLinks = () => {
     return (
-        <div className="hidden sm:flex sm:flex-col absolute top-[20%] left-[5%]">
+        <div className="hidden sm:flex sm:flex-col absolute top-32 left-20">
             <EquipmentLink category="swords" imgSrc="/assets/imgs/swords/foil.gif" />
             <EquipmentLink category="clubs" imgSrc="/assets/imgs/clubs/hammer_of_wrath.gif" />
             <EquipmentLink category="axes" imgSrc="/assets/imgs/axes/dragon_lance.gif" />

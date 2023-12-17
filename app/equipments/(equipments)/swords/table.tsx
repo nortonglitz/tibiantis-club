@@ -1,16 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import legsData from '../../../prisma/seeds/legs'
+import swordsData from '../../../../prisma/seeds/swords'
 
-import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
+import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaCheck, FaSortAmountDown, FaSortAmountUp } from "react-icons/fa"
+import { FaX } from "react-icons/fa6"
 
-type Field = "name" | "attr" | "weight" | "arm"
+type Field = "name" | "atk" | "def" | "weight" | "twoHanded"
 type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [legs, setLegs] = useState([...legsData].sort((a, b) => a.name.localeCompare(b.name)))
+    const [swords, setSwords] = useState([...swordsData].sort((a, b) => a.name.localeCompare(b.name)))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
         order: 'asc'
@@ -19,31 +20,51 @@ const Table: React.FC = () => {
     const handleSort = (field: Field) => {
         if (field === 'name') {
             if (sortProps.order === 'desc') {
-                setLegs([...legs].sort((a, b) => a.name.localeCompare(b.name)))
+                setSwords([...swords].sort((a, b) => a.name.localeCompare(b.name)))
                 setSortProps({ field: 'name', order: 'asc' })
             } else {
-                setLegs([...legs].sort((a, b) => b.name.localeCompare(a.name)))
+                setSwords([...swords].sort((a, b) => b.name.localeCompare(a.name)))
                 setSortProps({ field: 'name', order: 'desc' })
             }
         }
 
-        if (field === 'arm') {
+        if (field === 'atk') {
             if (sortProps.order === 'desc') {
-                setLegs([...legs].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
-                setSortProps({ field: 'arm', order: 'asc' })
+                setSwords([...swords].sort((a, b) => a.atk - b.atk))
+                setSortProps({ field: 'atk', order: 'asc' })
             } else {
-                setLegs([...legs].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
-                setSortProps({ field: 'arm', order: 'desc' })
+                setSwords([...swords].sort((a, b) => b.atk - a.atk))
+                setSortProps({ field: 'atk', order: 'desc' })
+            }
+        }
+
+        if (field === 'def') {
+            if (sortProps.order === 'desc') {
+                setSwords([...swords].sort((a, b) => a.def - b.def))
+                setSortProps({ field: 'def', order: 'asc' })
+            } else {
+                setSwords([...swords].sort((a, b) => b.def - a.def))
+                setSortProps({ field: 'def', order: 'desc' })
             }
         }
 
         if (field === 'weight') {
             if (sortProps.order === 'desc') {
-                setLegs([...legs].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
+                setSwords([...swords].sort((a, b) => a.weight - b.weight))
                 setSortProps({ field: 'weight', order: 'asc' })
             } else {
-                setLegs([...legs].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
+                setSwords([...swords].sort((a, b) => b.weight - a.weight))
                 setSortProps({ field: 'weight', order: 'desc' })
+            }
+        }
+
+        if (field === 'twoHanded') {
+            if (sortProps.order === 'desc') {
+                setSwords([...swords].sort((a, b) => (a.twoHanded === b.twoHanded) ? 0 : a.twoHanded ? -1 : 1))
+                setSortProps({ field: 'twoHanded', order: 'asc' })
+            } else {
+                setSwords([...swords].sort((a, b) => (b.twoHanded === a.twoHanded) ? 0 : b.twoHanded ? -1 : 1))
+                setSortProps({ field: 'twoHanded', order: 'desc' })
             }
         }
     }
@@ -61,11 +82,12 @@ const Table: React.FC = () => {
                                     uppercase
                                     font-yatra-one
                                     bg-stone-800
+                                    [&>th]:cursor-pointer
                                     select-none
                                 "
                         >
                             <th scope="col" className="min-w-[40px]"></th>
-                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('name')}>
+                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('name')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block  [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Name
                                     {sortProps.field === 'name' ? sortProps.order === 'asc' ?
@@ -74,16 +96,34 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('arm')}>
+                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('atk')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    Arm
-                                    {sortProps.field === 'arm' ? sortProps.order === 'asc' ?
+                                    Atk
+                                    {sortProps.field === 'atk' ? sortProps.order === 'asc' ?
                                         <FaSortNumericDown /> : <FaSortNumericUp />
                                         : null
                                     }
                                 </div>
                             </th>
-                            <th className="text-stone-500 min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort("weight")}>
+                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('def')}>
+                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
+                                    Def
+                                    {sortProps.field === 'def' ? sortProps.order === 'asc' ?
+                                        <FaSortNumericDown /> : <FaSortNumericUp />
+                                        : null
+                                    }
+                                </div>
+                            </th>
+                            <th className="min-w-[150px]" scope="col" onClick={() => handleSort("twoHanded")}>
+                                <div className="w-fit whitespace-nowrap relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
+                                    Two Hands
+                                    {sortProps.field === 'twoHanded' ? sortProps.order === 'asc' ?
+                                        <FaSortAmountDown /> : <FaSortAmountUp />
+                                        : null
+                                    }
+                                </div>
+                            </th>
+                            <th className="text-stone-500 min-w-[100px]" scope="col" onClick={() => handleSort("weight")}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Weight
                                     {sortProps.field === 'weight' ? sortProps.order === 'asc' ?
@@ -95,7 +135,7 @@ const Table: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {legs.map(({ weight, name, imageSrc, arm }, i) => (
+                        {swords.map(({ weight, name, imageSrc, atk, def, twoHanded }, i) => (
                             <tr
                                 key={i}
                                 className="
@@ -111,14 +151,16 @@ const Table: React.FC = () => {
                                     <img className="m-auto" src={imageSrc} height={32} width={32} alt={name} />
                                 </td>
                                 <td className="text-left capitalize text-base sm:text-lg">{name}</td>
-                                <td>{arm}</td>
+                                <td>{atk}</td>
+                                <td>{def}</td>
+                                <td><div className="flex justify-center">{twoHanded ? <FaCheck /> : <FaX />}</div></td>
                                 <td className="text-stone-500">{weight} oz</td>
                             </tr>
                         ))}
                     </tbody>
                     <tfoot>
                         <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >
-                            <td colSpan={4} className="py-2" />
+                            <td colSpan={6} className="py-2" />
                         </tr>
                     </tfoot>
                 </table>
