@@ -28,12 +28,14 @@ const EquipmentLink: React.FC<EquipmentLinkProps> = ({
                 border-stone-600/30
                 p-2
                 active:bg-stone-700/50
-                hover:outline-stone-600
-                outline-stone-600
+                ${pathname.includes(category) ? "" : "hover:outline-stone-600"}
+                ${pathname.includes(category) ? "outline-yellow-200" : "outline-stone-600"}
+                outline-1
                 outline-offset-[-1px]
-                hover:z-10
-                hover:outline
+                ${pathname.includes(category) ? "z-20" : "hover:z-10"}
+                ${pathname.includes(category) ? "outline" : "hover:outline"}
                 ${pathname.includes(category) ? "shadow-md shadow-stone-950 z-10" : ""}
+                ${pathname.includes(category) ? "scale-110" : ""}
             `}
         >
             <div className="flex items-center">
