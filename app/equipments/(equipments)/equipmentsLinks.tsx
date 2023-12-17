@@ -19,6 +19,7 @@ const EquipmentLink: React.FC<EquipmentLinkProps> = ({
         <Link
             href={`/equipments/${category}`}
             className={`
+                group
                 transition-all
                 first:rounded-t-full
                 last:rounded-b-full
@@ -38,7 +39,18 @@ const EquipmentLink: React.FC<EquipmentLinkProps> = ({
                 ${pathname.includes(category) ? "scale-110" : ""}
             `}
         >
-            <div className="flex items-center">
+            <div className="relative">
+                <div
+                    className={`
+                        absolute 
+                        top-0 
+                        left-0 
+                        w-[32px] 
+                        h-[32px]
+                        ${pathname.includes(category) ? "" : "backdrop-grayscale"}
+                        ${pathname.includes(category) ? "" : "group-hover:backdrop-grayscale-0"}
+                    `}
+                />
                 <img src={imgSrc} alt={category} width={32} height={32} />
             </div>
         </Link>
