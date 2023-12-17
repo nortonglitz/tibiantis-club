@@ -24,11 +24,9 @@ export default function ErrorPage() {
                             replace
                             className="
                                 transition
-                                border
-                                border-red-600/20
-                                bg-red-600/10
-                                hover:bg-red-600/30
-                                active:bg-red-600/40
+                                bg-red-950
+                                hover:bg-red-900
+                                active:bg-red-800
                                 py-2 
                                 px-3 
                                 rounded-full
