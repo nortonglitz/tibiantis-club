@@ -18,6 +18,7 @@ const EquipmentLink: React.FC<EquipmentLinkProps> = ({
     return (
         <Link
             href={`/equipments/${category}`}
+            replace
             className={`
                 group
                 transition-all
