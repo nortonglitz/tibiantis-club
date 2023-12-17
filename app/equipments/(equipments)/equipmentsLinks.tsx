@@ -60,17 +60,17 @@ const EquipmentLink: React.FC<EquipmentLinkProps> = ({
 const EquipmentsLinks = () => {
     return (
         <div className="hidden sm:flex sm:flex-col absolute top-32 left-20">
-            <EquipmentLink category="swords" imgSrc="/assets/imgs/swords/foil.gif" />
-            <EquipmentLink category="clubs" imgSrc="/assets/imgs/clubs/hammer_of_wrath.gif" />
-            <EquipmentLink category="axes" imgSrc="/assets/imgs/axes/dragon_lance.gif" />
+            <EquipmentLink category="swords" imgSrc="/assets/imgs/swords/magic_sword.gif" />
+            <EquipmentLink category="clubs" imgSrc="/assets/imgs/clubs/thunder_hammer.gif" />
+            <EquipmentLink category="axes" imgSrc="/assets/imgs/axes/stonecutter_axe.gif" />
             <EquipmentLink category="distance" imgSrc="/assets/imgs/distance/crossbow.gif" />
             <EquipmentLink category="amulets" imgSrc="/assets/imgs/amulets/amulet_of_loss.gif" />
-            <EquipmentLink category="shields" imgSrc="/assets/imgs/shields/griffin_shield.gif" />
-            <EquipmentLink category="rings" imgSrc="/assets/imgs/rings/ring_of_the_sky.gif" />
-            <EquipmentLink category="helmets" imgSrc="/assets/imgs/helmets/amazon_helmet.gif" />
-            <EquipmentLink category="armors" imgSrc="/assets/imgs/armors/dwarven_armor.gif" />
+            <EquipmentLink category="shields" imgSrc="/assets/imgs/shields/blessed_shield.gif" />
+            <EquipmentLink category="rings" imgSrc="/assets/imgs/rings/gold_ring.gif" />
+            <EquipmentLink category="helmets" imgSrc="/assets/imgs/helmets/golden_helmet.gif" />
+            <EquipmentLink category="armors" imgSrc="/assets/imgs/armors/magic_plate_armor.gif" />
             <EquipmentLink category="legs" imgSrc="/assets/imgs/legs/demon_legs.gif" />
-            <EquipmentLink category="boots" imgSrc="/assets/imgs/boots/patched_boots.gif" />
+            <EquipmentLink category="boots" imgSrc="/assets/imgs/boots/boots_of_haste.gif" />
         </div>
     )
 }
