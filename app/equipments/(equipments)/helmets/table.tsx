@@ -10,10 +10,10 @@ type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [helmets, setHelmets] = useState([...helmetsData].sort((a, b) => a.name.localeCompare(b.name)))
+    const [helmets, setHelmets] = useState([...helmetsData].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
-        field: 'name',
-        order: 'asc'
+        field: 'arm',
+        order: 'desc'
     })
 
     const handleSort = (field: Field) => {
