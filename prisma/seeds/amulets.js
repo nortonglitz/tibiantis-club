@@ -48,7 +48,7 @@ const amulets = [
     },
     {
         name: "garlic necklace",
-        attr: "protection life drain 20%",
+        attr: "20% life drain protection",
         charges: 150,
         weight: 3.8,
         imageSrc: "/assets/imgs/amulets/garlic_necklace.gif"
