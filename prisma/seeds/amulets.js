@@ -17,7 +17,7 @@ const amulets = [
     },
     {
         name: "bronze amulet",
-        attr: "protect mana drain 20%",
+        attr: "20% mana drain protection",
         charges: 200,
         weight: 5.0,
         imageSrc: "/assets/imgs/amulets/bronze_amulet.gif"
