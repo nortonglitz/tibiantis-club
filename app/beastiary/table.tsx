@@ -123,12 +123,14 @@ const Table: React.FC = () => {
                                     )}
                                 </td>
                                 <td className="text-red-400">
-                                    <div className="flex w-fit m-auto gap-1">
-                                        <img className="self-center" src="/assets/imgs/icons/hp.gif" alt="healthpoints" />
-                                        {hp}
-                                    </div>
+                                    {hp && (
+                                        <div className="flex w-fit m-auto gap-1">
+                                            <img className="self-center" src="/assets/imgs/icons/hp.gif" alt="healthpoints" />
+                                            {hp}
+                                        </div>
+                                    )}
                                 </td>
-                                <td>{loot?.sort().join(', ')}</td>
+                                <td className="max-w-[500px]">{loot?.sort().join(', ')}</td>
                             </tr>
                         ))}
                     </tbody>

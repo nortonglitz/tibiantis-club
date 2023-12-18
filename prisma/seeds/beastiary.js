@@ -647,7 +647,7 @@ const beastiary = [
     },
     {
         name: "desert hunter",
-        hp: 25,
+        hp: 180,
         xp: 230,
         loot: ["gold coin", "leather helmet", "arrow", "power arrow", "meat", "burst arrow", "bow", "brass armor", "leather legs", "poison arrow", "foil"],
         imageSrc: "/assets/imgs/beastiary/desert_hunter.gif"
@@ -700,7 +700,7 @@ const beastiary = [
     },
     {
         name: "underworm",
-        hp: 25,
+        hp: 2500,
         xp: 1700,
         loot: ["brass legs", "iron helmet", "gold coin", "meat", "battle hammer", "ham", "two handed sword", "brass armor", "skull", "skeleton", "big bone", "dark shield", "axe ring"],
         imageSrc: "/assets/imgs/beastiary/underworm.gif"
