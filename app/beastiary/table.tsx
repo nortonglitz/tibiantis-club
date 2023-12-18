@@ -10,9 +10,9 @@ type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [beastiary, setBeastiary] = useState([...beastiaryData].sort((a, b) => !a.xp ? -1 : !b.xp ? 1 : a.xp - b.xp))
+    const [beastiary, setBeastiary] = useState([...beastiaryData].sort((a, b) => a.name.localeCompare(b.name)))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
-        field: 'xp',
+        field: 'name',
         order: 'asc'
     })
 
