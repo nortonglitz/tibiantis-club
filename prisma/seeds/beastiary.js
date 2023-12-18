@@ -265,7 +265,7 @@ const beastiary = [
         hp: 150,
         xp: 120,
         loot: ["ancient shield", "book", "cape", "combat knife", "morning star", "sandals", "shadow herb", "stealth ring", "golden wand"],
-        imageSrc: "/assets/imgs/beastiary/bear.gif"
+        imageSrc: "/assets/imgs/beastiary/ghost.gif"
     },
     {
         name: "ghoul",
@@ -667,11 +667,11 @@ const beastiary = [
         imageSrc: "/assets/imgs/beastiary/kobold.gif"
     },
     {
-        name: "kobold",
+        name: "kobold stoneshooter",
         hp: 150,
         xp: 100,
         loot: ["gold coin", "stone", "brass armor", "meat", "brass legs", "brass helmet", "rapier"],
-        imageSrc: "/assets/imgs/beastiary/stone_shooter.gif"
+        imageSrc: "/assets/imgs/beastiary/kobold_stoneshooter.gif"
     },
     {
         name: "magma beast",
