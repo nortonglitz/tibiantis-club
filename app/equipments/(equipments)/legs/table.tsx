@@ -39,10 +39,10 @@ const Table: React.FC = () => {
 
         if (field === 'weight') {
             if (sortProps.order === 'desc') {
-                setLegs([...legs].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
+                setLegs([...legs].sort((a, b) => !a.weight ? -1 : !b.weight ? 1 : a.weight - b.weight))
                 setSortProps({ field: 'weight', order: 'asc' })
             } else {
-                setLegs([...legs].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
+                setLegs([...legs].sort((a, b) => !a.weight ? 1 : !b.weight ? -1 : b.weight - a.weight))
                 setSortProps({ field: 'weight', order: 'desc' })
             }
         }
