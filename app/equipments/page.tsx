@@ -43,7 +43,7 @@ export default function EquipmentsPage() {
                     href="/equipments/distance"
                     title="distance"
                     imgSrc="/assets/imgs/distance/crossbow.gif"
-                    desc="This is the most expensive weapon, it will take a while until you be strong."
+                    desc="You can deal damage from ditance, using ammunitions with bows or distance weapons."
                 />
             </div>
             <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
