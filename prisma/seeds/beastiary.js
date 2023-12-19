@@ -686,7 +686,7 @@ const beastiary = [
     },
     {
         name: "sandlord",
-        hp: 25,
+        hp: 4000,
         xp: 4800,
         loot: ["red robe", "bright sword"],
         imageSrc: "/assets/imgs/beastiary/sandlord.gif"
