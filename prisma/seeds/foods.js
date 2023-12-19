@@ -78,9 +78,9 @@ const foods = [
         imageSrc: '/assets/imgs/foods/red_apple.gif'
     },
     {
-        name: "?",
-        nutrition: 0,
-        weight: 0.0,
+        name: "red grapefruit",
+        nutrition: 180,
+        weight: 1.4,
         imageSrc: '/assets/imgs/foods/red_orange.gif'
     },
     {

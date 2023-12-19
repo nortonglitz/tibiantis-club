@@ -553,7 +553,7 @@ const beastiary = [
         hp: 270,
         xp: 160,
         loot: ["carlin sword", "crystal ring", "gold coin", "power ring", "red gem", "scale armor", "small stone", "steel shield", "torch"],
-        imageSrc: "/assets/imgs/beastiary/hyaena.gif"
+        imageSrc: "/assets/imgs/beastiary/stone_golem.gif"
     },
     {
         name: "swamp troll",
@@ -663,14 +663,14 @@ const beastiary = [
         name: "kobold",
         hp: 120,
         xp: 60,
-        loot: ["gold coin", "meat", "spear", "wooden shield", "studded armor"],
+        loot: ["gold coin", "meat", "spear", "wooden shield", "studded armor", "small ruby", "small sapphire", "studded legs"],
         imageSrc: "/assets/imgs/beastiary/kobold.gif"
     },
     {
         name: "kobold stoneshooter",
         hp: 150,
         xp: 100,
-        loot: ["gold coin", "stone", "brass armor", "meat", "brass legs", "brass helmet", "rapier"],
+        loot: ["gold coin", "brass armor", "meat", "brass legs", "brass helmet", "rapier", "small stone", "native armor", "copper shield", "protection amulet", "red grapefruit"],
         imageSrc: "/assets/imgs/beastiary/kobold_stoneshooter.gif"
     },
     {
