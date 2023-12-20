@@ -642,7 +642,7 @@ const beastiary = [
         name: "alphadyte",
         hp: 750,
         xp: 480,
-        loot: ["big bone", "battle shield", "plate armor", "meat", "gold coin", "small diamond", "skull"],
+        loot: ["big bone", "battle shield", "plate armor", "meat", "gold coin", "small diamond", "skull", "small rock crystal"],
         imageSrc: "/assets/imgs/beastiary/alphadyte.gif"
     },
     {

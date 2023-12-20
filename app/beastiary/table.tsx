@@ -92,7 +92,7 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px]" scope="col">
+                            <th className="min-w-[300px]" scope="col">
                                 Loot
                             </th>
                         </tr>
