@@ -474,7 +474,7 @@ const beastiary = [
         hp: 390,
         xp: 420,
         loot: ["black shield", "book", "bowl", "clerical mace", "crystal ball", "crystal necklace", "dagger", "goat grass", "powder herb", "red apple", "sling herb", "talon", "wood mushroom", "wooden flute"],
-        imageSrc: "/assets/imgs/beastiary/hyaena.gif"
+        imageSrc: "/assets/imgs/beastiary/priestess.gif"
     },
     {
         name: "rabbit",
@@ -656,7 +656,7 @@ const beastiary = [
         name: "gorlak",
         hp: 80,
         xp: 40,
-        loot: ["brown mushroom", "gold coin", "studded club"],
+        loot: ["brown mushroom", "gold coin", "studded club", "small emerald", "fishbone"],
         imageSrc: "/assets/imgs/beastiary/gorlak.gif"
     },
     {
@@ -688,7 +688,7 @@ const beastiary = [
         name: "sandlord",
         hp: 4000,
         xp: 4800,
-        loot: ["red robe", "bright sword"],
+        loot: ["red robe", "bright sword", "talon", "small ruby"],
         imageSrc: "/assets/imgs/beastiary/sandlord.gif"
     },
     {
@@ -702,7 +702,7 @@ const beastiary = [
         name: "underworm",
         hp: 2500,
         xp: 1700,
-        loot: ["brass legs", "iron helmet", "gold coin", "meat", "battle hammer", "ham", "two handed sword", "brass armor", "skull", "skeleton", "big bone", "dark shield", "axe ring"],
+        loot: ["brass legs", "iron helmet", "gold coin", "meat", "battle hammer", "ham", "two handed sword", "brass armor", "skull", "skeleton", "big bone", "dark shield", "axe ring", "guardian halberd"],
         imageSrc: "/assets/imgs/beastiary/underworm.gif"
     },
 ]
