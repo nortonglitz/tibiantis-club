@@ -87,16 +87,15 @@ const Sidebar = () => {
                         mt-10
                     "
                 >
-                    <Category onClick={closeSidebar} href="/market" src="/assets/bill.gif" title="market" />
-                    <Category onClick={closeSidebar} href="/market" src="/assets/bill.gif" title="community" />
-                    <Category onClick={closeSidebar} href="/beastiary" src="/assets/imgs/beastiary/kobold.gif" title="beastiary" />
-                    <Category onClick={closeSidebar} href="#" src="/assets/abacus.gif" title="calculators" />
-                    <Category onClick={closeSidebar} href="/experience" src="/assets/xp.webp" title="experience" />
-                    <Category onClick={closeSidebar} href="#" src="/assets/spellbook.gif" title="spells" />
-                    <Category onClick={closeSidebar} href="#" src="/assets/gfb.gif" title="runes" />
-                    <Category onClick={closeSidebar} href="/foods" src="/assets/cheese.gif" title="foods" />
-                    <Category onClick={closeSidebar} href="/equipments" src="/assets/aol.png" title="equipments" />
-                    <Category onClick={closeSidebar} href="#" src="/assets/npc.gif" title="NPCs" />
+                    <Category onClick={closeSidebar} href="/market" src="/assets/imgs/icons/bill.gif" title="market" />
+                    <Category onClick={closeSidebar} href="/market" src="/assets/imgs/icons/community.gif" title="community" />
+                    <Category onClick={closeSidebar} href="/beastiary" src="/assets/imgs/icons/kobold.gif" title="beastiary" />
+                    <Category onClick={closeSidebar} href="/experience" src="/assets/imgs/icons/xp_big.gif" title="experience" />
+                    <Category onClick={closeSidebar} href="#" src="/assets/imgs/icons/library.gif" title="library" />
+                    <Category onClick={closeSidebar} href="#" src="/assets/imgs/icons/spellbook.gif" title="spells" />
+                    <Category onClick={closeSidebar} href="#" src="/assets/imgs/icons/runes.gif" title="runes" />
+                    <Category onClick={closeSidebar} href="/foods" src="/assets/imgs/icons/foods.gif" title="foods" />
+                    <Category onClick={closeSidebar} href="/equipments" src="/assets/imgs/icons/shield_of_honour.gif" title="equipments" />
                 </div>
             </div>
         </ListenerClickOutside >

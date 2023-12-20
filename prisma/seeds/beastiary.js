@@ -681,7 +681,7 @@ const beastiary = [
         imageSrc: "/assets/imgs/beastiary/magma_beast.gif"
     },
     {
-        name: "obliterator?",
+        name: "obliterator",
         imageSrc: "/assets/imgs/beastiary/obliterator.gif"
     },
     {
