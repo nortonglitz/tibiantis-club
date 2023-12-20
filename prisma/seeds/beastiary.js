@@ -656,7 +656,7 @@ const beastiary = [
         name: "gorlak",
         hp: 80,
         xp: 40,
-        loot: ["brown mushroom", "gold coin", "studded club", "small emerald", "fishbone"],
+        loot: ["brown mushroom", "gold coin", "studded club", "small emerald", "fishbone", "worn leather boots", "moldy cheese"],
         imageSrc: "/assets/imgs/beastiary/gorlak.gif"
     },
     {
