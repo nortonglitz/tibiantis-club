@@ -1,49 +1,49 @@
 "use client"
 
 import { useState } from "react"
-import beastiaryData from '../../prisma/seeds/beastiary'
+import armorsData from '../../../../../prisma/seeds/armors'
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 
-type Field = "name" | "xp" | "hp"
+type Field = "name" | "attr" | "weight" | "arm"
 type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [beastiary, setBeastiary] = useState([...beastiaryData].sort((a, b) => a.name.localeCompare(b.name)))
+    const [armors, setArmors] = useState([...armorsData].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
-        field: 'name',
-        order: 'asc'
+        field: 'arm',
+        order: 'desc'
     })
 
     const handleSort = (field: Field) => {
         if (field === 'name') {
             if (sortProps.order === 'desc') {
-                setBeastiary([...beastiary].sort((a, b) => a.name.localeCompare(b.name)))
+                setArmors([...armors].sort((a, b) => a.name.localeCompare(b.name)))
                 setSortProps({ field: 'name', order: 'asc' })
             } else {
-                setBeastiary([...beastiary].sort((a, b) => b.name.localeCompare(a.name)))
+                setArmors([...armors].sort((a, b) => b.name.localeCompare(a.name)))
                 setSortProps({ field: 'name', order: 'desc' })
             }
         }
 
-        if (field === 'xp') {
+        if (field === 'arm') {
             if (sortProps.order === 'desc') {
-                setBeastiary([...beastiary].sort((a, b) => !a.xp ? -1 : !b.xp ? 1 : a.xp - b.xp))
-                setSortProps({ field: 'xp', order: 'asc' })
+                setArmors([...armors].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
+                setSortProps({ field: 'arm', order: 'asc' })
             } else {
-                setBeastiary([...beastiary].sort((a, b) => !a.xp ? 1 : !b.xp ? -1 : b.xp - a.xp))
-                setSortProps({ field: 'xp', order: 'desc' })
+                setArmors([...armors].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
+                setSortProps({ field: 'arm', order: 'desc' })
             }
         }
 
-        if (field === 'hp') {
+        if (field === 'weight') {
             if (sortProps.order === 'desc') {
-                setBeastiary([...beastiary].sort((a, b) => !a.hp ? -1 : !b.hp ? 1 : a.hp - b.hp))
-                setSortProps({ field: 'hp', order: 'asc' })
+                setArmors([...armors].sort((a, b) => a.weight - b.weight))
+                setSortProps({ field: 'weight', order: 'asc' })
             } else {
-                setBeastiary([...beastiary].sort((a, b) => !a.hp ? 1 : !b.hp ? -1 : b.hp - a.hp))
-                setSortProps({ field: 'hp', order: 'desc' })
+                setArmors([...armors].sort((a, b) => b.weight - a.weight))
+                setSortProps({ field: 'weight', order: 'desc' })
             }
         }
     }
@@ -51,7 +51,7 @@ const Table: React.FC = () => {
     return (
         <div className="px-3 pt-1 bg-stone-800 rounded-3xl border border-stone-200/10 w-full sm:w-fit">
             <div className="max-h-[80vh] w-full sm:w-[75vw] overflow-y-auto rounded-xl">
-                <table className="relative w-full">
+                <table className="relative text-center w-full">
                     <thead className="top-0 sticky z-10">
                         <tr
                             className="
@@ -74,31 +74,31 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('xp')}>
+                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('arm')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    XP
-                                    {sortProps.field === 'xp' ? sortProps.order === 'asc' ?
+                                    Arm
+                                    {sortProps.field === 'arm' ? sortProps.order === 'asc' ?
                                         <FaSortNumericDown /> : <FaSortNumericUp />
                                         : null
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort("hp")}>
+                            <th className="min-w-[100px]" scope="col">
+                                Attr
+                            </th>
+                            <th className="text-stone-500 min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort("weight")}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    HP
-                                    {sortProps.field === 'hp' ? sortProps.order === 'asc' ?
+                                    Weight
+                                    {sortProps.field === 'weight' ? sortProps.order === 'asc' ?
                                         <FaSortNumericDown /> : <FaSortNumericUp />
                                         : null
                                     }
                                 </div>
-                            </th>
-                            <th className="min-w-[300px]" scope="col">
-                                Loot
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {beastiary.map(({ name, imageSrc, xp, hp, loot }, i) => (
+                        {armors.map(({ weight, name, imageSrc, arm, attr }, i) => (
                             <tr
                                 key={i}
                                 className="
@@ -110,27 +110,13 @@ const Table: React.FC = () => {
                                         hover:outline-stone-400/80
                                     "
                             >
-                                <td className="min-w-[100px]">
-                                    <img className="m-auto" src={imageSrc} alt={name} />
-                                </td>
-                                <td className="text-left capitalize text-base sm:text-lg text-tibia-green font-medium">{name}</td>
                                 <td>
-                                    {xp && (
-                                        <div className="flex w-fit m-auto gap-1">
-                                            <img className="self-center" src="/assets/imgs/icons/xp.gif" alt="experience" />
-                                            {xp}
-                                        </div>
-                                    )}
+                                    <img className="m-auto" src={imageSrc} height={32} width={32} alt={name} />
                                 </td>
-                                <td className="text-red-400">
-                                    {hp && (
-                                        <div className="flex w-fit m-auto gap-1">
-                                            <img className="self-center" src="/assets/imgs/icons/hp.gif" alt="healthpoints" />
-                                            {hp}
-                                        </div>
-                                    )}
-                                </td>
-                                <td className="max-w-[500px]">{loot?.sort().join(', ')}</td>
+                                <td className="text-left capitalize text-base sm:text-lg">{name}</td>
+                                <td>{arm}</td>
+                                <td>{attr}</td>
+                                <td className="text-stone-500">{weight} oz</td>
                             </tr>
                         ))}
                     </tbody>

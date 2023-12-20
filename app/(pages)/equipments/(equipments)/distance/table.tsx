@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import distanceData from '../../../../prisma/seeds/distance'
-import ammunitionsData from '../../../../prisma/seeds/ammunitions'
+import distanceData from '../../../../../prisma/seeds/distance'
+import ammunitionsData from '../../../../../prisma/seeds/ammunitions'
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaCheck, FaSortAmountDown, FaSortAmountUp } from "react-icons/fa"
 import { FaX } from "react-icons/fa6"

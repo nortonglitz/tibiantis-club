@@ -1,16 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import amuletsData from '../../../../prisma/seeds/amulets'
+import beastiaryData from '../../../prisma/seeds/beastiary'
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 
-type Field = "name" | "weight" | "attr" | "usage" | "arm"
+type Field = "name" | "xp" | "hp"
 type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [amulets, setAmulets] = useState([...amuletsData].sort((a, b) => a.name.localeCompare(b.name)))
+    const [beastiary, setBeastiary] = useState([...beastiaryData].sort((a, b) => a.name.localeCompare(b.name)))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
         order: 'asc'
@@ -19,31 +19,31 @@ const Table: React.FC = () => {
     const handleSort = (field: Field) => {
         if (field === 'name') {
             if (sortProps.order === 'desc') {
-                setAmulets([...amulets].sort((a, b) => a.name.localeCompare(b.name)))
+                setBeastiary([...beastiary].sort((a, b) => a.name.localeCompare(b.name)))
                 setSortProps({ field: 'name', order: 'asc' })
             } else {
-                setAmulets([...amulets].sort((a, b) => b.name.localeCompare(a.name)))
+                setBeastiary([...beastiary].sort((a, b) => b.name.localeCompare(a.name)))
                 setSortProps({ field: 'name', order: 'desc' })
             }
         }
 
-        if (field === 'weight') {
+        if (field === 'xp') {
             if (sortProps.order === 'desc') {
-                setAmulets([...amulets].sort((a, b) => a.weight - b.weight))
-                setSortProps({ field: 'weight', order: 'asc' })
+                setBeastiary([...beastiary].sort((a, b) => !a.xp ? -1 : !b.xp ? 1 : a.xp - b.xp))
+                setSortProps({ field: 'xp', order: 'asc' })
             } else {
-                setAmulets([...amulets].sort((a, b) => b.weight - a.weight))
-                setSortProps({ field: 'weight', order: 'desc' })
+                setBeastiary([...beastiary].sort((a, b) => !a.xp ? 1 : !b.xp ? -1 : b.xp - a.xp))
+                setSortProps({ field: 'xp', order: 'desc' })
             }
         }
 
-        if (field === 'arm') {
+        if (field === 'hp') {
             if (sortProps.order === 'desc') {
-                setAmulets([...amulets].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
-                setSortProps({ field: 'arm', order: 'asc' })
+                setBeastiary([...beastiary].sort((a, b) => !a.hp ? -1 : !b.hp ? 1 : a.hp - b.hp))
+                setSortProps({ field: 'hp', order: 'asc' })
             } else {
-                setAmulets([...amulets].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
-                setSortProps({ field: 'arm', order: 'desc' })
+                setBeastiary([...beastiary].sort((a, b) => !a.hp ? 1 : !b.hp ? -1 : b.hp - a.hp))
+                setSortProps({ field: 'hp', order: 'desc' })
             }
         }
     }
@@ -51,7 +51,7 @@ const Table: React.FC = () => {
     return (
         <div className="px-3 pt-1 bg-stone-800 rounded-3xl border border-stone-200/10 w-full sm:w-fit">
             <div className="max-h-[80vh] w-full sm:w-[75vw] overflow-y-auto rounded-xl">
-                <table className="relative text-center w-full">
+                <table className="relative w-full">
                     <thead className="top-0 sticky z-10">
                         <tr
                             className="
@@ -74,34 +74,31 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('arm')}>
+                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('xp')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    Arm
-                                    {sortProps.field === 'arm' ? sortProps.order === 'asc' ?
+                                    XP
+                                    {sortProps.field === 'xp' ? sortProps.order === 'asc' ?
                                         <FaSortNumericDown /> : <FaSortNumericUp />
                                         : null
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('attr')}>
-                                Attr
-                            </th>
-                            <th className="min-w-[100px]" scope="col">
-                                Usage
-                            </th>
-                            <th className="text-stone-500 min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort("weight")}>
+                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort("hp")}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    Weight
-                                    {sortProps.field === 'weight' ? sortProps.order === 'asc' ?
+                                    HP
+                                    {sortProps.field === 'hp' ? sortProps.order === 'asc' ?
                                         <FaSortNumericDown /> : <FaSortNumericUp />
                                         : null
                                     }
                                 </div>
+                            </th>
+                            <th className="min-w-[300px]" scope="col">
+                                Loot
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {amulets.map(({ weight, name, imageSrc, attr, charges, arm }, i) => (
+                        {beastiary.map(({ name, imageSrc, xp, hp, loot }, i) => (
                             <tr
                                 key={i}
                                 className="
@@ -113,20 +110,33 @@ const Table: React.FC = () => {
                                         hover:outline-stone-400/80
                                     "
                             >
-                                <td>
-                                    <img className="m-auto" src={imageSrc} height={32} width={32} alt={name} />
+                                <td className="min-w-[100px]">
+                                    <img className="m-auto" src={imageSrc} alt={name} />
                                 </td>
-                                <td className="text-left capitalize text-base sm:text-lg">{name}</td>
-                                <td>{arm}</td>
-                                <td>{attr}</td>
-                                <td>{charges ? `${charges} charges` : ""}</td>
-                                <td className="text-stone-500">{weight} oz</td>
+                                <td className="text-left capitalize text-base sm:text-lg text-tibia-green font-medium">{name}</td>
+                                <td>
+                                    {xp && (
+                                        <div className="flex w-fit m-auto gap-1">
+                                            <img className="self-center" src="/assets/imgs/icons/xp.gif" alt="experience" />
+                                            {xp}
+                                        </div>
+                                    )}
+                                </td>
+                                <td className="text-red-400">
+                                    {hp && (
+                                        <div className="flex w-fit m-auto gap-1">
+                                            <img className="self-center" src="/assets/imgs/icons/hp.gif" alt="healthpoints" />
+                                            {hp}
+                                        </div>
+                                    )}
+                                </td>
+                                <td className="max-w-[500px]">{loot?.sort().join(', ')}</td>
                             </tr>
                         ))}
                     </tbody>
                     <tfoot>
                         <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >
-                            <td colSpan={6} className="py-2" />
+                            <td colSpan={5} className="py-2" />
                         </tr>
                     </tfoot>
                 </table>

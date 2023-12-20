@@ -1,20 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import axesData from '../../../../prisma/seeds/axes'
+import ringsData from '../../../../../prisma/seeds/rings'
 
-import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaCheck, FaSortAmountDown, FaSortAmountUp } from "react-icons/fa"
-import { FaX } from "react-icons/fa6"
+import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 
-type Field = "name" | "atk" | "def" | "weight" | "twoHanded"
+type Field = "name" | "weight" | "attr" | "usage"
 type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [axes, setAxes] = useState([...axesData].sort((a, b) => b.atk - a.atk))
+    const [axes, setAxes] = useState([...ringsData].sort((a, b) => a.name.localeCompare(b.name)))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
-        field: 'atk',
-        order: 'desc'
+        field: 'name',
+        order: 'asc'
     })
 
     const handleSort = (field: Field) => {
@@ -28,26 +27,6 @@ const Table: React.FC = () => {
             }
         }
 
-        if (field === 'atk') {
-            if (sortProps.order === 'desc') {
-                setAxes([...axes].sort((a, b) => a.atk - b.atk))
-                setSortProps({ field: 'atk', order: 'asc' })
-            } else {
-                setAxes([...axes].sort((a, b) => b.atk - a.atk))
-                setSortProps({ field: 'atk', order: 'desc' })
-            }
-        }
-
-        if (field === 'def') {
-            if (sortProps.order === 'desc') {
-                setAxes([...axes].sort((a, b) => a.def - b.def))
-                setSortProps({ field: 'def', order: 'asc' })
-            } else {
-                setAxes([...axes].sort((a, b) => b.def - a.def))
-                setSortProps({ field: 'def', order: 'desc' })
-            }
-        }
-
         if (field === 'weight') {
             if (sortProps.order === 'desc') {
                 setAxes([...axes].sort((a, b) => a.weight - b.weight))
@@ -55,16 +34,6 @@ const Table: React.FC = () => {
             } else {
                 setAxes([...axes].sort((a, b) => b.weight - a.weight))
                 setSortProps({ field: 'weight', order: 'desc' })
-            }
-        }
-
-        if (field === 'twoHanded') {
-            if (sortProps.order === 'desc') {
-                setAxes([...axes].sort((a, b) => (a.twoHanded === b.twoHanded) ? 0 : a.twoHanded ? -1 : 1))
-                setSortProps({ field: 'twoHanded', order: 'asc' })
-            } else {
-                setAxes([...axes].sort((a, b) => (b.twoHanded === a.twoHanded) ? 0 : b.twoHanded ? -1 : 1))
-                setSortProps({ field: 'twoHanded', order: 'desc' })
             }
         }
     }
@@ -82,12 +51,11 @@ const Table: React.FC = () => {
                                     uppercase
                                     font-yatra-one
                                     bg-stone-800
-                                    [&>th]:cursor-pointer
                                     select-none
                                 "
                         >
                             <th scope="col" className="min-w-[40px]"></th>
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('name')}>
+                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('name')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block  [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Name
                                     {sortProps.field === 'name' ? sortProps.order === 'asc' ?
@@ -96,34 +64,13 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('atk')}>
-                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    Atk
-                                    {sortProps.field === 'atk' ? sortProps.order === 'asc' ?
-                                        <FaSortNumericDown /> : <FaSortNumericUp />
-                                        : null
-                                    }
-                                </div>
+                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('attr')}>
+                                Attr
                             </th>
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('def')}>
-                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    Def
-                                    {sortProps.field === 'def' ? sortProps.order === 'asc' ?
-                                        <FaSortNumericDown /> : <FaSortNumericUp />
-                                        : null
-                                    }
-                                </div>
+                            <th className="min-w-[100px]" scope="col">
+                                Usage
                             </th>
-                            <th className="min-w-[150px]" scope="col" onClick={() => handleSort("twoHanded")}>
-                                <div className="w-fit whitespace-nowrap relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
-                                    Two Hands
-                                    {sortProps.field === 'twoHanded' ? sortProps.order === 'asc' ?
-                                        <FaSortAmountDown /> : <FaSortAmountUp />
-                                        : null
-                                    }
-                                </div>
-                            </th>
-                            <th className="text-stone-500 min-w-[100px]" scope="col" onClick={() => handleSort("weight")}>
+                            <th className="text-stone-500 min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort("weight")}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Weight
                                     {sortProps.field === 'weight' ? sortProps.order === 'asc' ?
@@ -135,7 +82,7 @@ const Table: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {axes.map(({ weight, name, imageSrc, atk, def, twoHanded }, i) => (
+                        {axes.map(({ weight, name, imageSrc, attr, charges, duration }, i) => (
                             <tr
                                 key={i}
                                 className="
@@ -151,16 +98,15 @@ const Table: React.FC = () => {
                                     <img className="m-auto" src={imageSrc} height={32} width={32} alt={name} />
                                 </td>
                                 <td className="text-left capitalize text-base sm:text-lg">{name}</td>
-                                <td>{atk}</td>
-                                <td>{def}</td>
-                                <td><div className="flex justify-center">{twoHanded ? <FaCheck /> : <FaX />}</div></td>
+                                <td>{attr}</td>
+                                <td>{duration ? `${duration}min` : charges ? `${charges} charges` : ""}</td>
                                 <td className="text-stone-500">{weight} oz</td>
                             </tr>
                         ))}
                     </tbody>
                     <tfoot>
                         <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >
-                            <td colSpan={6} className="py-2" />
+                            <td colSpan={5} className="py-2" />
                         </tr>
                     </tfoot>
                 </table>

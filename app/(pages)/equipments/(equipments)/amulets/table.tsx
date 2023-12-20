@@ -1,16 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import ringsData from '../../../../prisma/seeds/rings'
+import amuletsData from '../../../../../prisma/seeds/amulets'
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 
-type Field = "name" | "weight" | "attr" | "usage"
+type Field = "name" | "weight" | "attr" | "usage" | "arm"
 type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const [axes, setAxes] = useState([...ringsData].sort((a, b) => a.name.localeCompare(b.name)))
+    const [amulets, setAmulets] = useState([...amuletsData].sort((a, b) => a.name.localeCompare(b.name)))
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
         order: 'asc'
@@ -19,21 +19,31 @@ const Table: React.FC = () => {
     const handleSort = (field: Field) => {
         if (field === 'name') {
             if (sortProps.order === 'desc') {
-                setAxes([...axes].sort((a, b) => a.name.localeCompare(b.name)))
+                setAmulets([...amulets].sort((a, b) => a.name.localeCompare(b.name)))
                 setSortProps({ field: 'name', order: 'asc' })
             } else {
-                setAxes([...axes].sort((a, b) => b.name.localeCompare(a.name)))
+                setAmulets([...amulets].sort((a, b) => b.name.localeCompare(a.name)))
                 setSortProps({ field: 'name', order: 'desc' })
             }
         }
 
         if (field === 'weight') {
             if (sortProps.order === 'desc') {
-                setAxes([...axes].sort((a, b) => a.weight - b.weight))
+                setAmulets([...amulets].sort((a, b) => a.weight - b.weight))
                 setSortProps({ field: 'weight', order: 'asc' })
             } else {
-                setAxes([...axes].sort((a, b) => b.weight - a.weight))
+                setAmulets([...amulets].sort((a, b) => b.weight - a.weight))
                 setSortProps({ field: 'weight', order: 'desc' })
+            }
+        }
+
+        if (field === 'arm') {
+            if (sortProps.order === 'desc') {
+                setAmulets([...amulets].sort((a, b) => !a.arm ? -1 : !b.arm ? 1 : a.arm - b.arm))
+                setSortProps({ field: 'arm', order: 'asc' })
+            } else {
+                setAmulets([...amulets].sort((a, b) => !a.arm ? 1 : !b.arm ? -1 : b.arm - a.arm))
+                setSortProps({ field: 'arm', order: 'desc' })
             }
         }
     }
@@ -64,6 +74,15 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
+                            <th className="min-w-[100px] cursor-pointer" scope="col" onClick={() => handleSort('arm')}>
+                                <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
+                                    Arm
+                                    {sortProps.field === 'arm' ? sortProps.order === 'asc' ?
+                                        <FaSortNumericDown /> : <FaSortNumericUp />
+                                        : null
+                                    }
+                                </div>
+                            </th>
                             <th className="min-w-[100px]" scope="col" onClick={() => handleSort('attr')}>
                                 Attr
                             </th>
@@ -82,7 +101,7 @@ const Table: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {axes.map(({ weight, name, imageSrc, attr, charges, duration }, i) => (
+                        {amulets.map(({ weight, name, imageSrc, attr, charges, arm }, i) => (
                             <tr
                                 key={i}
                                 className="
@@ -98,15 +117,16 @@ const Table: React.FC = () => {
                                     <img className="m-auto" src={imageSrc} height={32} width={32} alt={name} />
                                 </td>
                                 <td className="text-left capitalize text-base sm:text-lg">{name}</td>
+                                <td>{arm}</td>
                                 <td>{attr}</td>
-                                <td>{duration ? `${duration}min` : charges ? `${charges} charges` : ""}</td>
+                                <td>{charges ? `${charges} charges` : ""}</td>
                                 <td className="text-stone-500">{weight} oz</td>
                             </tr>
                         ))}
                     </tbody>
                     <tfoot>
                         <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >
-                            <td colSpan={5} className="py-2" />
+                            <td colSpan={6} className="py-2" />
                         </tr>
                     </tfoot>
                 </table>

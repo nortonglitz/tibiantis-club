@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import legsData from '../../../../prisma/seeds/legs'
+import legsData from '../../../../../prisma/seeds/legs'
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 

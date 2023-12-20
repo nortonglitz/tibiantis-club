@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { tableExp } from "../libs/tableExp"
+import { tableExp } from "../../libs/tableExp"
 
 export const metadata: Metadata = {
     title: 'Experience - Tibiantis Club',
