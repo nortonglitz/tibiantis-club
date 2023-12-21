@@ -1,4 +1,12 @@
+"use client"
+
+import { usePlayersOnlineQuantity } from "@/app/hooks/usePlayersOnlineQuantity"
+
+
 const ServerInfo = () => {
+
+    const { quantity, isLoading } = usePlayersOnlineQuantity()
+
     return (
         <div
             className="
@@ -11,14 +19,19 @@ const ServerInfo = () => {
         >
             <table
                 className="
-                    [&>tr>th]:font-yatra-one
-                    [&>tr>th]:text-right
-                    [&>tr>td]:text-sm
                     border-separate
                     border-spacing-x-5
                 "
             >
-                <tbody>
+                <tbody
+                    className="
+                        [&>tr>th]:font-yatra-one
+                        [&>tr>th]:text-right
+                        [&>tr>td]:text-sm
+                        border-separate
+                        border-spacing-x-5
+                    "
+                >
                     <tr>
                         <th>Status</th>
                         <td className="text-tibia-green font-semibold">Online</td>
@@ -38,7 +51,7 @@ const ServerInfo = () => {
                     </tr>
                     <tr>
                         <th>Players Online</th>
-                        <td>301</td>
+                        <td>{quantity}</td>
                     </tr>
                     <tr>
                         <th>PvP Type</th>
