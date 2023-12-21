@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Table from "./table"
 import ServerInfo from './serverInfo'
+import DayPlayersChart from './dayPlayersChart'
 
 export const metadata: Metadata = {
     title: 'Players Online - Tibiantis Club',
@@ -11,8 +12,7 @@ export default function PlayersOnlinePage() {
         <main
             className="
                 flex
-                flex-col
-                items-center
+                justify-center
                 py-4
                 sm:py-10
                 flex-wrap
@@ -20,8 +20,13 @@ export default function PlayersOnlinePage() {
                 sm:gap-8
             "
         >
-            <ServerInfo />
-            <Table />
+            <div className="flex flex-col gap-4 sm:gap-8">
+                <div className="flex flex-wrap gap-5 justify-around">
+                    <ServerInfo />
+                    <DayPlayersChart />
+                </div>
+                <Table />
+            </div>
         </main>
     )
 }
