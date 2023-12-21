@@ -34,7 +34,16 @@ const ServerInfo = () => {
                 >
                     <tr>
                         <th>Status</th>
-                        <td className="text-tibia-green font-semibold">Online</td>
+                        <td className="font-semibold">
+                            {isLoading ?
+                                <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                :
+                                quantity > 0 ?
+                                    <span className="text-tibia-green">Online</span>
+                                    :
+                                    <span className="text-red-600">Offline</span>
+                            }
+                        </td>
                     </tr>
                     <tr>
                         <th>Location</th>
@@ -51,7 +60,13 @@ const ServerInfo = () => {
                     </tr>
                     <tr>
                         <th>Players Online</th>
-                        <td>{quantity}</td>
+                        <td>
+                            {isLoading ?
+                                <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                :
+                                <>{quantity}</>
+                            }
+                        </td>
                     </tr>
                     <tr>
                         <th>PvP Type</th>
