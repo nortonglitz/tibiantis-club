@@ -1,7 +1,30 @@
 "use client"
 
 import { useDayPlayersOnline } from '@/app/hooks/useDayPlayersOnline'
-import { LineChart, ResponsiveContainer, XAxis, YAxis, Line } from 'recharts'
+import { LineChart, ResponsiveContainer, XAxis, YAxis, Line, Tooltip } from 'recharts'
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+        return (
+            <div
+                className="b
+                    bg-stone-800/30
+                    px-1 
+                    rounded-md
+                    border
+                    border-stone-600/30
+                "
+            >
+                <p>
+                    <span className="font-yatra-one text-tibia-green text-lg text-center">{payload[0].value}</span>
+                    <span className="text-stone-500"> at {label}</span>
+                </p>
+            </div>
+        );
+    }
+
+    return null;
+};
 
 const DayPlayersChart = () => {
     const { dayPlayers, isLoading } = useDayPlayersOnline()
@@ -15,6 +38,7 @@ const DayPlayersChart = () => {
                 >
                     <XAxis dataKey="createdAt" />
                     <YAxis />
+                    <Tooltip content={CustomTooltip} />
                     <Line type="monotone" dataKey="quantity" stroke="#fef08a" dot={false} />
                 </LineChart>
             </ResponsiveContainer>
