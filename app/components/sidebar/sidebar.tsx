@@ -3,7 +3,7 @@
 import Category from './category'
 import useSidebarStore from "@/app/stores/useSidebarStore"
 import ListenerClickOutside from "../listeners/listenerClickOutside"
-import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
+import { usePlayersOnlineQuantity } from "@/app/hooks/usePlayersOnlineQuantity"
 
 const Sidebar = () => {
 
@@ -13,7 +13,7 @@ const Sidebar = () => {
         setIsOpen(false)
     }
 
-    const { quantity } = usePlayersOnline()
+    const { quantity } = usePlayersOnlineQuantity()
 
     return (
         <ListenerClickOutside onClickOutside={closeSidebar}>
@@ -88,7 +88,7 @@ const Sidebar = () => {
                     "
                 >
                     <Category onClick={closeSidebar} href="/market" src="/assets/imgs/icons/bill.gif" title="market" />
-                    <Category onClick={closeSidebar} href="#" src="/assets/imgs/icons/community.gif" title="community" />
+                    <Category onClick={closeSidebar} href="/community" src="/assets/imgs/icons/community.gif" title="community" />
                     <Category onClick={closeSidebar} href="/beastiary" src="/assets/imgs/icons/kobold.gif" title="beastiary" />
                     <Category onClick={closeSidebar} href="/experience" src="/assets/imgs/icons/xp_big.gif" title="experience" />
                     <Category onClick={closeSidebar} href="#" src="/assets/imgs/icons/library.gif" title="library" />
