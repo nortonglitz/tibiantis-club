@@ -705,6 +705,10 @@ const beastiary = [
         loot: ["brass legs", "iron helmet", "gold coin", "meat", "battle hammer", "ham", "two handed sword", "brass armor", "skull", "skeleton", "big bone", "dark shield", "axe ring", "guardian halberd"],
         imageSrc: "/assets/imgs/beastiary/underworm.gif"
     },
+    {
+        name: "ferumbras",
+        imageSrc: "/assets/imgs/beastiary/underworm.gif"
+    },
 ]
 
 module.exports = beastiary
