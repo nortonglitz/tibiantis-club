@@ -677,7 +677,7 @@ const beastiary = [
         name: "magma beast",
         hp: 5500,
         xp: 3300,
-        loot: ["gold coin", "talon", "burst arrow", "strange helmet", "dark armor", "broadsword", "obsidian lance", "small ruby", "stone skin amulet", "might ring", "red gem", "hammer of wrath"],
+        loot: ["gold coin", "talon", "tower shield", "burst arrow", "strange helmet", "dark armor", "broadsword", "obsidian lance", "small ruby", "stone skin amulet", "might ring", "red gem", "hammer of wrath"],
         imageSrc: "/assets/imgs/beastiary/magma_beast.gif"
     },
     {
