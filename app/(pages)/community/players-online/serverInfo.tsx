@@ -33,6 +33,16 @@ const ServerInfo = () => {
                     "
                 >
                     <tr>
+                        <th>Players Online</th>
+                        <td className="font-bold">
+                            {isLoading ?
+                                <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                :
+                                <>{quantity}</>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Status</th>
                         <td className="font-semibold">
                             {isLoading ?
@@ -57,16 +67,6 @@ const ServerInfo = () => {
                     <tr>
                         <th>Launch Date</th>
                         <td>April 4, 2020</td>
-                    </tr>
-                    <tr>
-                        <th>Players Online</th>
-                        <td>
-                            {isLoading ?
-                                <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
-                                :
-                                <>{quantity}</>
-                            }
-                        </td>
                     </tr>
                     <tr>
                         <th>PvP Type</th>
