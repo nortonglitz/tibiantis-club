@@ -36,14 +36,3 @@ model PlayersSessions {
 
   @@map("playersSessions")
 }
-
-model Foods {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String?
-  nutrition Int?
-  weight    Int?
-  imageSrc  String?
-  createdAt DateTime @default(now())
-
-  @@map("foods")
-}

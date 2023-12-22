@@ -11,8 +11,5 @@ export function usePlayersOnline() {
         focusThrottleInterval: 5 * 60 * 1000
     })
 
-    const playersData = data.players as PlayersOnline[]
-    playersData.sort((a, b) => a.name.localeCompare(b.name))
-
-    return { players: playersData as PlayersOnline[], isLoading, error }
+    return { players: data?.players as PlayersOnline[], isLoading, error }
 }
