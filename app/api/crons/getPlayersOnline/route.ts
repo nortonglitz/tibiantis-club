@@ -17,14 +17,23 @@ export async function GET() {
         const htmlString = await response.text()
         const $ = cheerio.load(htmlString)
 
-        const playersOnline: PlayerStats[] = []
+        const oldPlayersOnline = await prisma.playersOnline.findMany({})
+        const oldPlayersOnlineNumber = oldPlayersOnline.length
+
+        const newPlayers: PlayerStats[] = []
 
         $('.hover').each((i, tr) => {
             const playerStats: PlayerStats = { name: '', vocation: '', level: 0 }
             $(tr).find("td").each((i, td) => {
                 switch (i) {
                     case 0:
-                        playerStats.name = $(td).text()
+                        const name = $(td).text()
+                        const playerIndex = oldPlayersOnline.findIndex(player => player.name === name)
+                        if (playerIndex !== -1) {
+                            oldPlayersOnline.splice(playerIndex, 1)
+                            return false
+                        }
+                        playerStats.name = name
                         break
                     case 1:
                         playerStats.vocation = $(td).text()
@@ -34,17 +43,44 @@ export async function GET() {
                         break
                 }
             })
-            playersOnline.push(playerStats)
+            if (playerStats.name !== "") {
+                newPlayers.push(playerStats)
+            }
         })
 
-        await prisma.playersOnline.deleteMany({})
-        await prisma.playersOnline.createMany({
-            data: playersOnline
-        })
+        if (oldPlayersOnline.length > 1) {
+            const IdsToDelete: string[] = []
+
+            const endedSessions = oldPlayersOnline.map(({ id, name, createdAt }) => {
+                IdsToDelete.push(id)
+                return {
+                    name,
+                    startedAt: createdAt
+                }
+            })
+
+            await prisma.playersSessions.createMany({
+                data: endedSessions
+            })
+
+            await prisma.playersOnline.deleteMany({
+                where: {
+                    id: {
+                        in: IdsToDelete
+                    }
+                }
+            })
+        }
+
+        if (newPlayers.length > 1) {
+            await prisma.playersOnline.createMany({
+                data: newPlayers
+            })
+        }
 
         await prisma.playersHistory.create({
             data: {
-                quantity: playersOnline.length
+                quantity: oldPlayersOnlineNumber + newPlayers.length - oldPlayersOnline.length
             }
         })
 

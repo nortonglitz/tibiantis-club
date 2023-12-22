@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = "mongodb+srv://vercel-admin-user:rPEfaNMgEB0104X4@cluster0.6ry1c54.mongodb.net/devTibiantisClub?retryWrites=true&w=majority"
+  url      = ""
 }
 
 model PlayersHistory {
@@ -28,13 +28,11 @@ model PlayersOnline {
   @@map("playersOnline")
 }
 
-model Foods {
+model PlayersSessions {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  nutrition Int
-  weight    Float
-  imageSrc  String
-  createdAt DateTime @default(now())
+  startedAt DateTime
+  endedAt   DateTime @default(now())
 
-  @@map("foods")
+  @@map("playersSessions")
 }
