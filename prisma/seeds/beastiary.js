@@ -707,7 +707,7 @@ const beastiary = [
     },
     {
         name: "ferumbras",
-        imageSrc: "/assets/imgs/beastiary/underworm.gif"
+        imageSrc: "/assets/imgs/beastiary/ferumbras.gif"
     },
 ]
 
