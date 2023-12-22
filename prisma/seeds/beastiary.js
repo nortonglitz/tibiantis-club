@@ -709,6 +709,13 @@ const beastiary = [
         name: "ferumbras",
         imageSrc: "/assets/imgs/beastiary/ferumbras.gif"
     },
+    {
+        name: "orshabaal",
+        hp: 22500,
+        xp: 6000,
+        loot: ["gold coin", "platinum coin", "black pearl", "gold ingot", "orb", "small amethyst", "small diamond", "small emerald", "small sapphire", "talon", "ancient amulet", "blue gem", "boots of haste", "crystal ball", "crystal necklace", "crystal ring", "demon shield", "devil helmet", "double axe", "dragon hammer", "fire axe", "giant sword", "gold ring", "golden legs", "golden mug", "golden sickle", "green gem", "life crystal", "magic light wand", "magic plate armor", "mastermind shield", "might ring", "mind stone", "platinum amulet", "protection amulet", "purple tome", "ring of healing", "ring of the sky", "silver amulet", "silver dagger", "stone skin amulet", "strange symbol", "two handed sword", "teddy bear", "thunder hammer"],
+        imageSrc: "/assets/imgs/beastiary/demon.gif"
+    },
 ]
 
 module.exports = beastiary
