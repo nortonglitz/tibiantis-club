@@ -20,7 +20,7 @@ model PlayersHistory {
 
 model PlayersOnline {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
+  name      String   @unique
   vocation  String
   level     Int
   createdAt DateTime @default(now())
@@ -35,4 +35,15 @@ model PlayersSessions {
   endedAt   DateTime @default(now())
 
   @@map("playersSessions")
+}
+
+model Foods {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  nutrition Int?
+  weight    Int?
+  imageSrc  String?
+  createdAt DateTime @default(now())
+
+  @@map("foods")
 }
