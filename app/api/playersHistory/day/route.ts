@@ -8,7 +8,7 @@ export async function GET() {
     const today = new Date()
 
     try {
-        const dayPlayersOnlineDoc = await prisma.playersHistory.findMany({
+        const dayPlayersOnlineDoc = await prisma.playersOnlineHistory.findMany({
             where: {
                 createdAt: {
                     lte: today,

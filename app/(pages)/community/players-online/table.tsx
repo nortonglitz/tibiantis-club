@@ -4,6 +4,7 @@ import { useState } from "react"
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
+import { getVocationName } from "@/app/libs/enumAssist"
 
 type Field = "name" | "vocation" | "level"
 type Order = "asc" | "desc"
@@ -40,10 +41,10 @@ const Table: React.FC = () => {
 
         if (field === 'vocation') {
             if (sortProps.order === 'desc') {
-                players.sort((a, b) => a.vocation.localeCompare(b.vocation))
+                players.sort((a, b) => a.vocation - b.vocation)
                 setSortProps({ field: 'vocation', order: 'asc' })
             } else {
-                players.sort((a, b) => b.vocation.localeCompare(a.vocation))
+                players.sort((a, b) => b.vocation - a.vocation)
                 setSortProps({ field: 'vocation', order: 'desc' })
             }
         }
@@ -120,7 +121,7 @@ const Table: React.FC = () => {
                                 >
                                     <td className="text-left capitalize px-2 text-yellow-200 sm:text-lg">{name}</td>
                                     <td>{level}</td>
-                                    <td className="capitalize">{vocation}</td>
+                                    <td className="capitalize">{getVocationName(vocation)}</td>
                                 </tr>
                             ))}
                         <tr />

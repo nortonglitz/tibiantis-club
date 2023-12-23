@@ -10,29 +10,63 @@ datasource db {
   url      = ""
 }
 
-model PlayersHistory {
+model PlayersOnlineHistory {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   quantity  Int
   createdAt DateTime @default(now())
 
-  @@map("playersHistory")
+  @@map("playersOnlineHistory")
 }
 
-model PlayersOnline {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
-  vocation  String
-  level     Int
-  createdAt DateTime @default(now())
-
-  @@map("playersOnline")
-}
-
-model PlayersSessions {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  startedAt DateTime
-  endedAt   DateTime @default(now())
+model PlayerSession {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  characterId String    @db.ObjectId
+  character   Character @relation(fields: [characterId], references: [id])
+  startedAt   DateTime
+  endedAt     DateTime  @default(now())
 
   @@map("playersSessions")
+}
+
+model Death {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  characterId String    @db.ObjectId
+  character   Character @relation(fields: [characterId], references: [id])
+  date        DateTime
+  level       Int
+  cause       String
+
+  @@map("deaths")
+}
+
+type Skills {
+  fist      Int?
+  club      Int?
+  sword     Int?
+  axe       Int?
+  distance  Int?
+  shielding Int?
+  fishing   Int?
+}
+
+model Character {
+  id               String          @id @default(auto()) @map("_id") @db.ObjectId
+  name             String          @unique
+  sex              Int
+  vocation         Int
+  level            Int
+  skills           Skills?
+  magicLevel       Int?
+  residence        Int
+  pk               Boolean?
+  premium          Boolean
+  online           Boolean
+  deaths           Death[]
+  accountCreatedAt DateTime?
+  banishedUntil    DateTime?
+  sessions         PlayerSession[]
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@map("characters")
 }

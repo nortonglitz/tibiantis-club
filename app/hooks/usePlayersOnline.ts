@@ -1,7 +1,7 @@
 "use client"
 
 import useSWR from 'swr'
-import { PlayersOnline } from "@prisma/client"
+import { Character } from "@prisma/client"
 
 export function usePlayersOnline() {
 
@@ -11,5 +11,5 @@ export function usePlayersOnline() {
         focusThrottleInterval: 5 * 60 * 1000
     })
 
-    return { players: data?.players as PlayersOnline[], isLoading, error }
+    return { players: data?.players as Character[], isLoading, error }
 }

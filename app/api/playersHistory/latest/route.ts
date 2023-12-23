@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
     try {
-        const latestDoc = await prisma.playersHistory.findFirst({ orderBy: { id: "desc" } })
+        const latestDoc = await prisma.playersOnlineHistory.findFirst({ orderBy: { id: "desc" } })
         return Response.json({ ...latestDoc }, { status: 200 })
     } catch (err: any) {
         return Response.json({

@@ -1,29 +1,30 @@
 import * as cheerio from "cheerio"
 import { prisma } from '@/app/libs/dbClient'
+import { getAccountStatus, getCityNumber, getSexNumber, getVocationNumber } from "@/app/libs/enumAssist"
 
 export const dynamic = 'force-dynamic'
 
 type PlayerStats = {
     name: string
-    vocation: string
+    vocation: number
     level: number
 }
 
 export async function GET() {
-    const URL = "https://tibiantis.online/?page=whoisonline"
+    const playersOnlineURL = "https://tibiantis.online/?page=whoisonline"
 
     try {
-        const response = await fetch(URL, { cache: 'no-store' })
+        const response = await fetch(playersOnlineURL, { cache: 'no-store' })
         const htmlString = await response.text()
         const $ = cheerio.load(htmlString)
 
-        const oldPlayersOnline = await prisma.playersOnline.findMany({})
+        const oldPlayersOnline = await prisma.character.findMany({ where: { online: true } })
         const oldPlayersOnlineNumber = oldPlayersOnline.length
 
         const newPlayers: PlayerStats[] = []
 
         $('.hover').each((i, tr) => {
-            const playerStats: PlayerStats = { name: '', vocation: '', level: 0 }
+            const playerStats: PlayerStats = { name: '', vocation: 0, level: 0 }
             $(tr).find("td").each((i, td) => {
                 switch (i) {
                     case 0:
@@ -36,7 +37,8 @@ export async function GET() {
                         playerStats.name = name
                         break
                     case 1:
-                        playerStats.vocation = $(td).text()
+                        const vocation = $(td).text()
+                        playerStats.vocation = getVocationNumber(vocation)
                         break
                     case 2:
                         playerStats.level = Number($(td).text())
@@ -49,48 +51,105 @@ export async function GET() {
         })
 
         if (oldPlayersOnline.length > 1) {
-            const IdsToDelete: string[] = []
+            const IDsToUpdate: string[] = []
 
-            const endedSessions = oldPlayersOnline.map(({ id, name, createdAt }) => {
-                IdsToDelete.push(id)
+            const endedSessions = oldPlayersOnline.map(({ id, createdAt }) => {
+                IDsToUpdate.push(id)
                 return {
-                    name,
-                    startedAt: createdAt
+                    startedAt: createdAt,
+                    characterId: id
                 }
             })
 
-            await prisma.playersSessions.createMany({
+            await prisma.playerSession.createMany({
                 data: endedSessions
             })
 
-            await prisma.playersOnline.deleteMany({
-                where: {
-                    id: {
-                        in: IdsToDelete
-                    }
+            oldPlayersOnline.forEach(async ({ id, name }) => {
+                const playerPageURL = `https://tibiantis.online/?page=character&name=${name.split(' ').join('+')}`
+                const response = await fetch(playerPageURL, { cache: 'no-store' })
+                const htmlString = await response.text()
+                const $ = cheerio.load(htmlString)
+
+                const sex = $('td:contains("Sex:")').next().text()
+                const residence = $('td:contains("Residence:")').next().text()
+                const level = $('td:contains("Level:")').next().text()
+                const vocation = $('td:contains("Vocation:")').next().text()
+                const accountStatus = $('td:contains("Account Status:")').next().text()
+
+                const updatePlayer = {
+                    sex: getSexNumber(sex),
+                    vocation: getVocationNumber(vocation),
+                    level: Number(level),
+                    residence: getCityNumber(residence),
+                    premium: getAccountStatus(accountStatus),
+                    online: false
                 }
+
+                await prisma.character.update({
+                    where: { id },
+                    data: {
+                        ...updatePlayer
+                    }
+                })
             })
         }
 
         if (newPlayers.length > 1) {
-            await prisma.playersOnline.createMany({
-                data: newPlayers
+
+            newPlayers.forEach(async ({ name, level, vocation }) => {
+
+                const characterExists = await prisma.character.findFirst({ where: { name: name } })
+
+                if (!characterExists) {
+                    const playerPageURL = `https://tibiantis.online/?page=character&name=${name.split(' ').join('+')}`
+                    const response = await fetch(playerPageURL, { cache: 'no-store' })
+                    const htmlString = await response.text()
+                    const $ = cheerio.load(htmlString)
+
+                    const sex = $('td:contains("Sex:")').next().text()
+                    const residence = $('td:contains("Residence:")').next().text()
+                    const accountStatus = $('td:contains("Account Status:")').next().text()
+
+                    const newPlayer = {
+                        sex: getSexNumber(sex),
+                        vocation,
+                        level: Number(level),
+                        residence: getCityNumber(residence),
+                        premium: getAccountStatus(accountStatus),
+                        online: true
+                    }
+
+                    await prisma.character.create({
+                        data: {
+                            name,
+                            ...newPlayer
+                        }
+                    })
+                } else {
+                    await prisma.character.update({
+                        where: { id: characterExists.id },
+                        data: {
+                            online: true
+                        }
+                    })
+                }
             })
         }
 
-        await prisma.playersHistory.create({
+        await prisma.playersOnlineHistory.create({
             data: {
                 quantity: oldPlayersOnlineNumber + newPlayers.length - oldPlayersOnline.length
             }
         })
 
         return Response.json({
-            message: "Players online loaded."
+            message: "Players online updated."
         }, { status: 200 })
     } catch (err: any) {
-        console.error(err.message, err.code)
+        console.error(err.message)
         return Response.json({
-            message: "Could not load players online."
+            message: "Could not update players online."
         }, { status: 500 })
     }
 }

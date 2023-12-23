@@ -4,9 +4,12 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
     try {
-        const playersOnlineDoc = await prisma.playersOnline.findMany({
+        const playersOnlineDoc = await prisma.character.findMany({
             orderBy: {
                 name: "asc"
+            },
+            where: {
+                online: true
             }
         })
         return Response.json({ players: [...playersOnlineDoc] }, { status: 200 })
