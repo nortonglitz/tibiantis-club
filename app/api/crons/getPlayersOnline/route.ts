@@ -13,6 +13,8 @@ type PlayerStats = {
 export async function GET() {
     const playersOnlineURL = "https://tibiantis.online/?page=whoisonline"
 
+    /* Compare players online with website fetch data */
+
     try {
         const response = await fetch(playersOnlineURL, { cache: 'no-store' })
         const htmlString = await response.text()
@@ -28,6 +30,7 @@ export async function GET() {
             $(tr).find("td").each((i, td) => {
                 switch (i) {
                     case 0:
+                        /* Remove from old array if the player still online */
                         const name = $(td).text()
                         const playerIndex = oldPlayersOnline.findIndex(player => player.name === name)
                         if (playerIndex !== -1) {
@@ -46,9 +49,12 @@ export async function GET() {
                 }
             })
             if (playerStats.name !== "") {
+                /* Add tho array the players that logged in */
                 newPlayers.push(playerStats)
             }
         })
+
+        /* What still on the old array are players that logged off */
 
         if (oldPlayersOnline.length > 1) {
             const IDsToUpdate: string[] = []
@@ -64,6 +70,8 @@ export async function GET() {
             await prisma.playerSession.createMany({
                 data: endedSessions
             })
+
+            /* Update players info that logged off */
 
             oldPlayersOnline.forEach(async ({ id, name }) => {
                 const playerPageURL = `https://tibiantis.online/?page=character&name=${name.split(' ').join('+')}`
@@ -95,11 +103,15 @@ export async function GET() {
             })
         }
 
+        /* Players that logged in */
+
         if (newPlayers.length > 1) {
 
             newPlayers.forEach(async ({ name, level, vocation }) => {
 
                 const characterExists = await prisma.character.findFirst({ where: { name: name } })
+
+                /* Create new character if it does not exists */
 
                 if (!characterExists) {
                     const playerPageURL = `https://tibiantis.online/?page=character&name=${name.split(' ').join('+')}`
@@ -127,6 +139,9 @@ export async function GET() {
                         }
                     })
                 } else {
+
+                    /* Just update this character to online, if it exists */
+
                     await prisma.character.update({
                         where: { id: characterExists.id },
                         data: {
@@ -136,6 +151,8 @@ export async function GET() {
                 }
             })
         }
+
+        /* Add to history the only players removing whose logged off and adding whose logged in */
 
         await prisma.playersOnlineHistory.create({
             data: {

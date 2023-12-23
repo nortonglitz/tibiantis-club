@@ -1,7 +1,7 @@
 "use client"
 
 import useSWR from 'swr'
-import { PlayersHistory } from "@prisma/client"
+import { PlayersOnlineHistory } from "@prisma/client"
 import { format } from 'date-fns'
 
 export function useDayPlayersOnline() {
@@ -13,7 +13,7 @@ export function useDayPlayersOnline() {
     })
 
     if (data) {
-        const dayPlayers = data.dayPlayers as PlayersHistory[]
+        const dayPlayers = data.dayPlayers as PlayersOnlineHistory[]
 
         const dayPlayersFormatted = dayPlayers.map(({ quantity, createdAt }) => {
             return {
