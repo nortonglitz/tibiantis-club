@@ -107,10 +107,11 @@ const Table: React.FC = () => {
                                 </td>
                             </tr>
                             :
-                            players.map(({ level, vocation, name }, i) => (
-                                <tr
-                                    key={i}
-                                    className="
+                            players && players.length > 0 ?
+                                players.map(({ level, vocation, displayName }, i) => (
+                                    <tr
+                                        key={i}
+                                        className="
                                         [&>td]:py-2
                                         odd:bg-stone-400/10 
                                         even:bg-stone-300/10
@@ -118,12 +119,19 @@ const Table: React.FC = () => {
                                         hover:-outline-offset-1
                                         hover:outline-stone-400/80
                                     "
-                                >
-                                    <td className="text-left capitalize px-2 text-yellow-200 sm:text-lg">{name}</td>
-                                    <td>{level}</td>
-                                    <td className="capitalize">{getVocationName(vocation)}</td>
+                                    >
+                                        <td className="text-left capitalize px-2 text-yellow-200 sm:text-lg">{displayName}</td>
+                                        <td>{level}</td>
+                                        <td className="capitalize">{getVocationName(vocation)}</td>
+                                    </tr>
+                                ))
+                                :
+                                <tr>
+                                    <td colSpan={3} className="text-center pt-4 text-stone-400">
+                                        There are no players to show
+                                    </td>
                                 </tr>
-                            ))}
+                        }
                         <tr />
                     </tbody>
                     <tfoot>
