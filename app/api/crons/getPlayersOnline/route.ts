@@ -60,7 +60,7 @@ export async function GET() {
 
         /* What still on the old array are players that logged off */
 
-        if (oldPlayersOnline.length > 1) {
+        if (oldPlayersOnline.length > 0) {
 
             const createPlayersSession = oldPlayersOnline.map(({ id, onlineUpdatedAt }) => {
                 return {
@@ -119,7 +119,7 @@ export async function GET() {
 
         /* Players that logged in */
 
-        if (newPlayers.length > 1) {
+        if (newPlayers.length > 0) {
 
             newPlayers.forEach(async ({ displayName, level, vocation }) => {
 
