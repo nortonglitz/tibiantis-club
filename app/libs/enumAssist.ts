@@ -20,7 +20,7 @@ export const getVocationNumber = (vocation: string) => {
             return 8
     }
 
-    throw new Error('Invalid vocation name')
+    throw new Error(`Invalid vocation name for: ${vocation}`)
 }
 
 export const getVocationName = (vocNumber: number) => {
@@ -46,7 +46,7 @@ export const getVocationName = (vocNumber: number) => {
             return "royal paladin"
     }
 
-    throw new Error('Invalid vocation number')
+    throw new Error(`Invalid vocation number for: ${vocNumber}`)
 }
 
 export const getSexName = (sexNumber: number) => {
@@ -57,7 +57,7 @@ export const getSexName = (sexNumber: number) => {
             return "female"
     }
 
-    throw new Error('Invalid sex number')
+    throw new Error(`Invalid sex number for: ${sexNumber}`)
 }
 
 export const getSexNumber = (sex: string) => {
@@ -68,7 +68,7 @@ export const getSexNumber = (sex: string) => {
             return 1
     }
 
-    throw new Error('Invalid sex name')
+    throw new Error(`Invalid sex name for: ${sex}.`)
 }
 
 export const getCityName = (cityNumber: number) => {
@@ -92,7 +92,7 @@ export const getCityName = (cityNumber: number) => {
             return "darashia"
     }
 
-    throw new Error('Invalid city number')
+    throw new Error(`Invalid city number for: ${cityNumber}.`)
 }
 
 export const getCityNumber = (cityName: string) => {
@@ -115,9 +115,15 @@ export const getCityNumber = (cityName: string) => {
             return 7
     }
 
-    throw new Error('Invalid city name')
+    throw new Error(`Invalid city name for: ${cityName}`)
 }
 
-export const getAccountStatus = (status: string) => {
-    return status.toLocaleLowerCase() !== "free account"
+export const isPremiumAccount = (status: string) => {
+    status.toLocaleLowerCase()
+
+    if (status !== 'free account' && status !== 'premium account') {
+        throw new Error(`Invalid account status for: ${status}`)
+    }
+
+    return status !== "free account"
 }

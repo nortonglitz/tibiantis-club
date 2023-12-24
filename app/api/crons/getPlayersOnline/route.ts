@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio"
 import { prisma } from '@/app/libs/dbClient'
-import { getAccountStatus, getCityNumber, getSexNumber, getVocationNumber } from "@/app/libs/enumAssist"
+import { isPremiumAccount, getCityNumber, getSexNumber, getVocationNumber } from "@/app/libs/enumAssist"
 
 export const dynamic = 'force-dynamic'
 
@@ -11,7 +11,7 @@ type PlayerStats = {
 }
 
 export async function GET() {
-    /* Compare players online with website fetch data */
+    /* Compare players online with official website */
 
     try {
         const playersOnlineURL = "https://tibiantis.online/?page=whoisonline"
@@ -94,12 +94,16 @@ export async function GET() {
                 const vocation = $('td:contains("Vocation:")').next().text()
                 const accountStatus = $('td:contains("Account Status:")').next().text()
 
+                if (sex.length < 1 || residence.length < 1 || accountStatus.length < 1 || vocation.length < 1 || level.length < 1) {
+                    throw new Error("Failed to parse data on player update.")
+                }
+
                 const updatePlayer = {
                     sex: getSexNumber(sex),
                     vocation: getVocationNumber(vocation),
                     level: Number(level),
                     residence: getCityNumber(residence),
-                    premium: getAccountStatus(accountStatus),
+                    premium: isPremiumAccount(accountStatus),
                     online: false,
                     onlineUpdatedAt: new Date()
                 }
@@ -138,6 +142,10 @@ export async function GET() {
                     const residence = $('td:contains("Residence:")').next().text()
                     const accountStatus = $('td:contains("Account Status:")').next().text()
 
+                    if (sex.length < 1 || residence.length < 1 || accountStatus.length < 1) {
+                        throw new Error("Failed to parse data on player creation.")
+                    }
+
                     const newPlayer = {
                         name: displayName.toLocaleLowerCase(),
                         displayName: displayName,
@@ -145,7 +153,7 @@ export async function GET() {
                         vocation,
                         level: Number(level),
                         residence: getCityNumber(residence),
-                        premium: getAccountStatus(accountStatus),
+                        premium: isPremiumAccount(accountStatus),
                         online: true,
                         onlineUpdatedAt: new Date()
                     }
@@ -170,7 +178,7 @@ export async function GET() {
             })
         }
 
-        /* Add to history the only players removing whose logged off and adding whose logged in */
+        /* Add to history online players removing those logged off and adding those logged in */
 
         await prisma.playersOnlineHistory.create({
             data: {
