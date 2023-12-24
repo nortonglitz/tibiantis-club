@@ -24,8 +24,48 @@ export async function GET() {
         const htmlString = await response.text()
         const $ = cheerio.load(htmlString)
 
+        const serverData = { online: 0, record: 0 }
+
+        /* Get players online and record */
+        $('div:contains("Here") > b').each((i, el) => {
+            i === 0 ?
+                serverData.online = Number($(el).text())
+                :
+                serverData.record = Number($(el).text())
+        })
+
+        /* Save online players quantity */
+        await prisma.playersOnlineHistory.create({
+            data: {
+                quantity: serverData.online
+            }
+        })
+
+        /* Update players record if necessary */
+
+        const record = await prisma.playersOnlineRecord.findFirst({
+            where: { world: 'Tibiantis' }
+        })
+
+        /* If no records available, create one */
+        if (!record) {
+            await prisma.playersOnlineRecord.create({
+                data: {
+                    quantity: serverData.record
+                }
+            })
+
+            /* Check if record still higher and update if not */
+        } else if (record.quantity < serverData.record) {
+            await prisma.playersOnlineRecord.update({
+                where: { id: record.id },
+                data: {
+                    quantity: serverData.record
+                }
+            })
+        }
+
         const oldPlayersOnline = await prisma.character.findMany({ where: { online: true } })
-        const oldPlayersOnlineNumber = oldPlayersOnline.length
 
         const newPlayers: PlayerStats[] = []
 
@@ -177,14 +217,6 @@ export async function GET() {
                 }
             })
         }
-
-        /* Add to history online players removing those logged off and adding those logged in */
-
-        await prisma.playersOnlineHistory.create({
-            data: {
-                quantity: oldPlayersOnlineNumber + newPlayers.length - oldPlayersOnline.length
-            }
-        })
 
         return Response.json({
             message: "Players online updated."

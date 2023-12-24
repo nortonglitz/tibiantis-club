@@ -72,3 +72,11 @@ model Character {
 
   @@map("characters")
 }
+
+model PlayersOnlineRecord {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  quantity  Int
+  world     String   @default("Tibiantis")
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
