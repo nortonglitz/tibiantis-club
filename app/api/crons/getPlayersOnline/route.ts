@@ -109,7 +109,7 @@ export async function GET() {
 
             newPlayers.forEach(async ({ name, level, vocation }) => {
 
-                const characterExists = await prisma.character.findFirst({ where: { name: name } })
+                const characterExists = await prisma.character.findFirst({ where: { name: name.toLocaleLowerCase() } })
 
                 /* Create new character if it does not exists */
 
