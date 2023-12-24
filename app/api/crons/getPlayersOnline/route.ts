@@ -11,12 +11,16 @@ type PlayerStats = {
 }
 
 export async function GET() {
-    const playersOnlineURL = "https://tibiantis.online/?page=whoisonline"
-
     /* Compare players online with website fetch data */
 
     try {
+        const playersOnlineURL = "https://tibiantis.online/?page=whoisonline"
         const response = await fetch(playersOnlineURL, { cache: 'no-store' })
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch players online.")
+        }
+
         const htmlString = await response.text()
         const $ = cheerio.load(htmlString)
 
@@ -73,8 +77,14 @@ export async function GET() {
             /* Update players info that logged off */
 
             oldPlayersOnline.forEach(async ({ id, displayName }) => {
+
                 const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
                 const response = await fetch(playerPageURL, { cache: 'no-store' })
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch player data to update.")
+                }
+
                 const htmlString = await response.text()
                 const $ = cheerio.load(htmlString)
 
@@ -116,6 +126,11 @@ export async function GET() {
                 if (!characterExists) {
                     const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
                     const response = await fetch(playerPageURL, { cache: 'no-store' })
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch player data to create a new one.")
+                    }
+
                     const htmlString = await response.text()
                     const $ = cheerio.load(htmlString)
 
