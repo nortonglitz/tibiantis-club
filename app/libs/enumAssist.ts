@@ -119,11 +119,11 @@ export const getCityNumber = (cityName: string) => {
 }
 
 export const isPremiumAccount = (status: string) => {
-    status.toLocaleLowerCase()
+    const lowerCaseStatus = status.toLocaleLowerCase()
 
-    if (status !== 'free account' && status !== 'premium account') {
+    if (lowerCaseStatus !== 'free account' && lowerCaseStatus !== 'premium account') {
         throw new Error(`Invalid account status for: ${status}`)
     }
 
-    return status !== "free account"
+    return lowerCaseStatus !== "free account"
 }
