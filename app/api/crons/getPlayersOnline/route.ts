@@ -5,7 +5,7 @@ import { getAccountStatus, getCityNumber, getSexNumber, getVocationNumber } from
 export const dynamic = 'force-dynamic'
 
 type PlayerStats = {
-    name: string
+    displayName: string
     vocation: number
     level: number
 }
@@ -26,18 +26,18 @@ export async function GET() {
         const newPlayers: PlayerStats[] = []
 
         $('.hover').each((i, tr) => {
-            const playerStats: PlayerStats = { name: '', vocation: 0, level: 0 }
+            const playerStats = { displayName: '', vocation: 0, level: 0 }
             $(tr).find("td").each((i, td) => {
                 switch (i) {
                     case 0:
                         /* Remove from old array if the player still online */
-                        const name = $(td).text()
-                        const playerIndex = oldPlayersOnline.findIndex(player => player.name === name)
+                        const displayName = $(td).text()
+                        const playerIndex = oldPlayersOnline.findIndex(player => player.displayName === displayName)
                         if (playerIndex !== -1) {
                             oldPlayersOnline.splice(playerIndex, 1)
                             return false
                         }
-                        playerStats.name = name
+                        playerStats.displayName = displayName
                         break
                     case 1:
                         const vocation = $(td).text()
@@ -48,7 +48,7 @@ export async function GET() {
                         break
                 }
             })
-            if (playerStats.name !== "") {
+            if (playerStats.displayName !== "") {
                 /* Add tho array the players that logged in */
                 newPlayers.push(playerStats)
             }
@@ -72,8 +72,8 @@ export async function GET() {
 
             /* Update players info that logged off */
 
-            oldPlayersOnline.forEach(async ({ id, name }) => {
-                const playerPageURL = `https://tibiantis.online/?page=character&name=${name.split(' ').join('+')}`
+            oldPlayersOnline.forEach(async ({ id, displayName }) => {
+                const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
                 const response = await fetch(playerPageURL, { cache: 'no-store' })
                 const htmlString = await response.text()
                 const $ = cheerio.load(htmlString)
@@ -107,14 +107,14 @@ export async function GET() {
 
         if (newPlayers.length > 1) {
 
-            newPlayers.forEach(async ({ name, level, vocation }) => {
+            newPlayers.forEach(async ({ displayName, level, vocation }) => {
 
-                const characterExists = await prisma.character.findFirst({ where: { name: name.toLocaleLowerCase() } })
+                const characterExists = await prisma.character.findFirst({ where: { name: displayName.toLocaleLowerCase() } })
 
                 /* Create new character if it does not exists */
 
                 if (!characterExists) {
-                    const playerPageURL = `https://tibiantis.online/?page=character&name=${name.split(' ').join('+')}`
+                    const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
                     const response = await fetch(playerPageURL, { cache: 'no-store' })
                     const htmlString = await response.text()
                     const $ = cheerio.load(htmlString)
@@ -124,8 +124,8 @@ export async function GET() {
                     const accountStatus = $('td:contains("Account Status:")').next().text()
 
                     const newPlayer = {
-                        name: name.toLocaleLowerCase(),
-                        displayName: name,
+                        name: displayName.toLocaleLowerCase(),
+                        displayName: displayName,
                         sex: getSexNumber(sex),
                         vocation,
                         level: Number(level),
