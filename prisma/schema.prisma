@@ -23,7 +23,7 @@ model PlayerSession {
   characterId String    @db.ObjectId
   character   Character @relation(fields: [characterId], references: [id])
   startedAt   DateTime
-  endedAt     DateTime  @default(now())
+  endedAt     DateTime
 
   @@map("playersSessions")
 }
@@ -52,6 +52,7 @@ type Skills {
 model Character {
   id               String          @id @default(auto()) @map("_id") @db.ObjectId
   name             String          @unique
+  displayName      String          @unique
   sex              Int
   vocation         Int
   level            Int
@@ -61,6 +62,7 @@ model Character {
   pk               Boolean?
   premium          Boolean
   online           Boolean
+  onlineUpdatedAt  DateTime
   deaths           Death[]
   accountCreatedAt DateTime?
   banishedUntil    DateTime?

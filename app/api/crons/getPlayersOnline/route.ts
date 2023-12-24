@@ -57,18 +57,17 @@ export async function GET() {
         /* What still on the old array are players that logged off */
 
         if (oldPlayersOnline.length > 1) {
-            const IDsToUpdate: string[] = []
 
-            const endedSessions = oldPlayersOnline.map(({ id, createdAt }) => {
-                IDsToUpdate.push(id)
+            const createPlayersSession = oldPlayersOnline.map(({ id, onlineUpdatedAt }) => {
                 return {
-                    startedAt: createdAt,
-                    characterId: id
+                    characterId: id,
+                    startedAt: onlineUpdatedAt,
+                    endedAt: new Date()
                 }
             })
 
             await prisma.playerSession.createMany({
-                data: endedSessions
+                data: createPlayersSession
             })
 
             /* Update players info that logged off */
@@ -91,13 +90,14 @@ export async function GET() {
                     level: Number(level),
                     residence: getCityNumber(residence),
                     premium: getAccountStatus(accountStatus),
-                    online: false
+                    online: false,
+                    onlineUpdatedAt: new Date()
                 }
 
                 await prisma.character.update({
                     where: { id },
                     data: {
-                        ...updatePlayer
+                        ...updatePlayer,
                     }
                 })
             })
@@ -124,28 +124,31 @@ export async function GET() {
                     const accountStatus = $('td:contains("Account Status:")').next().text()
 
                     const newPlayer = {
+                        name: name.toLocaleLowerCase(),
+                        displayName: name,
                         sex: getSexNumber(sex),
                         vocation,
                         level: Number(level),
                         residence: getCityNumber(residence),
                         premium: getAccountStatus(accountStatus),
-                        online: true
+                        online: true,
+                        onlineUpdatedAt: new Date()
                     }
 
                     await prisma.character.create({
                         data: {
-                            name,
                             ...newPlayer
                         }
                     })
+
                 } else {
 
                     /* Just update this character to online, if it exists */
-
                     await prisma.character.update({
                         where: { id: characterExists.id },
                         data: {
-                            online: true
+                            online: true,
+                            onlineUpdatedAt: new Date()
                         }
                     })
                 }
