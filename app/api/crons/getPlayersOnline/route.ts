@@ -11,6 +11,7 @@ type PlayerStats = {
 }
 
 export async function GET() {
+
     /* Compare players online with official website */
 
     try {
@@ -27,6 +28,7 @@ export async function GET() {
         const serverData = { online: 0, record: 0 }
 
         /* Get players online and record */
+
         $('div:contains("Here") > b').each((i, el) => {
             i === 0 ?
                 serverData.online = Number($(el).text())
@@ -35,6 +37,7 @@ export async function GET() {
         })
 
         /* Save online players quantity */
+
         await prisma.playersOnlineHistory.create({
             data: {
                 quantity: serverData.online
@@ -48,6 +51,7 @@ export async function GET() {
         })
 
         /* If no records available, create one */
+
         if (!record) {
             await prisma.playersOnlineRecord.create({
                 data: {
@@ -56,6 +60,7 @@ export async function GET() {
             })
 
             /* Check if record still higher and update if not */
+
         } else if (record.quantity < serverData.record) {
             await prisma.playersOnlineRecord.update({
                 where: { id: record.id },
@@ -74,12 +79,16 @@ export async function GET() {
             $(tr).find("td").each((i, td) => {
                 switch (i) {
                     case 0:
+
                         /* Remove from old array if the player still online */
+
                         const displayName = $(td).text()
-                        const playerIndex = oldPlayersOnline.findIndex(player => player.displayName === displayName)
-                        if (playerIndex !== -1) {
-                            oldPlayersOnline.splice(playerIndex, 1)
-                            return false
+                        if (oldPlayersOnline) {
+                            const playerIndex = oldPlayersOnline.findIndex(player => player.displayName === displayName)
+                            if (playerIndex !== -1) {
+                                oldPlayersOnline.splice(playerIndex, 1)
+                                return false
+                            }
                         }
                         playerStats.displayName = displayName
                         break
@@ -93,10 +102,15 @@ export async function GET() {
                 }
             })
             if (playerStats.displayName !== "") {
+
                 /* Add tho array the players that logged in */
+
                 newPlayers.push(playerStats)
             }
         })
+
+        console.log("Logged in", newPlayers.length)
+        console.log("Logged out", oldPlayersOnline.length)
 
         /* Players that logged in */
 
@@ -162,7 +176,7 @@ export async function GET() {
 
         /* What still on the old array are players that logged off */
 
-        if (oldPlayersOnline.length > 0) {
+        if (oldPlayersOnline && oldPlayersOnline.length > 0) {
 
             const createPlayersSession = oldPlayersOnline.map(({ id, onlineUpdatedAt }) => {
                 return {
