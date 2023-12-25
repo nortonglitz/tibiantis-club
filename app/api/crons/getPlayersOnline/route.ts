@@ -98,6 +98,68 @@ export async function GET() {
             }
         })
 
+        /* Players that logged in */
+
+        if (newPlayers.length > 0) {
+
+            newPlayers.forEach(async ({ displayName, level, vocation }) => {
+
+                const characterExists = await prisma.character.findFirst({ where: { name: displayName.toLocaleLowerCase() } })
+
+                /* Create new character if it does not exists */
+
+                if (!characterExists) {
+                    const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
+                    const response = await fetch(playerPageURL, { cache: 'no-store' })
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch player data to create a new one.")
+                    }
+
+                    const htmlString = await response.text()
+                    const $ = cheerio.load(htmlString)
+
+                    const sex = $('td:contains("Sex:")').next().text()
+                    const residence = $('td:contains("Residence:")').next().text()
+                    const accountStatus = $('td:contains("Account Status:")').next().text()
+
+                    if (sex.length < 1 || residence.length < 1 || accountStatus.length < 1) {
+                        throw new Error("Failed to parse data on player creation.")
+                    }
+
+                    const newPlayer = {
+                        name: displayName.toLocaleLowerCase(),
+                        displayName: displayName,
+                        sex: getSexNumber(sex),
+                        vocation,
+                        level: Number(level),
+                        residence: getCityNumber(residence),
+                        premium: isPremiumAccount(accountStatus),
+                        online: true,
+                        onlineUpdatedAt: new Date()
+                    }
+
+                    await prisma.character.create({
+                        data: {
+                            ...newPlayer
+                        }
+                    })
+
+                } else {
+
+                    /* Just update this character to online, if it exists */
+
+                    await prisma.character.update({
+                        where: { id: characterExists.id },
+                        data: {
+                            online: true,
+                            onlineUpdatedAt: new Date()
+                        }
+                    })
+                }
+            })
+        }
+
         /* What still on the old array are players that logged off */
 
         if (oldPlayersOnline.length > 0) {
@@ -154,67 +216,6 @@ export async function GET() {
                         ...updatePlayer,
                     }
                 })
-            })
-        }
-
-        /* Players that logged in */
-
-        if (newPlayers.length > 0) {
-
-            newPlayers.forEach(async ({ displayName, level, vocation }) => {
-
-                const characterExists = await prisma.character.findFirst({ where: { name: displayName.toLocaleLowerCase() } })
-
-                /* Create new character if it does not exists */
-
-                if (!characterExists) {
-                    const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
-                    const response = await fetch(playerPageURL, { cache: 'no-store' })
-
-                    if (!response.ok) {
-                        throw new Error("Failed to fetch player data to create a new one.")
-                    }
-
-                    const htmlString = await response.text()
-                    const $ = cheerio.load(htmlString)
-
-                    const sex = $('td:contains("Sex:")').next().text()
-                    const residence = $('td:contains("Residence:")').next().text()
-                    const accountStatus = $('td:contains("Account Status:")').next().text()
-
-                    if (sex.length < 1 || residence.length < 1 || accountStatus.length < 1) {
-                        throw new Error("Failed to parse data on player creation.")
-                    }
-
-                    const newPlayer = {
-                        name: displayName.toLocaleLowerCase(),
-                        displayName: displayName,
-                        sex: getSexNumber(sex),
-                        vocation,
-                        level: Number(level),
-                        residence: getCityNumber(residence),
-                        premium: isPremiumAccount(accountStatus),
-                        online: true,
-                        onlineUpdatedAt: new Date()
-                    }
-
-                    await prisma.character.create({
-                        data: {
-                            ...newPlayer
-                        }
-                    })
-
-                } else {
-
-                    /* Just update this character to online, if it exists */
-                    await prisma.character.update({
-                        where: { id: characterExists.id },
-                        data: {
-                            online: true,
-                            onlineUpdatedAt: new Date()
-                        }
-                    })
-                }
             })
         }
 
