@@ -109,9 +109,6 @@ export async function GET() {
             }
         })
 
-        console.log("Logged in", newPlayers.length)
-        console.log("Logged out", oldPlayersOnline.length)
-
         /* Players that logged in */
 
         if (newPlayers.length > 0) {
@@ -194,7 +191,7 @@ export async function GET() {
 
             oldPlayersOnline.forEach(async ({ id, displayName }) => {
 
-                const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
+                /* const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
                 const response = await fetch(playerPageURL, { cache: 'no-store' })
 
                 if (!response.ok) {
@@ -228,6 +225,13 @@ export async function GET() {
                     where: { id },
                     data: {
                         ...updatePlayer,
+                    }
+                }) */
+
+                await prisma.character.update({
+                    where: { id },
+                    data: {
+                        online: false
                     }
                 })
             })
