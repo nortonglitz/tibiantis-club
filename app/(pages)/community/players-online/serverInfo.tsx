@@ -1,11 +1,13 @@
 "use client"
 
 import { usePlayersOnlineQuantity } from "@/app/hooks/usePlayersOnlineQuantity"
+import { usePlayersOnlineRecord } from "@/app/hooks/usePlayersOnlineRecord"
 
 
 const ServerInfo = () => {
 
-    const { quantity, isLoading } = usePlayersOnlineQuantity()
+    const { quantity, isLoading: isLoadingQuantity } = usePlayersOnlineQuantity()
+    const { record, isLoading: isLoadingRecord } = usePlayersOnlineRecord()
 
     return (
         <div
@@ -35,7 +37,7 @@ const ServerInfo = () => {
                     <tr>
                         <th>Players Online</th>
                         <td className="font-bold">
-                            {isLoading ?
+                            {isLoadingQuantity ?
                                 <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
                                 :
                                 <>{quantity}</>
@@ -45,10 +47,10 @@ const ServerInfo = () => {
                     <tr>
                         <th>Status</th>
                         <td className="font-semibold">
-                            {isLoading ?
+                            {isLoadingQuantity ?
                                 <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
                                 :
-                                quantity > 0 ?
+                                quantity && quantity > 0 ?
                                     <span className="text-tibia-green">Online</span>
                                     :
                                     <span className="text-red-600">Offline</span>
@@ -74,7 +76,17 @@ const ServerInfo = () => {
                     </tr>
                     <tr>
                         <th className="block">Online Record</th>
-                        <td>802<p>September 18, 2023</p></td>
+                        <td>
+                            {
+                                isLoadingRecord ?
+                                    <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                    :
+                                    record ?
+                                        record
+                                        :
+                                        "N/A"
+                            }
+                            <p>Sep 18, 2023</p></td>
                     </tr>
                 </tbody>
             </table>
