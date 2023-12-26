@@ -20,7 +20,7 @@ export default function CharacterPage({ params: { displayName } }: Props) {
             className="
                 flex
                 justify-center
-                py-2
+                pt-10
                 flex-wrap
                 gap-2
                 sm:gap-4
