@@ -1,5 +1,5 @@
-import { Character } from "@prisma/client"
-import type { Metadata } from 'next'
+import { Metadata } from "next"
+import Table from "./table"
 
 type Props = { params: { displayName: string } }
 
@@ -12,24 +12,8 @@ export async function generateMetadata(
     }
 }
 
-async function getCharacter(displayName: string) {
-    const res = await fetch(`${process.env.NODE_ENV !== "production" ?
-        process.env.API_URL_DEV
-        :
-        process.env.API_URL
-        }/api/characters/${displayName}`, { next: { revalidate: 5 * 60 } })
-
-    if (!res.ok) {
-        return null
-    }
-
-    return res.json()
-}
-
-export default async function CharacterPage({ params: { displayName } }: Props) {
+export default function CharacterPage({ params: { displayName } }: Props) {
     const parsedDisplayName = displayName.replace('-', ' ')
-
-    const character = await getCharacter(parsedDisplayName)
 
     return (
         <main
@@ -42,8 +26,7 @@ export default async function CharacterPage({ params: { displayName } }: Props) 
                 sm:gap-4
             "
         >
-            {character && character.level}
-            This page was generated
+            <Table displayName={parsedDisplayName} />
         </main>
     )
 }
