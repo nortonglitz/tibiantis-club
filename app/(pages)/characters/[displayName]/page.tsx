@@ -6,8 +6,9 @@ type Props = { params: { displayName: string } }
 export async function generateMetadata(
     { params: { displayName } }: Props
 ): Promise<Metadata> {
+    const parsedDisplayName = displayName.replace('-', ' ')
     return {
-        title: `${displayName} - Tibiantis Club`
+        title: `${parsedDisplayName} - Tibiantis Club`
     }
 }
 
@@ -26,8 +27,9 @@ async function getCharacter(displayName: string) {
 }
 
 export default async function CharacterPage({ params: { displayName } }: Props) {
+    const parsedDisplayName = displayName.replace('-', ' ')
 
-    const character = await getCharacter(displayName)
+    const character = await getCharacter(parsedDisplayName)
 
     return (
         <main
@@ -41,6 +43,7 @@ export default async function CharacterPage({ params: { displayName } }: Props) 
             "
         >
             {character && character.level}
+            This page was generated
         </main>
     )
 }
