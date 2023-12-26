@@ -189,51 +189,52 @@ export async function GET() {
 
             /* Update players info that logged off */
 
-            oldPlayersOnline.forEach(async ({ id, displayName }) => {
+            const IDsToUpdate = oldPlayersOnline.map(({ id, displayName }) => {
+                return id
+            })
 
-                /* const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
-                const response = await fetch(playerPageURL, { cache: 'no-store' })
+            /* const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
+            const response = await fetch(playerPageURL, { cache: 'no-store' })
 
-                if (!response.ok) {
-                    throw new Error("Failed to fetch player data to update.")
+            if (!response.ok) {
+                throw new Error("Failed to fetch player data to update.")
+            }
+
+            const htmlString = await response.text()
+            const $ = cheerio.load(htmlString)
+
+            const sex = $('td:contains("Sex:")').next().text()
+            const residence = $('td:contains("Residence:")').next().text()
+            const level = $('td:contains("Level:")').next().text()
+            const vocation = $('td:contains("Vocation:")').next().text()
+            const accountStatus = $('td:contains("Account Status:")').next().text()
+
+            if (sex.length < 1 || residence.length < 1 || accountStatus.length < 1 || vocation.length < 1 || level.length < 1) {
+                throw new Error("Failed to parse data on player update.")
+            }
+
+            const updatePlayer = {
+                sex: getSexNumber(sex),
+                vocation: getVocationNumber(vocation),
+                level: Number(level),
+                residence: getCityNumber(residence),
+                premium: isPremiumAccount(accountStatus),
+                online: false,
+                onlineUpdatedAt: new Date()
+            }
+
+            await prisma.character.update({
+                where: { id },
+                data: {
+                    ...updatePlayer,
                 }
+            }) */
 
-                const htmlString = await response.text()
-                const $ = cheerio.load(htmlString)
-
-                const sex = $('td:contains("Sex:")').next().text()
-                const residence = $('td:contains("Residence:")').next().text()
-                const level = $('td:contains("Level:")').next().text()
-                const vocation = $('td:contains("Vocation:")').next().text()
-                const accountStatus = $('td:contains("Account Status:")').next().text()
-
-                if (sex.length < 1 || residence.length < 1 || accountStatus.length < 1 || vocation.length < 1 || level.length < 1) {
-                    throw new Error("Failed to parse data on player update.")
+            await prisma.character.updateMany({
+                where: { id: { in: IDsToUpdate } },
+                data: {
+                    online: false
                 }
-
-                const updatePlayer = {
-                    sex: getSexNumber(sex),
-                    vocation: getVocationNumber(vocation),
-                    level: Number(level),
-                    residence: getCityNumber(residence),
-                    premium: isPremiumAccount(accountStatus),
-                    online: false,
-                    onlineUpdatedAt: new Date()
-                }
-
-                await prisma.character.update({
-                    where: { id },
-                    data: {
-                        ...updatePlayer,
-                    }
-                }) */
-
-                await prisma.character.update({
-                    where: { id },
-                    data: {
-                        online: false
-                    }
-                })
             })
         }
 
