@@ -12,7 +12,11 @@ export async function generateMetadata(
 }
 
 async function getCharacter(displayName: string) {
-    const res = await fetch(`http://localhost:3000/api/characters/${displayName}`, { next: { revalidate: 5 * 60 } })
+    const res = await fetch(`${process.env.NODE_ENV !== "production" ?
+        process.env.API_URL_DEV
+        :
+        process.env.API_URL
+        }/api/characters/${displayName}`, { next: { revalidate: 5 * 60 } })
 
     if (!res.ok) {
         return null
@@ -23,7 +27,7 @@ async function getCharacter(displayName: string) {
 
 export default async function CharacterPage({ params: { displayName } }: Props) {
 
-    const character: Character = await getCharacter(displayName)
+    const character = await getCharacter(displayName)
 
     return (
         <main
