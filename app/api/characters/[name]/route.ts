@@ -1,11 +1,10 @@
 import { prisma } from '@/app/libs/dbClient'
-import { NextApiRequest } from "next"
 
 export const dynamic = 'force-dynamic'
 
 type Query = { params: { name: string } }
 
-export async function GET(req: NextApiRequest, query: Query) {
+export async function GET(req: Request, query: Query) {
     try {
         const { params: { name } } = query
 
