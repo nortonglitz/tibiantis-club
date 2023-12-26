@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
+import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaSortAmountUp, FaSortAmountDown } from "react-icons/fa"
 import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
 import { getVocationName } from "@/app/libs/enumAssist"
 import Link from "next/link"
@@ -90,7 +90,7 @@ const Table: React.FC = () => {
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Vocation
                                     {sortProps.field === 'vocation' ? sortProps.order === 'asc' ?
-                                        <FaSortAlphaDown /> : <FaSortAlphaUp />
+                                        <FaSortAmountDown /> : <FaSortAmountUp />
                                         : null
                                     }
                                 </div>
