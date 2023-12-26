@@ -5,6 +5,7 @@ import { useState } from "react"
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp } from "react-icons/fa"
 import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
 import { getVocationName } from "@/app/libs/enumAssist"
+import Link from "next/link"
 
 type Field = "name" | "vocation" | "level"
 type Order = "asc" | "desc"
@@ -120,7 +121,23 @@ const Table: React.FC = () => {
                                         hover:outline-stone-400/80
                                     "
                                     >
-                                        <td className="text-left capitalize px-2 text-yellow-200 sm:text-lg">{displayName}</td>
+                                        <td>
+                                            <div className="flex w-full">
+                                                <Link
+                                                    href={`/characters/${displayName}`}
+                                                    className="
+                                                        px-2 
+                                                        text-yellow-200
+                                                        sm:text-lg
+                                                        active:text-yellow-300
+                                                        hover:underline
+                                                        hover:underline-offset-4
+                                                    "
+                                                >
+                                                    {displayName}
+                                                </Link>
+                                            </div>
+                                        </td>
                                         <td>{level}</td>
                                         <td className="capitalize">{getVocationName(vocation)}</td>
                                     </tr>
