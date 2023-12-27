@@ -68,6 +68,7 @@ const Finder = () => {
                     classNameInput="py-2"
                     onChange={e => setFindCharacterName(e.target.value)}
                 />
+                <p className="mt-1 text-sm text-stone-400 text-justify">The maximum amount of returned characters is 10, and the search will just happen once you type more than 3 letters.</p>
             </div>
             <div className="px-3 pt-1 bg-stone-800 rounded-3xl border border-stone-200/10 w-full sm:w-fit">
                 <div className="h-fit max-h-[80vh] w-full sm:w-[75vw] overflow-y-auto rounded-xl">
