@@ -48,15 +48,11 @@ export async function GET(req: Request, query: Query) {
             })
         })
 
-        const sessionsFound = await Promise.all(sessionSearchesPromises)
+        const sessionsFound = (await Promise.all(sessionSearchesPromises)).flat()
 
-        const relatedSessions = sessionsFound.reduce(sessionFound => {
-            return sessionFound
-        }, [] as { characterId: string }[])
+        console.log(sessionsFound)
 
-        console.log(relatedSessions)
-
-        const relatedChars = relatedSessions.reduce((acc, { characterId }) => {
+        const relatedChars = sessionsFound.reduce((acc, { characterId }) => {
             return {
                 [characterId]: acc.characterId++
             }
