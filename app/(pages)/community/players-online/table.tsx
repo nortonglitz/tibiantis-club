@@ -124,7 +124,7 @@ const Table: React.FC = () => {
                                         <td>
                                             <div className="flex w-full text-left">
                                                 <Link
-                                                    href={`/characters/${displayName.replace(' ', '-')}`}
+                                                    href={`/characters/${displayName.replaceAll(' ', '-')}`}
                                                     className="
                                                         px-2 
                                                         text-yellow-200
