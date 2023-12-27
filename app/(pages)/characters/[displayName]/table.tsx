@@ -20,16 +20,30 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
     }
 
     return (
-        <div className="bg-stone-800 p-4 rounded-3xl border border-stone-600/30">
+        <div
+            className="
+                bg-stone-800 
+                p-4 
+                rounded-3xl 
+                border 
+                border-stone-600/30 
+                w-full 
+                sm:w-[70vw] 
+                md:w-[60vw] 
+                lg:w-[50vw]
+                xl:w-[40vw]
+            "
+        >
             {!error ?
-                <table>
+                <table className="w-full">
                     <caption
                         className="
-                    font-yatra-one 
-                    text-2xl 
-                    whitespace-nowrap 
-                    text-yellow-200 
-                ">
+                            font-yatra-one 
+                            text-2xl 
+                            whitespace-nowrap 
+                            text-yellow-200 
+                        "
+                    >
                         Character Information
                         <hr className="border-stone-700 mt-2 mb-4" />
                     </caption>
