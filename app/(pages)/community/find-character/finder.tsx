@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEventHandler, useState } from "react"
+import { ChangeEventHandler, FormEventHandler, useState } from "react"
 import { getVocationName } from "@/app/libs/enumAssist"
 import Link from "next/link"
 
@@ -17,6 +17,7 @@ type Order = "asc" | "desc"
 const Finder = () => {
 
     const [findCharacterName, setFindCharacterName] = useState('')
+    const [isDebouncing, setIsDebouncing] = useState(false)
 
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
@@ -24,6 +25,16 @@ const Finder = () => {
     })
 
     const { characters, isLoading } = useFindCharacter(findCharacterName.length > 2 ? findCharacterName : '')
+
+    const handleChangeName: ChangeEventHandler<HTMLInputElement> = e => {
+        if (!isDebouncing) {
+            setTimeout(() => {
+                setFindCharacterName(e.target.value)
+                setIsDebouncing(false)
+            }, 1000)
+            setIsDebouncing(true)
+        }
+    }
 
     const handleSort = (field: Field) => {
         if (field === 'level') {
@@ -66,7 +77,7 @@ const Finder = () => {
                     placeholder="Character Name"
                     className="py-2 flex-1"
                     classNameInput="py-2"
-                    onChange={e => setFindCharacterName(e.target.value)}
+                    onChange={handleChangeName}
                 />
                 <p className="mt-1 text-sm text-stone-400 text-justify">The maximum amount of returned characters is 10, and the search will just happen once you type more than 3 letters.</p>
             </div>
