@@ -34,7 +34,7 @@ export async function GET(req: Request, query: Query) {
             return Response.json({ message: "Not enough sessions to find related characters." }, { status: 200 })
         }
 
-        const sessionSearchesPromise = sessions.map(async ({ endedAt }) => {
+        const sessionSearchesPromises = sessions.map(async ({ endedAt }) => {
             return await prisma.playerSession.findMany({
                 where: {
                     startedAt: {
@@ -48,7 +48,9 @@ export async function GET(req: Request, query: Query) {
             })
         })
 
-        const sessionsFound = await Promise.all(sessionSearchesPromise)
+        const sessionsFound = await Promise.all(sessionSearchesPromises)
+
+        console.log(sessionsFound)
 
         const relatedSessions = sessionsFound.reduce(sessionFound => {
             return sessionFound
