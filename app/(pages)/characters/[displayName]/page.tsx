@@ -6,7 +6,7 @@ type Props = { params: { displayName: string } }
 export async function generateMetadata(
     { params: { displayName } }: Props
 ): Promise<Metadata> {
-    const parsedDisplayName = displayName.replace('-', ' ')
+    const parsedDisplayName = displayName.replaceAll('-', ' ')
     return {
         title: `${parsedDisplayName} - Tibiantis Club`
     }
