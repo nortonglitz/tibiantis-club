@@ -2,6 +2,7 @@
 
 import { usePlayersOnlineQuantity } from "@/app/hooks/usePlayersOnlineQuantity"
 import { usePlayersOnlineRecord } from "@/app/hooks/usePlayersOnlineRecord"
+import { format } from "date-fns"
 
 
 const ServerInfo = () => {
@@ -87,7 +88,7 @@ const ServerInfo = () => {
                                     record ?
                                         <>
                                             {record.quantity}
-                                            <p>{record.updatedAt}</p>
+                                            <p>{format(record.updatedAt, "d MMM Y HH:mm")}</p>
                                         </>
                                         :
                                         "N/A"
