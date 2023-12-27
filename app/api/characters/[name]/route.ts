@@ -8,7 +8,7 @@ export async function GET(req: Request, query: Query) {
     try {
         const { params: { name } } = query
 
-        const parsedName = name.toLowerCase()
+        const parsedName = name.replaceAll('-', ' ').toLowerCase()
 
         if (parsedName.length < 3) {
             return Response.json({ message: "Name too small. Need at least 3 letters." }, { status: 406 })

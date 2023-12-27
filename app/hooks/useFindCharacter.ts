@@ -11,6 +11,8 @@ export type CharacterFound = {
 
 export function useFindCharacter(name: string) {
 
+    const parsedName = name.replaceAll(' ', '-').toLowerCase()
+
     const fetcher = async (url: string) => {
         const res = await fetch(url)
 
@@ -29,7 +31,7 @@ export function useFindCharacter(name: string) {
         return res.json()
     }
 
-    const { data, isLoading, error } = useSWR(`/api/characters/find/${name.toLocaleLowerCase()}`, fetcher, {
+    const { data, isLoading, error } = useSWR(`/api/characters/find/${parsedName}`, fetcher, {
         dedupingInterval: 0,
         focusThrottleInterval: 0,
         revalidateIfStale: false,

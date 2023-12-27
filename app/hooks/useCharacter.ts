@@ -5,6 +5,8 @@ import { Character } from "@prisma/client"
 
 export function useCharacter(displayName: string) {
 
+    const parsedDisplayName = displayName.replaceAll(' ', '-').toLowerCase()
+
     const fetcher = async (url: string) => {
         const res = await fetch(url)
 
@@ -16,7 +18,7 @@ export function useCharacter(displayName: string) {
 
         return res.json()
     }
-    const { data, isLoading, error } = useSWR(`/api/characters/${displayName.toLocaleLowerCase()}`, fetcher, {
+    const { data, isLoading, error } = useSWR(`/api/characters/${parsedDisplayName}`, fetcher, {
         dedupingInterval: 5 * 60 * 1000,
         focusThrottleInterval: 5 * 60 * 1000
     })

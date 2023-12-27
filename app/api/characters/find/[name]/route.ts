@@ -8,10 +8,12 @@ export async function GET(req: Request, query: Query) {
     try {
         const { params: { name } } = query
 
+        const parsedName = name.replaceAll(' ', '-').toLowerCase()
+
         const characters = await prisma.character.findMany({
             where: {
                 name: {
-                    contains: name.toLocaleLowerCase()
+                    contains: parsedName
                 },
             },
             take: 10,
