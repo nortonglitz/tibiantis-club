@@ -1,5 +1,5 @@
 import { prisma } from '@/app/libs/dbClient'
-import { set } from 'date-fns'
+import { getMinutes, set } from 'date-fns'
 
 export const dynamic = 'force-dynamic'
 
@@ -41,7 +41,7 @@ export async function GET(req: Request, query: Query) {
                 where: {
                     startedAt: {
                         gte: set(endedAt, { milliseconds: 0 }),
-                        lte: set(endedAt, { milliseconds: 999 })
+                        lte: set(endedAt, { minutes: getMinutes(endedAt) + 4, milliseconds: 999 })
                     }
                 },
                 select: {
