@@ -37,7 +37,7 @@ export async function GET(req: Request, query: Query) {
         let relatedCharsArray: { characterId: string }[] = []
 
         sessions.forEach(async ({ endedAt }) => {
-            const foundChars = await prisma.playerSession.findMany({
+            const relatedSessionsFound = await prisma.playerSession.findMany({
                 where: {
                     startedAt: endedAt
                 },
@@ -45,7 +45,7 @@ export async function GET(req: Request, query: Query) {
                     characterId: true
                 }
             })
-            relatedCharsArray = [...relatedChars, ...foundChars]
+            relatedCharsArray = [...relatedCharsArray, ...relatedSessionsFound]
         })
 
         const relatedChars = relatedCharsArray.reduce((acc, { characterId }) => {
