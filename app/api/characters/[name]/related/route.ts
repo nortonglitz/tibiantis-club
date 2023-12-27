@@ -29,7 +29,8 @@ export async function GET(req: Request, query: Query) {
     })
 
     if (!sessions || sessions.length < 5) {
-        return Response.json({ relatedChars: [] }, { status: 200 })
+        console.log('Pouca sessão.')
+        return Response.json({ message: "Not enough sessions to find related characters." }, { status: 200 })
     }
 
     let relatedCharsArray: { characterId: string }[] = []
@@ -47,6 +48,7 @@ export async function GET(req: Request, query: Query) {
     })
 
     const relatedChars = relatedCharsArray.reduce((acc, { characterId }) => {
+        console.log('Passei no related')
         return {
             [characterId]: acc.characterId++
         }
