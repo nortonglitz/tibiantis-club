@@ -64,7 +64,7 @@ const Finder = () => {
 
     return (
         <>
-            <div className="w-[40vw] bg-stone-800 p-4 rounded-3xl border border-stone-600/30">
+            <div className="w-full sm:w-[75vw] md:w-[60vw] lg:w-[40vw] bg-stone-800 p-4 rounded-3xl border border-stone-600/30">
                 <h3 className="font-yatra-one text-2xl text-yellow-200">Find Character</h3>
                 <hr className="mt-2 mb-4 border-stone-600/30" />
                 <form className="flex items-center gap-2 flex-nowrap" onSubmit={handleSubmit}>
