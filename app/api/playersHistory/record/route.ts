@@ -12,7 +12,7 @@ export async function GET() {
         })
 
         if (playersOnlineRecordDoc) {
-            return Response.json({ playersOnlineRecord: playersOnlineRecordDoc.quantity }, { status: 200 })
+            return Response.json({ quantity: playersOnlineRecordDoc.quantity, updatedAt: playersOnlineRecordDoc.updatedAt }, { status: 200 })
         }
 
         return Response.json({ message: "Players online record not available" }, { status: 204 })

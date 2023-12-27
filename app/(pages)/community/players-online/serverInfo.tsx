@@ -79,14 +79,20 @@ const ServerInfo = () => {
                         <td>
                             {
                                 isLoadingRecord ?
-                                    <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                    <>
+                                        <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                        <p><div className="w-[9rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /></p>
+                                    </>
                                     :
                                     record ?
-                                        record
+                                        <>
+                                            {record.quantity}
+                                            <p>{record.updatedAt}</p>
+                                        </>
                                         :
                                         "N/A"
                             }
-                            <p>Sep 18, 2023</p></td>
+                        </td>
                     </tr>
                 </tbody>
             </table>
