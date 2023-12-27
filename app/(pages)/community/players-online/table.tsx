@@ -12,7 +12,7 @@ type Order = "asc" | "desc"
 
 const Table: React.FC = () => {
 
-    const { players, isLoading } = usePlayersOnline()
+    const { players, isLoading, error } = usePlayersOnline()
 
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
@@ -108,48 +108,54 @@ const Table: React.FC = () => {
                                 </td>
                             </tr>
                             :
-                            players && players.length > 0 ?
-                                players.map(({ level, vocation, displayName }, i) => (
-                                    <tr
-                                        key={i}
-                                        className="
-                                        [&>td]:py-2
-                                        odd:bg-stone-400/10 
-                                        even:bg-stone-300/10
-                                        hover:outline
-                                        hover:-outline-offset-1
-                                        hover:outline-stone-400/80
-                                    "
-                                    >
-                                        <td>
-                                            <div className="flex w-full text-left">
-                                                <Link
-                                                    href={`/characters/${displayName.replaceAll(' ', '-')}`}
-                                                    className="
-                                                        px-2 
-                                                        text-yellow-200
-                                                        sm:text-lg
-                                                        active:text-yellow-300
-                                                        hover:underline
-                                                        hover:underline-offset-4
-                                                    "
-                                                >
-                                                    {displayName}
-                                                </Link>
-                                            </div>
-                                        </td>
-                                        <td>{level}</td>
-                                        <td className="capitalize">{getVocationName(vocation)}</td>
-                                    </tr>
-                                ))
-                                :
+                            error ?
                                 <tr>
                                     <td colSpan={3} className="text-center pt-4 text-stone-400">
-                                        There are no players to show
+                                        Something went wrong.
                                     </td>
                                 </tr>
+                                :
+                                players && players.length > 0 ?
+                                    players.map(({ level, vocation, displayName }, i) => (
+                                        <tr
+                                            key={i}
+                                            className="
+                                                [&>td]:py-2
+                                                odd:bg-stone-400/10 
+                                                even:bg-stone-300/10
+                                                hover:outline
+                                                hover:-outline-offset-1
+                                                hover:outline-stone-400/80
+                                            "
+                                        >
+                                            <td>
+                                                <div className="flex w-full text-left">
+                                                    <Link
+                                                        href={`/characters/${displayName.replaceAll(' ', '-')}`}
+                                                        className="
+                                                                px-2 
+                                                                text-yellow-200
+                                                                sm:text-lg
+                                                                active:text-yellow-300
+                                                                hover:underline
+                                                                hover:underline-offset-4
+                                                            "
+                                                    >
+                                                        {displayName}
+                                                    </Link>
+                                                </div>
+                                            </td>
+                                            <td>{level}</td>
+                                            <td className="capitalize">{getVocationName(vocation)}</td>
+                                        </tr>
+                                    ))
+                                    :
+                                    <tr>
+                                        <td colSpan={3} className="text-center pt-4 text-stone-400">
+                                            There are no players to show
+                                        </td>
+                                    </tr>
                         }
-                        <tr />
                     </tbody>
                     <tfoot>
                         <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >

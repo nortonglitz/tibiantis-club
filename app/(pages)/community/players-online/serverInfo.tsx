@@ -7,8 +7,8 @@ import { format } from "date-fns"
 
 const ServerInfo = () => {
 
-    const { quantity, isLoading: isLoadingQuantity } = usePlayersOnlineQuantity()
-    const { record, isLoading: isLoadingRecord } = usePlayersOnlineRecord()
+    const { quantity, isLoading: isLoadingQuantity, error: quantitiyError } = usePlayersOnlineQuantity()
+    const { record, isLoading: isLoadingRecord, error: recordError } = usePlayersOnlineRecord()
 
     return (
         <div
@@ -41,7 +41,10 @@ const ServerInfo = () => {
                             {isLoadingQuantity ?
                                 <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
                                 :
-                                <>{quantity}</>
+                                !quantitiyError ?
+                                    <>{quantity}</>
+                                    :
+                                    "N/A"
                             }
                         </td>
                     </tr>
@@ -85,7 +88,7 @@ const ServerInfo = () => {
                                         <div className="w-[9rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full mt-1" />
                                     </>
                                     :
-                                    record ?
+                                    !recordError ?
                                         <>
                                             {record.quantity}
                                             <p>{format(record.updatedAt, "d MMM Y HH:mm")}</p>
