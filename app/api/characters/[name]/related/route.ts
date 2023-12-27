@@ -34,10 +34,8 @@ export async function GET(req: Request, query: Query) {
             return Response.json({ message: "Not enough sessions to find related characters." }, { status: 200 })
         }
 
-        const relatedSessions: { characterId: string }[] = []
-
-        sessions.forEach(async ({ endedAt }) => {
-            const relatedSessionsFound = await prisma.playerSession.findMany({
+        const sessionSearchesPromise = sessions.map(async ({ endedAt }) => {
+            return await prisma.playerSession.findMany({
                 where: {
                     startedAt: {
                         gte: set(endedAt, { milliseconds: 0 }),
@@ -48,10 +46,13 @@ export async function GET(req: Request, query: Query) {
                     characterId: true
                 }
             })
-            relatedSessions.push(...relatedSessionsFound)
         })
 
-        console.log(relatedSessions)
+        const sessionsFound = await Promise.all(sessionSearchesPromise)
+
+        const relatedSessions = sessionsFound.reduce(sessionFound => {
+            return sessionFound
+        }, [] as { characterId: string }[])
 
         const relatedChars = relatedSessions.reduce((acc, { characterId }) => {
             return {
