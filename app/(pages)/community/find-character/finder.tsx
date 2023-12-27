@@ -8,7 +8,7 @@ import InputText from "@/app/components/inputs/inputText"
 import Button from "@/app/components/buttons/button"
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaSortAmountUp, FaSortAmountDown } from "react-icons/fa"
-import { useFindCharacter, CharacterFound } from "@/app/hooks/useFindCharacter"
+import { useFindCharacter } from "@/app/hooks/useFindCharacter"
 
 
 type Field = "name" | "vocation" | "level"

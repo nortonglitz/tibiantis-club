@@ -6,9 +6,11 @@ import { FaCheck } from "react-icons/fa"
 import { FaX } from "react-icons/fa6"
 import { formatDistanceToNow } from 'date-fns'
 import Link from "next/link"
+import { Character } from "@prisma/client"
 
 interface TableProps {
     displayName: string
+    char?: Character
 }
 
 const Table: React.FC<TableProps> = ({ displayName }) => {

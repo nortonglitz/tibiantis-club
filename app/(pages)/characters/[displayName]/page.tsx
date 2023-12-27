@@ -24,7 +24,9 @@ export default function CharacterPage({ params: { displayName } }: Props) {
                 flex-wrap
             "
         >
-            <Table displayName={parsedDisplayName} />
+            <Table
+                displayName={parsedDisplayName}
+            />
         </main>
     )
 }
