@@ -13,7 +13,7 @@ export async function generateMetadata(
 }
 
 export default function CharacterPage({ params: { displayName } }: Props) {
-    const parsedDisplayName = displayName.replace('-', ' ')
+    const parsedDisplayName = displayName.replaceAll('-', ' ')
 
     return (
         <main
