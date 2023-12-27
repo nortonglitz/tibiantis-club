@@ -9,13 +9,7 @@ export function useCharacter(displayName: string) {
         const res = await fetch(url)
 
         if (!res.ok) {
-            const error: any = new Error('An error occurred while fetching character data.')
-            error.status = res.status
-            throw error
-        }
-
-        if (res.status === 204) {
-            const error: any = new Error('Could not find character.')
+            const error: any = new Error('Could not find any character.')
             error.status = res.status
             throw error
         }
