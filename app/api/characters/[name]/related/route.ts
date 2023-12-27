@@ -48,7 +48,6 @@ export async function GET(req: Request, query: Query) {
                     characterId: true
                 }
             })
-            console.log(relatedSessionsFound)
             relatedSessions.push(...relatedSessionsFound)
         })
 
