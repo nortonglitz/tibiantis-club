@@ -23,12 +23,7 @@ const Finder = () => {
         order: 'asc'
     })
 
-    const { characters, error, isLoading } = useFindCharacter(findCharacterName.length > 2 ? findCharacterName : '')
-
-    const handleSubmit: FormEventHandler = async (e) => {
-        e.preventDefault()
-
-    }
+    const { characters, isLoading } = useFindCharacter(findCharacterName.length > 2 ? findCharacterName : '')
 
     const handleSort = (field: Field) => {
         if (field === 'level') {
@@ -67,15 +62,12 @@ const Finder = () => {
             <div className="w-full sm:w-[75vw] md:w-[60vw] lg:w-[40vw] bg-stone-800 p-4 rounded-3xl border border-stone-600/30">
                 <h3 className="font-yatra-one text-2xl text-yellow-200">Find Character</h3>
                 <hr className="mt-2 mb-4 border-stone-600/30" />
-                <form className="flex items-center gap-2 flex-nowrap" onSubmit={handleSubmit}>
-                    <InputText
-                        placeholder="Character Name"
-                        className="py-2 flex-1"
-                        classNameInput="py-2"
-                        onChange={e => setFindCharacterName(e.target.value)}
-                    />
-                    <Button className="py-3">Submit</Button>
-                </form>
+                <InputText
+                    placeholder="Character Name"
+                    className="py-2 flex-1"
+                    classNameInput="py-2"
+                    onChange={e => setFindCharacterName(e.target.value)}
+                />
             </div>
             <div className="px-3 pt-1 bg-stone-800 rounded-3xl border border-stone-200/10 w-full sm:w-fit">
                 <div className="h-fit max-h-[80vh] w-full sm:w-[75vw] overflow-y-auto rounded-xl">
