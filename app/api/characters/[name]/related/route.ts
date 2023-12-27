@@ -1,4 +1,5 @@
 import { prisma } from '@/app/libs/dbClient'
+import { set } from 'date-fns'
 
 export const dynamic = 'force-dynamic'
 
@@ -30,7 +31,6 @@ export async function GET(req: Request, query: Query) {
         })
 
         if (!sessions || sessions.length < 5) {
-            console.log('Pouca sessão.')
             return Response.json({ message: "Not enough sessions to find related characters." }, { status: 200 })
         }
 
@@ -39,7 +39,10 @@ export async function GET(req: Request, query: Query) {
         sessions.forEach(async ({ endedAt }) => {
             const relatedSessionsFound = await prisma.playerSession.findMany({
                 where: {
-                    startedAt: endedAt
+                    startedAt: {
+                        gte: set(endedAt, { milliseconds: 0 }),
+                        lte: set(endedAt, { milliseconds: 999 })
+                    }
                 },
                 select: {
                     characterId: true
@@ -49,7 +52,6 @@ export async function GET(req: Request, query: Query) {
         })
 
         const relatedChars = relatedCharsArray.reduce((acc, { characterId }) => {
-            console.log('Passei no related')
             return {
                 [characterId]: acc.characterId++
             }
