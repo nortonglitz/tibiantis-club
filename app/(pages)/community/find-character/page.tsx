@@ -1,22 +1,23 @@
 import type { Metadata } from 'next'
+import Finder from './finder'
 
 export const metadata: Metadata = {
-    title: 'Characters - Tibiantis Club',
+    title: 'Find Character - Tibiantis Club',
 }
 
-export default function CharactersPage() {
+export default function CommunityPage() {
     return (
         <main
             className="
                 flex
                 justify-center
-                py-2
+                py-10
+                pb-2
                 flex-wrap
-                gap-2
-                sm:gap-4
+                gap-10
             "
         >
-
+            <Finder />
         </main>
     )
 }

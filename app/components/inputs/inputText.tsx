@@ -1,23 +1,25 @@
 "use client"
 
-import { MouseEventHandler, useState } from "react"
+import { useState } from "react"
 import { DetailedHTMLProps, InputHTMLAttributes } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 interface InputTextProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-    type?: "password" | "text"
+    type?: "password" | "text",
+    classNameInput?: string
 }
 
 const InputText: React.FC<InputTextProps> = ({
     type = "text",
     className,
+    classNameInput,
     ...props
 }) => {
 
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <div className="relative">
+        <div className={`relative ${className}`}>
             <input
                 type={type === 'text' ? 'text' : showPassword ? 'text' : 'password'}
                 className={`
@@ -32,7 +34,7 @@ const InputText: React.FC<InputTextProps> = ({
                     ring-stone-700
                     focus:ring-stone-400
                     placeholder:text-stone-600
-                    ${className}
+                    ${classNameInput}
                 `}
                 {...props}
             />

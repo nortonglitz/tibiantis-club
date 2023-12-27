@@ -29,7 +29,7 @@ const LinkCategory: React.FC<LinkCategoryProps> = ({ imgSrc, title, desc, classN
                 `}
             {...props}
         >
-            <img src={imgSrc} alt={title} className="m-auto" />
+            <img src={imgSrc} alt={title} className="m-auto h-12 object-none" />
             <h3 className="mt-2 font-yatra-one text-xl text-center group-hover:text-yellow-200 group-active:text-yellow-300 capitalize">{title}</h3>
             <p className="text-xs text-stone-400 text-justify mt-2 hidden sm:flex">{desc}</p>
         </Link>

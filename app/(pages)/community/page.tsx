@@ -18,10 +18,28 @@ export default function CommunityPage() {
             "
         >
             <LinkCategory
-                desc="You can see a list of all players that are playing Tibiantis right now."
+                desc="List of all players that are playing Tibiantis right now."
                 title="Players Online"
                 href="/community/players-online"
                 imgSrc="/assets/imgs/icons/players_online.gif"
+            />
+            <LinkCategory
+                desc="Find a character that you are looking for."
+                title="Find Character"
+                href="/community/find-character"
+                imgSrc="/assets/imgs/icons/find_character.gif"
+            />
+            <LinkCategory
+                desc="Check players that can possible kill you."
+                title="PK List"
+                href="#"
+                imgSrc="/assets/imgs/icons/pk_list.gif"
+            />
+            <LinkCategory
+                desc="List of all banned players."
+                title="Exilium"
+                href="#"
+                imgSrc="/assets/imgs/icons/exilium.gif"
             />
         </main>
     )
