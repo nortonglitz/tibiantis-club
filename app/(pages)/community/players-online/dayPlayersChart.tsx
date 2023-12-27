@@ -27,22 +27,47 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const DayPlayersChart = () => {
-    const { dayPlayers, isLoading } = useDayPlayersOnline()
+    const { dayPlayers, error } = useDayPlayersOnline()
 
     return (
-        <div className="w-[350px] h-[200px] text-xs">
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                    data={dayPlayers}
-                    margin={{ top: 0, left: 0, right: 50, bottom: 0 }}
-                >
-                    <XAxis dataKey="createdAt" />
-                    <YAxis />
-                    <Tooltip content={CustomTooltip} />
-                    <Line type="monotone" dataKey="quantity" stroke="#fef08a" dot={false} />
-                </LineChart>
-            </ResponsiveContainer>
-        </div>
+        <>
+            {!error ?
+                dayPlayers.length > 0 ?
+                    <div className="w-[350px] h-[200px] text-xs">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <LineChart
+                                data={dayPlayers}
+                                margin={{ top: 0, left: 0, right: 50, bottom: 0 }}
+                            >
+                                <XAxis dataKey="createdAt" />
+                                <YAxis />
+                                <Tooltip content={CustomTooltip} />
+                                <Line type="monotone" dataKey="quantity" stroke="#fef08a" dot={false} />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                    :
+                    <div className="
+                            w-[350px] 
+                            h-[200px] 
+                            bg-stone-800/20
+                            p-4
+                            border
+                            border-stone-700/40
+                            rounded-3xl
+                            flex
+                            items-center
+                            justify-center
+                            text-stone-400
+                            italic
+                        "
+                    >
+                        No data to display
+                    </div>
+                :
+                <div className="w-[350px] h-[200px] bg-stone-500/30 animate-pulse rounded-3xl" />
+            }
+        </>
     )
 }
 
