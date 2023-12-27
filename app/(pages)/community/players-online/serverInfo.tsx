@@ -82,7 +82,7 @@ const ServerInfo = () => {
                                 isLoadingRecord ?
                                     <>
                                         <div className="w-[3rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
-                                        <p><div className="w-[9rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /></p>
+                                        <div className="w-[9rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full mt-1" />
                                     </>
                                     :
                                     record ?

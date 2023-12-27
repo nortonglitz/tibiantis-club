@@ -4,8 +4,6 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
 
-    const today = new Date()
-
     try {
         const playersOnlineRecordDoc = await prisma.playersOnlineRecord.findFirst({
             where: { world: "Tibiantis" }

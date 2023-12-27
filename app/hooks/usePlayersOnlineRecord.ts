@@ -2,6 +2,11 @@
 
 import useSWRImmutable from 'swr/immutable'
 
+type Record = {
+    quantity: number
+    updatedAt: Date
+}
+
 export function usePlayersOnlineRecord() {
 
     const fetcher = async (url: string) => {
@@ -25,5 +30,5 @@ export function usePlayersOnlineRecord() {
     /* Immutable data */
     const { data, isLoading, error } = useSWRImmutable('/api/playersHistory/record', fetcher)
 
-    return { record: { ...data }, isLoading, error }
+    return { record: { ...data as Record }, isLoading, error }
 }
