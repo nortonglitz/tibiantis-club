@@ -36,7 +36,7 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
                 xl:w-[40vw]
             "
         >
-            {false ?
+            {!error ?
                 <table className="w-full">
                     <caption
                         className="
