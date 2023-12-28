@@ -20,13 +20,13 @@ export default function CommunityPage() {
             <LinkCategory
                 desc="List of all players that are playing Tibiantis right now."
                 title="Players Online"
-                href="/community/players-online"
+                href="/players/online"
                 imgSrc="/assets/imgs/icons/players_online.gif"
             />
             <LinkCategory
                 desc="Find a character that you are looking for."
                 title="Find Character"
-                href="/community/find-character"
+                href="/characters/find"
                 imgSrc="/assets/imgs/icons/find_character.gif"
             />
             <LinkCategory

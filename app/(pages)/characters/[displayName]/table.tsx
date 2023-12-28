@@ -36,7 +36,7 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
                 xl:w-[40vw]
             "
         >
-            {!error ?
+            {false ?
                 <table className="w-full">
                     <caption
                         className="
@@ -215,11 +215,11 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
                     </tbody>
                 </table>
                 :
-                <>
+                <div className="flex flex-col items-center">
                     <p>No character has been found.</p>
                     <p>Try searching on
                         <Link
-                            href="/community/find-character"
+                            href="/characters/find"
                             className="
                                 ml-1
                                 text-yellow-200
@@ -231,7 +231,7 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
                         </Link>
                         .
                     </p>
-                </>
+                </div>
             }
         </div>
     )
