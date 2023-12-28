@@ -1,6 +1,6 @@
 "use client"
 
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 
 type RelatedCharacter = {
     displayName: string
@@ -24,10 +24,7 @@ export function useRelatedCharacters(displayName: string) {
 
         return res.json()
     }
-    const { data, isLoading, error } = useSWR(`/api/characters/${parsedDisplayName}/related`, fetcher, {
-        dedupingInterval: 5 * 60 * 1000,
-        focusThrottleInterval: 5 * 60 * 1000
-    })
+    const { data, isLoading, error } = useSWRImmutable(`/api/characters/${parsedDisplayName}/related`, fetcher)
 
 
     return { relatedCharacters: data?.relatedCharacters as RelatedCharacter[], isLoading, error }
