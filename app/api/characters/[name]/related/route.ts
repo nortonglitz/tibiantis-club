@@ -30,7 +30,7 @@ export async function GET(req: Request, query: Query) {
             where: { characterId: character.id }
         })
 
-        if (!sessions || sessions.length < 5) {
+        if (!sessions || sessions.length <= 15) {
             return Response.json({ message: "Not enough sessions to find related characters." }, { status: 200 })
         }
 
@@ -50,7 +50,7 @@ export async function GET(req: Request, query: Query) {
 
         const sessionsFound = (await Promise.all(sessionSearchesPromises)).flat()
 
-        const relatedChars = sessionsFound.reduce((acc, { characterId }) => {
+        const possibleCharacters = sessionsFound.reduce((acc, { characterId }) => {
             return {
                 ...acc,
                 [characterId]: (acc[characterId] || 0) + 1
@@ -58,7 +58,7 @@ export async function GET(req: Request, query: Query) {
         }, {} as any)
 
         return Response.json({
-            relatedChars
+            possibleCharacters
         })
     } catch (err: any) {
         console.log(err.code, err.message)
