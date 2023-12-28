@@ -116,7 +116,7 @@ const RelatedCharsTable: React.FC<RelatedCharsTableProps> = ({ displayName }) =>
                                                 </Link>
                                             </td>
                                             <td className="text-center">{level}</td>
-                                            <td className="text-center">{getVocationName(vocation)}</td>
+                                            <td className="text-center capitalize">{getVocationName(vocation)}</td>
                                         </tr>
                                     ))}
                                 </>
