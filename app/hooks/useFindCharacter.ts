@@ -11,9 +11,14 @@ export type CharacterFound = {
 
 export function useFindCharacter(name: string) {
 
-    const parsedName = name.replaceAll(' ', '-').toLowerCase()
+    const parsedName = name.toLowerCase()
 
     const fetcher = async (url: string) => {
+
+        if (name.length < 3) {
+            throw new Error('Invalid character name.')
+        }
+
         const res = await fetch(url)
 
         if (!res.ok) {

@@ -1,11 +1,11 @@
 "use client"
 
-import { ChangeEventHandler, FormEventHandler, useState } from "react"
+import { ChangeEventHandler, useState } from "react"
 import { getVocationName } from "@/app/libs/enumAssist"
 import Link from "next/link"
+import { useDebounce } from "use-debounce"
 
 import InputText from "@/app/components/inputs/inputText"
-import Button from "@/app/components/buttons/button"
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaSortAmountUp, FaSortAmountDown } from "react-icons/fa"
 import { useFindCharacter } from "@/app/hooks/useFindCharacter"
@@ -17,22 +17,18 @@ type Order = "asc" | "desc"
 const Finder = () => {
 
     const [findCharacterName, setFindCharacterName] = useState('')
-    const [isDebouncing, setIsDebouncing] = useState(false)
+    const [debouncedCharacterName] = useDebounce(findCharacterName, 1000)
 
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
         order: 'asc'
     })
 
-    const { characters, isLoading } = useFindCharacter(findCharacterName.length > 2 ? findCharacterName : '')
+    const { characters, isLoading } = useFindCharacter(debouncedCharacterName)
 
-    const handleChangeName: ChangeEventHandler<HTMLInputElement> = e => {
-        if (!isDebouncing) {
-            setTimeout(() => {
-                setFindCharacterName(e.target.value)
-                setIsDebouncing(false)
-            }, 1000)
-            setIsDebouncing(true)
+    const handleChangeName: ChangeEventHandler<HTMLInputElement> = (e) => {
+        if (e.target.value.length > 2) {
+            setFindCharacterName(e.target.value)
         }
     }
 
