@@ -80,7 +80,7 @@ export async function GET(req: Request, query: Query) {
 
         const possibleCharactersKeys = Object.keys(possibleCharacters)
 
-        /* Check how many sessions has related */
+        /* Check how many sessions has related, if less than MIN delete it */
 
         possibleCharactersKeys.forEach(characterId => {
             if (possibleCharacters[characterId] < MIN_RELATED_SESSIONS) {
@@ -90,15 +90,15 @@ export async function GET(req: Request, query: Query) {
 
         const relatedCharactersId = Object.keys(possibleCharacters)
 
+        /* Get related chars specs */
+
         const relatedCharactersPromises = relatedCharactersId.map(async characterId => {
             const characterDoc = await prisma.character.findUnique({
                 where: { id: characterId },
                 select: { displayName: true, level: true, vocation: true }
             })
 
-            if (!characterDoc) {
-                throw new Error('Error parsing characters IDs.')
-            }
+            if (!characterDoc) return false
 
             return ({
                 ...characterDoc,
