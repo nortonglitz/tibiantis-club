@@ -57,13 +57,42 @@ export async function GET(req: Request, query: Query) {
             }
         }, {} as any)
 
+        const possibleCharactersKeys = Object.keys(possibleCharacters)
+
+        possibleCharactersKeys.forEach(characterId => {
+            if (possibleCharacters[characterId] < 10) {
+                delete possibleCharacters[characterId]
+            }
+        })
+
+        const relatedCharactersId = Object.keys(possibleCharacters)
+
+        const relatedCharactersPromises = relatedCharactersId.map(async characterId => {
+            const characterDoc = await prisma.character.findUnique({
+                where: { id: characterId },
+                select: { displayName: true }
+            })
+
+            if (!characterDoc) {
+                throw new Error('Error parsing characters IDs.')
+            }
+
+            if (characterDoc) {
+                return {
+                    [characterDoc.displayName]: possibleCharacters[characterId]
+                }
+            }
+        })
+
+        const relatedCharacters = await Promise.all(relatedCharactersPromises)
+
         return Response.json({
-            possibleCharacters
+            relatedCharacters
         })
     } catch (err: any) {
         console.log(err.code, err.message)
         Response.json({
             message: "Something went wrong"
-        })
+        }, { status: 500 })
     }
 }
