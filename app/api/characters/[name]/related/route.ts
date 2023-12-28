@@ -3,6 +3,12 @@ import { getMinutes, set } from 'date-fns'
 
 export const dynamic = 'force-dynamic'
 
+// How many sessions char need to have to be analyzed
+const MIN_SESSIONS = 10
+
+// How many sessions another char has related to be considered a possible second char
+const MIN_RELATED_SESSIONS = 5
+
 type Query = { params: { name: string } }
 
 export async function GET(req: Request, query: Query) {
@@ -11,6 +17,8 @@ export async function GET(req: Request, query: Query) {
         const { params: { name } } = query
 
         const parsedName = name.replaceAll('_', ' ').toLowerCase()
+
+        /* Name must be at least 3 letters */
 
         if (parsedName.length < 3) {
             return Response.json({ message: "Name too small. Need at least 3 letters." }, { status: 406 })
@@ -22,19 +30,27 @@ export async function GET(req: Request, query: Query) {
             }
         })
 
+        /* If can not find, possibly not got by the crawler yet */
+
         if (!character) {
             return Response.json({ message: "Name not listed in database." }, { status: 406 })
         }
+
+        /* Get all sessions */
 
         const sessions = await prisma.playerSession.findMany({
             where: { characterId: character.id }
         })
 
-        if (!sessions || sessions.length <= 15) {
+        /* Check how many sessions this character has and if it's enough */
+
+        if (!sessions || sessions.length < MIN_SESSIONS) {
             return Response.json({ message: "Not enough sessions to find related characters.", relatedCharacters: [] }, { status: 200 })
         }
 
-        const sessionSearchesPromises = sessions.map(async ({ endedAt }) => {
+        /* Check all related sessions that starts when his sessions ends */
+
+        const relatedSessionSearchesPromises = sessions.map(async ({ endedAt }) => {
             return await prisma.playerSession.findMany({
                 where: {
                     startedAt: {
@@ -48,9 +64,14 @@ export async function GET(req: Request, query: Query) {
             })
         })
 
-        const sessionsFound = (await Promise.all(sessionSearchesPromises)).flat()
+        /* Make an array of all sessions found (flat just breaks all into one array) */
 
-        const possibleCharacters = sessionsFound.reduce((acc, { characterId }) => {
+        const relatedSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
+
+
+        /* Count the number of sessions each character has related */
+
+        const possibleCharacters = relatedSessionsFound.reduce((acc, { characterId }) => {
             return {
                 ...acc,
                 [characterId]: (acc[characterId] || 0) + 1
@@ -59,8 +80,10 @@ export async function GET(req: Request, query: Query) {
 
         const possibleCharactersKeys = Object.keys(possibleCharacters)
 
+        /* Check how many sessions has related */
+
         possibleCharactersKeys.forEach(characterId => {
-            if (possibleCharacters[characterId] < 10) {
+            if (possibleCharacters[characterId] < MIN_RELATED_SESSIONS) {
                 delete possibleCharacters[characterId]
             }
         })
