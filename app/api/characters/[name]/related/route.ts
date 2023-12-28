@@ -70,18 +70,18 @@ export async function GET(req: Request, query: Query) {
         const relatedCharactersPromises = relatedCharactersId.map(async characterId => {
             const characterDoc = await prisma.character.findUnique({
                 where: { id: characterId },
-                select: { displayName: true }
+                select: { displayName: true, level: true, vocation: true }
             })
 
             if (!characterDoc) {
                 throw new Error('Error parsing characters IDs.')
             }
 
-            if (characterDoc) {
-                return {
-                    [characterDoc.displayName]: possibleCharacters[characterId]
-                }
-            }
+            return ({
+                ...characterDoc,
+                relatedSessions: possibleCharacters[characterId]
+            })
+
         })
 
         const relatedCharacters = await Promise.all(relatedCharactersPromises)
