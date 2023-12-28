@@ -115,12 +115,12 @@ export async function GET() {
 
             newPlayers.forEach(async ({ displayName, level, vocation }) => {
 
-                const characterExists = await prisma.character.findFirst({ where: { name: displayName.toLocaleLowerCase() } })
+                const characterExists = await prisma.character.findFirst({ where: { name: displayName.toLowerCase() } })
 
                 /* Create new character if it does not exists */
 
                 if (!characterExists) {
-                    const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
+                    const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.replaceAll(' ', '+')}`
                     const response = await fetch(playerPageURL, { cache: 'no-store' })
 
                     if (!response.ok) {
