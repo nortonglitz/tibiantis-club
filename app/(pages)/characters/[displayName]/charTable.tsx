@@ -27,7 +27,8 @@ const CharTable: React.FC<TableProps> = ({ displayName }) => {
                 rounded-3xl 
                 border 
                 border-stone-600/30 
-                w-full 
+                w-full
+                h-fit
                 sm:w-[70vw] 
                 md:w-[60vw] 
                 lg:w-[50vw]
@@ -35,7 +36,7 @@ const CharTable: React.FC<TableProps> = ({ displayName }) => {
             "
         >
             {!error ?
-                <table className="w-full max-h-fit">
+                <table className="w-full h-fit">
                     <caption
                         className="
                             font-yatra-one 
