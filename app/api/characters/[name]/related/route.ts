@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 const MIN_SESSIONS = 10
 
 // How many sessions another char has related to be considered a possible second char
-const MIN_RELATED_SESSIONS = 10
+const MIN_RELATED_SESSIONS = 5
 
 type Query = { params: { name: string } }
 
