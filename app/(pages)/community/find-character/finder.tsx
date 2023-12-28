@@ -17,7 +17,7 @@ type Order = "asc" | "desc"
 const Finder = () => {
 
     const [findCharacterName, setFindCharacterName] = useState('')
-    const [debouncedCharacterName] = useDebounce(findCharacterName, 1000)
+    const [debouncedCharacterName] = useDebounce(findCharacterName, 800)
 
     const [sortProps, setSortProps] = useState<{ field: Field, order: Order }>({
         field: 'name',
