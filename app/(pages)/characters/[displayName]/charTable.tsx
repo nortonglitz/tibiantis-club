@@ -6,14 +6,12 @@ import { FaCheck } from "react-icons/fa"
 import { FaX } from "react-icons/fa6"
 import { formatDistanceToNow } from 'date-fns'
 import Link from "next/link"
-import { Character } from "@prisma/client"
 
 interface TableProps {
     displayName: string
-    char?: Character
 }
 
-const Table: React.FC<TableProps> = ({ displayName }) => {
+const CharTable: React.FC<TableProps> = ({ displayName }) => {
 
     const { character, error } = useCharacter(displayName)
 
@@ -37,7 +35,7 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
             "
         >
             {!error ?
-                <table className="w-full">
+                <table className="w-full max-h-fit">
                     <caption
                         className="
                             font-yatra-one 
@@ -49,6 +47,11 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
                         Character Information
                         <hr className="border-stone-700 mt-2 mb-4" />
                     </caption>
+                    <thead>
+                        <tr className="shadow-md">
+                            <td colSpan={2}></td>
+                        </tr>
+                    </thead>
                     <tbody
                         className="
                         [&>tr>th]:text-left 
@@ -237,4 +240,4 @@ const Table: React.FC<TableProps> = ({ displayName }) => {
     )
 }
 
-export default Table
+export default CharTable

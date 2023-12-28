@@ -58,15 +58,15 @@ const Table: React.FC = () => {
                     <thead className="top-0 sticky z-10">
                         <tr
                             className="
-                                    self-end
-                                    shadow-md
-                                    [&>th]:py-1
-                                    uppercase
-                                    font-yatra-one
-                                    bg-stone-800
-                                    [&>th]:cursor-pointer
-                                    select-none
-                                "
+                                self-end
+                                shadow-md
+                                [&>th]:py-1
+                                uppercase
+                                font-yatra-one
+                                bg-stone-800
+                                [&>th]:cursor-pointer
+                                select-none
+                            "
                         >
                             <th className="min-w-[100px]" scope="col" onClick={() => handleSort('name')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block  [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">

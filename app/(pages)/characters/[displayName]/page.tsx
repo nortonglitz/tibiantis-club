@@ -1,5 +1,6 @@
 import { Metadata } from "next"
-import Table from "./table"
+import CharTable from "./charTable"
+import RelatedCharsTable from "./relatedCharsTable"
 
 type Props = { params: { displayName: string } }
 
@@ -22,11 +23,11 @@ export default function CharacterPage({ params: { displayName } }: Props) {
                 justify-center
                 pt-10
                 flex-wrap
+                gap-10
             "
         >
-            <Table
-                displayName={parsedDisplayName}
-            />
+            <CharTable displayName={parsedDisplayName} />
+            <RelatedCharsTable displayName={parsedDisplayName} />
         </main>
     )
 }

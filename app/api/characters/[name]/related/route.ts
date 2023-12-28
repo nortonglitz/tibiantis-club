@@ -31,7 +31,7 @@ export async function GET(req: Request, query: Query) {
         })
 
         if (!sessions || sessions.length <= 15) {
-            return Response.json({ message: "Not enough sessions to find related characters.", charactersRelated: [] }, { status: 200 })
+            return Response.json({ message: "Not enough sessions to find related characters.", relatedCharacters: [] }, { status: 200 })
         }
 
         const sessionSearchesPromises = sessions.map(async ({ endedAt }) => {
@@ -86,9 +86,7 @@ export async function GET(req: Request, query: Query) {
 
         const relatedCharacters = await Promise.all(relatedCharactersPromises)
 
-        return Response.json({
-            relatedCharacters
-        })
+        return Response.json({ relatedCharacters })
     } catch (err: any) {
         console.log(err.code, err.message)
         Response.json({
