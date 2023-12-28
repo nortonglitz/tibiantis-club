@@ -36,8 +36,7 @@ export function useFindCharacter(name: string) {
         focusThrottleInterval: 0,
         revalidateIfStale: false,
         revalidateOnMount: false,
-        revalidateOnFocus: false,
-        keepPreviousData: true
+        revalidateOnFocus: false
     })
 
     return { characters: data?.characters as CharacterFound[], isLoading, error }
