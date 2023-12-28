@@ -2,6 +2,7 @@
 
 import { useRelatedCharacters } from "@/app/hooks/useRelatedCharacters"
 import { getVocationName } from "@/app/libs/enumAssist"
+import Link from "next/link"
 
 interface RelatedCharsTableProps {
     displayName: string
@@ -102,9 +103,20 @@ const RelatedCharsTable: React.FC<RelatedCharsTableProps> = ({ displayName }) =>
                                                 hover:outline-stone-400/80
                                             "
                                         >
-                                            <td>{displayName}</td>
-                                            <td>{level}</td>
-                                            <td>{getVocationName(vocation)}</td>
+                                            <td className="px-2">
+                                                <Link
+                                                    href={`/characters/${displayName.replaceAll(' ', '_')}`}
+                                                    className="
+                                                        text-yellow-200
+                                                        hover:underline
+                                                        active:text-yellow-300
+                                                    "
+                                                >
+                                                    {displayName}
+                                                </Link>
+                                            </td>
+                                            <td className="text-center">{level}</td>
+                                            <td className="text-center">{getVocationName(vocation)}</td>
                                         </tr>
                                     ))}
                                 </>
