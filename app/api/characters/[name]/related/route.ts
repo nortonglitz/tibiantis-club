@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 const MIN_SESSIONS = 10
 
 // How many sessions another char has related to be considered a possible second char
-const MIN_RELATED_SESSIONS = 5
+const MIN_RELATED_SESSIONS = 20
 
 type Query = { params: { name: string } }
 
@@ -80,9 +80,12 @@ export async function GET(req: Request, query: Query) {
         const relatedSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
 
 
-        /* Count the number of sessions each character has related */
+        /* Count the number of sessions each character has related, and filter if it's not the same char */
 
         const possibleCharacters = relatedSessionsFound.reduce((acc, { characterId }) => {
+
+            if (characterId === character.id) return acc
+
             return {
                 ...acc,
                 [characterId]: (acc[characterId] || 0) + 1
