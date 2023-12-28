@@ -8,7 +8,7 @@ export async function GET(req: Request, query: Query) {
     try {
         const { params: { name } } = query
 
-        const parsedName = name.replaceAll(' ', '-').toLowerCase()
+        const parsedName = name.replaceAll(' ', '_').toLowerCase()
 
         const characters = await prisma.character.findMany({
             where: {

@@ -6,14 +6,14 @@ type Props = { params: { displayName: string } }
 export async function generateMetadata(
     { params: { displayName } }: Props
 ): Promise<Metadata> {
-    const parsedDisplayName = displayName.replaceAll('-', ' ')
+    const parsedDisplayName = displayName.replaceAll('_', ' ')
     return {
         title: `${parsedDisplayName} - Tibiantis Club`
     }
 }
 
 export default function CharacterPage({ params: { displayName } }: Props) {
-    const parsedDisplayName = displayName.replaceAll('-', ' ')
+    const parsedDisplayName = displayName.replaceAll('_', ' ')
 
     return (
         <main

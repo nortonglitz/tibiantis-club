@@ -5,7 +5,7 @@ import { Character } from "@prisma/client"
 
 export function useCharacter(displayName: string) {
 
-    const parsedDisplayName = displayName.replaceAll(' ', '-').toLowerCase()
+    const parsedDisplayName = displayName.replaceAll(' ', '_').toLowerCase()
 
     const fetcher = async (url: string) => {
         const res = await fetch(url)

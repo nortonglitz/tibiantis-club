@@ -11,7 +11,7 @@ export type CharacterFound = {
 
 export function useFindCharacter(name: string) {
 
-    const parsedName = name.toLowerCase()
+    const parsedName = name.toLowerCase().replaceAll(' ', '_')
 
     const fetcher = async (url: string) => {
 
