@@ -8,7 +8,7 @@ export async function GET(req: Request, query: Query) {
     try {
         const { params: { name } } = query
 
-        const parsedName = name.replaceAll(' ', '_').toLowerCase()
+        const parsedName = name.replaceAll('_', ' ').toLowerCase()
 
         const characters = await prisma.character.findMany({
             where: {
@@ -26,7 +26,7 @@ export async function GET(req: Request, query: Query) {
         })
 
         if (characters.length < 1) {
-            return Response.json({ message: "Could not find any character." }, { status: 204 })
+            return Response.json({ message: "Could not find any character.", characters: [] }, { status: 200 })
         }
 
         return Response.json({ characters })

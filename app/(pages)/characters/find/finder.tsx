@@ -149,7 +149,7 @@ const Finder = () => {
                                             <td>
                                                 <div className="flex w-full text-left">
                                                     <Link
-                                                        href={`/characters/${displayName.replace(' ', '-')}`}
+                                                        href={`/characters/${displayName.replaceAll(' ', '_')}`}
                                                         className="
                                                 px-2 
                                                 text-yellow-200
