@@ -22,9 +22,8 @@ model PlayerSession {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   characterId String    @db.ObjectId
   character   Character @relation(fields: [characterId], references: [id])
-  startLevel  Int
   startedAt   DateTime
-  endedAt     DateTime?
+  endedAt     DateTime  @default(now())
 
   @@map("playersSessions")
 }
@@ -35,28 +34,30 @@ model Death {
   character   Character @relation(fields: [characterId], references: [id])
   date        DateTime
   level       Int
-  cause       String
+  type        Int
+  cause       Int
 
   @@map("deaths")
 }
 
 model Character {
-  id              String          @id @default(auto()) @map("_id") @db.ObjectId
-  name            String          @unique
-  displayName     String          @unique
-  sex             Int
-  vocation        Int
-  level           Int
-  residence       Int
-  pk              Boolean?
-  premium         Boolean
-  online          Boolean
-  onlineUpdatedAt DateTime
-  deaths          Death[]
-  banishedUntil   DateTime?
-  sessions        PlayerSession[]
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  name             String             @unique
+  displayName      String             @unique
+  sex              Int
+  vocation         Int
+  level            Int
+  residence        Int
+  pk               Boolean?
+  premium          Boolean
+  online           Boolean
+  onlineUpdatedAt  DateTime
+  deaths           Death[]
+  banishedUntil    DateTime?
+  sessions         PlayerSession[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  PlayerSessionDay PlayerSessionDay[]
 
   @@map("characters")
 }
@@ -69,4 +70,18 @@ model PlayersOnlineRecord {
   createdAt DateTime @default(now())
 
   @@map("playersOnlineRecord")
+}
+
+model PlayerSessionDay {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  characterId String    @db.ObjectId
+  character   Character @relation(fields: [characterId], references: [id])
+  expGained   Int
+  playtime    Int //Time in minutes
+  endLevel    Int
+  startLevel  Int
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+
+  @@map("dayPlayersSessions")
 }

@@ -2,8 +2,6 @@ import { prisma } from '@/app/libs/dbClient'
 import { getMinutes, set } from 'date-fns'
 import { PlayerSession } from "@prisma/client"
 
-type PlayerSessionWithEndedAt = Omit<PlayerSession, 'endedAt'> & { endedAt: Date }
-
 // How many sessions char need to have to be analyzed
 const MIN_SESSIONS = 10
 
@@ -40,13 +38,8 @@ export async function GET(req: Request, query: Query) {
         /* Get all sessions */
 
         const sessions = await prisma.playerSession.findMany({
-            where: {
-                AND: [
-                    { characterId: character.id },
-                    { endedAt: { not: null } }
-                ]
-            }
-        }) as PlayerSessionWithEndedAt[]
+            where: { characterId: character.id }
+        })
 
         /* Check how many sessions this character has and if it's enough */
 
