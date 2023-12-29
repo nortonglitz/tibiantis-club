@@ -139,21 +139,17 @@ export async function GET() {
                         throw new Error("Failed to parse data on player creation.")
                     }
 
-                    const newPlayer = {
-                        name: displayName.toLocaleLowerCase(),
-                        displayName: displayName,
-                        sex: getSexNumber(sex),
-                        vocation,
-                        level: Number(level),
-                        residence: getCityNumber(residence),
-                        premium: isPremiumAccount(accountStatus),
-                        online: true,
-                        onlineUpdatedAt: new Date()
-                    }
-
                     const newCharacter = await prisma.character.create({
                         data: {
-                            ...newPlayer
+                            name: displayName.toLocaleLowerCase(),
+                            displayName: displayName,
+                            sex: getSexNumber(sex),
+                            vocation,
+                            level: Number(level),
+                            residence: getCityNumber(residence),
+                            premium: isPremiumAccount(accountStatus),
+                            online: true,
+                            onlineUpdatedAt: new Date()
                         }
                     })
 
