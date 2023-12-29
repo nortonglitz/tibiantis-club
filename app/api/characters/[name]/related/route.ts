@@ -48,6 +48,8 @@ export async function GET(req: Request, query: Query) {
             }
         }) as PlayerSessionWithEndedAt[]
 
+        console.log(sessions)
+
         /* Check how many sessions this character has and if it's enough */
 
         if (!sessions || sessions.length < MIN_SESSIONS) {
