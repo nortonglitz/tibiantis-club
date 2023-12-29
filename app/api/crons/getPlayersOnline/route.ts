@@ -15,6 +15,7 @@ export async function GET() {
     /* Compare players online with official website */
 
     try {
+
         const playersOnlineURL = "https://tibiantis.online/?page=whoisonline"
         const response = await fetch(playersOnlineURL, { cache: 'no-store' })
 

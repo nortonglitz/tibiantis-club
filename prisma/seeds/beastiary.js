@@ -1,6 +1,7 @@
 const beastiary = [
     {
         name: "amazon",
+        article: "an",
         hp: 110,
         xp: 60,
         loot: ["brown bread", "crystal necklace", "dagger", "gold coin", "leather armor", "sabre", "skull", "small ruby", "studded shield", "torch"],
@@ -10,6 +11,7 @@ const beastiary = [
     },
     {
         name: "overseer",
+        article: "an",
         hp: 290,
         xp: 430,
         loot: ["gold coin", "dark armor", "brass legs", "torch", "ham", "strange helmet", "morning star"],
@@ -17,12 +19,14 @@ const beastiary = [
     },
     {
         name: "tar",
+        article: "an",
         hp: 240,
         xp: 260,
         imageSrc: "/assets/imgs/beastiary/tar.gif"
     },
     {
         name: "ancient scarab",
+        article: "an",
         hp: 1000,
         xp: 720,
         loot: ["ancient amulet", "daramian waraxe", "gold coin", "magic light wand", "plate armor", "scarab amulet", "scarab coin", "small amethyst", "small emerald"],
@@ -30,6 +34,7 @@ const beastiary = [
     },
     {
         name: "badger",
+        article: "a",
         hp: 23,
         xp: 5,
         loot: ["meat"],
@@ -37,6 +42,7 @@ const beastiary = [
     },
     {
         name: "banshee",
+        article: "a",
         hp: 1000,
         xp: 900,
         loot: ["black pearl", "blue robe", "candlestick", "crystal ring", "dirty cape", "gold coin", "life crystal", "lyre", "mirror", "poison dagger", "red robe", "ring of healing", "silver amulet", "silver brooch", "simple dress", "spellbook", "stone skin amulet", "wedding ring", "white pearl"],
@@ -44,6 +50,7 @@ const beastiary = [
     },
     {
         name: "bear",
+        article: "a",
         hp: 80,
         xp: 23,
         loot: ["meat", "ham"],
@@ -51,6 +58,7 @@ const beastiary = [
     },
     {
         name: "behemoth",
+        article: "a",
         hp: 4000,
         xp: 2500,
         loot: ["amphora", "big bone", "crowbar", "crystal necklace", "dark armor", "double axe", "giant sword", "gold coin", "meat", "pick", "plate armor", "small amethyst", "steel boots", "strange symbol", "two handed sword", "green spell wand"],
@@ -58,6 +66,7 @@ const beastiary = [
     },
     {
         name: "beholder",
+        article: "a",
         hp: 170,
         xp: 260,
         loot: ["beholder shield", "gold coin", "longsword", "morning star", "spellbook", "steel shield", "two handed sword", "wooden shield"],
@@ -65,6 +74,7 @@ const beastiary = [
     },
     {
         name: "black knight",
+        article: "a",
         hp: 1800,
         xp: 1600,
         loot: ["battle hammer", "boots of haste", "brass legs", "brown bread", "dark armor", "dragon lance", "gold coin", "halberd", "knight armor", "knight legs", "knight axe", "plate armor", "rope", "ruby necklace", "spear", "steel helmet", "two handed sword", "warrior helmet"],
@@ -72,12 +82,14 @@ const beastiary = [
     },
     {
         name: "black sheep",
+        article: "a",
         hp: 20,
         loot: ["meat"],
         imageSrc: "/assets/imgs/beastiary/black_sheep.gif"
     },
     {
         name: "blue djinn",
+        article: "a",
         hp: 330,
         xp: 190,
         loot: ["blue rose", "book", "carrot", "gold coin", "mystic turban", "small oil lamp", "small sapphire"],
@@ -85,6 +97,7 @@ const beastiary = [
     },
     {
         name: "bonebeast",
+        article: "a",
         hp: 515,
         xp: 580,
         loot: ["big bone", "bone", "bone club", "bone shield", "gold coin", "green mushroom", "plate armor", "skull"],
@@ -92,6 +105,7 @@ const beastiary = [
     },
     {
         name: "bug",
+        article: "a",
         hp: 29,
         xp: 18,
         loot: ["cherry", "gold coin"],
@@ -99,6 +113,7 @@ const beastiary = [
     },
     {
         name: "cave rat",
+        article: "a",
         hp: 30,
         xp: 10,
         loot: ["cheese", "cookie", "gold coin"],
@@ -106,12 +121,14 @@ const beastiary = [
     },
     {
         name: "cobra",
+        article: "a",
         hp: 65,
         xp: 30,
         imageSrc: "/assets/imgs/beastiary/cobra.gif"
     },
     {
         name: "crypt shambler",
+        article: "a",
         hp: 330,
         xp: 195,
         loot: ["bone", "bone shield", "bone sword", "gold coin", "iron helmet", "rotten meat", "small diamond", "throwing star", "two handed sword"],
@@ -119,6 +136,7 @@ const beastiary = [
     },
     {
         name: "cyclops",
+        article: "a",
         hp: 260,
         xp: 150,
         loot: ["battle shield", "club ring", "dark helmet", "gold coin", "halberd", "ham", "plate shield", "short sword", "wolf tooth chain"],
@@ -126,12 +144,14 @@ const beastiary = [
     },
     {
         name: "deer",
+        article: "a",
         hp: 25,
         loot: ["meat", "ham"],
         imageSrc: "/assets/imgs/beastiary/deer.gif"
     },
     {
         name: "demon",
+        article: "a",
         hp: 8200,
         xp: 6000,
         loot: ["demon shield", "devil helmet", "double axe", "fire axe", "fire mushroom", "giant sword", "gold coin", "coconut", "gold ring", "golden legs", "golden sickle", "ice rapier", "magic plate armor", "mastermind shield", "might ring", "orb", "platinum amulet", "purple tome", "ring of healing", "small emerald", "stealth ring", "talon"],
@@ -139,6 +159,7 @@ const beastiary = [
     },
     {
         name: "demon skeleton",
+        article: "a",
         hp: 400,
         xp: 240,
         loot: ["battle hammer", "battle shield", "gold coin", "guardian shield", "iron helmet", "mind stone", "mysterious fetish", "throwing star", "torch"],
@@ -146,11 +167,13 @@ const beastiary = [
     },
     {
         name: "dog",
+        article: "a",
         hp: 20,
         imageSrc: "/assets/imgs/beastiary/dog.gif"
     },
     {
         name: "dragon",
+        article: "a",
         hp: 1000,
         xp: 700,
         loot: ["broadsword", "burst arrow", "crossbow", "double axe", "dragon ham", "dragon hammer", "dragon shield", "gold coin", "life crystal", "longsword", "mace", "plate legs", "serpent sword", "short sword", "small diamond", "steel helmet", "steel shield"],
@@ -158,6 +181,7 @@ const beastiary = [
     },
     {
         name: "dragon lord",
+        article: "a",
         hp: 1900,
         xp: 2100,
         loot: ["book", "dragon ham", "dragon scale mail", "energy ring", "fire sword", "gold coin", "golden mug", "green mushroom", "life crystal", "power bolt", "royal helmet", "small sapphire", "strange helmet", "tower shield"],
@@ -165,6 +189,7 @@ const beastiary = [
     },
     {
         name: "dwarf",
+        article: "a",
         hp: 90,
         xp: 45,
         loot: ["axe", "copper shield", "dwarven ring", "gold coin", "hatchet", "leather legs", "letter", "pick", "studded armor", "white mushroom"],
@@ -172,6 +197,7 @@ const beastiary = [
     },
     {
         name: "dwarf geomancer",
+        article: "a",
         hp: 380,
         xp: 245,
         loot: ["blank rune", "clerical mace", "dwarven ring", "gold coin", "leather boots", "magic light wand", "pear", "small sapphire", "soldier helmet", "spellbook", "studded legs", "white mushroom"],
@@ -179,6 +205,7 @@ const beastiary = [
     },
     {
         name: "dwarf guard",
+        article: "a",
         hp: 245,
         xp: 170,
         loot: ["axe ring", "battle hammer", "battle shield", "double axe", "gold coin", "leather boots", "scale armor", "small amethyst", "steel helmet", "white mushroom"],
@@ -186,6 +213,7 @@ const beastiary = [
     },
     {
         name: "dwarf soldier",
+        article: "a",
         hp: 135,
         xp: 70,
         loot: ["axe ring", "battle axe", "bolt", "chain armor", "crossbow", "dwarven shield", "gold coin", "shovel", "soldier helmet", "white mushroom"],
@@ -193,6 +221,7 @@ const beastiary = [
     },
     {
         name: "efreet",
+        article: "an",
         hp: 550,
         xp: 300,
         loot: ["gold coin", "green gem", "green tapestry", "heavy machete", "mystic turban", "pear", "small emerald", "small oil lamp"],
@@ -200,6 +229,7 @@ const beastiary = [
     },
     {
         name: "elder beholder",
+        article: "an",
         hp: 500,
         xp: 280,
         loot: ["beholder shield", "gold coin", "longsword", "carlin sword", "spellbook", "steel shield", "two handed sword"],
@@ -207,6 +237,7 @@ const beastiary = [
     },
     {
         name: "elf",
+        article: "an",
         hp: 100,
         xp: 42,
         loot: ["arrow", "brass shield", "leather boots", "longsword", "red apple", "studded armor", "studded helmet"],
@@ -214,6 +245,7 @@ const beastiary = [
     },
     {
         name: "elf arcanist",
+        article: "an",
         hp: 220,
         xp: 175,
         loot: ["arrow", "blank rune", "bowl", "bread", "candlestick", "elven amulet", "grave flower", "green tunic", "inkwell", "life crystal", "melon", "sandals", "scroll", "sling herb", "staff", "yellow gem"],
@@ -221,6 +253,7 @@ const beastiary = [
     },
     {
         name: "elf scout",
+        article: "an",
         hp: 160,
         xp: 75,
         loot: ["arrow", "bow", "gold coin", "grapes", "longsword", "poison arrow", "sandals", "studded armor", "studded helmet", "waterskin"],
@@ -228,6 +261,7 @@ const beastiary = [
     },
     {
         name: "fire devil",
+        article: "a",
         hp: 200,
         xp: 110,
         loot: ["blank rune", "cleaver", "double axe", "guardian shield", "pitchfork", "scimitar", "small amethyst", "torch", "red spell wand"],
@@ -235,12 +269,14 @@ const beastiary = [
     },
     {
         name: "fire elemental",
+        article: "a",
         hp: 280,
         xp: 220,
         imageSrc: "/assets/imgs/beastiary/fire_elemental.gif"
     },
     {
         name: "frost troll",
+        article: "a",
         hp: 55,
         xp: 23,
         loot: ["club", "coat", "fish", "gold coin", "rapier", "spear", "twigs", "wooden shield"],
@@ -248,6 +284,7 @@ const beastiary = [
     },
     {
         name: "gargoyle",
+        article: "a",
         hp: 250,
         xp: 150,
         loot: ["battle shield", "club ring", "dark armor", "gold coin", "ham", "meat", "morning star", "small stone", "steel helmet", "studded club", "wolf tooth chain"],
@@ -255,6 +292,7 @@ const beastiary = [
     },
     {
         name: "gazer",
+        article: "a",
         hp: 120,
         xp: 90,
         loot: ["gold coin", "wooden shield"],
@@ -262,6 +300,7 @@ const beastiary = [
     },
     {
         name: "ghost",
+        article: "a",
         hp: 150,
         xp: 120,
         loot: ["ancient shield", "book", "cape", "combat knife", "morning star", "sandals", "shadow herb", "stealth ring", "golden wand"],
@@ -269,6 +308,7 @@ const beastiary = [
     },
     {
         name: "ghoul",
+        article: "a",
         hp: 100,
         xp: 85,
         loot: ["brass helmet", "gold coin", "knife", "life ring", "scale armor", "skull", "torch", "viking helmet"],
@@ -276,6 +316,7 @@ const beastiary = [
     },
     {
         name: "giant spider",
+        article: "a",
         hp: 1300,
         xp: 900,
         loot: ["brass legs", "gold coin", "knight armor", "knight legs", "plate armor", "platinum amulet", "steel helmet", "time ring"],
@@ -283,6 +324,7 @@ const beastiary = [
     },
     {
         name: "goblin",
+        article: "a",
         hp: 50,
         xp: 25,
         loot: ["bone", "bone club", "dagger", "fish", "gold coin", "leather armor", "leather helmet", "moldy cheese", "short sword", "small axe", "small stone"],
@@ -290,6 +332,7 @@ const beastiary = [
     },
     {
         name: "green djinn",
+        article: "a",
         hp: 330,
         xp: 190,
         loot: ["book", "cheese", "gold coin", "grave flower", "mystic turban", "small emerald", "small oil lamp"],
@@ -297,6 +340,7 @@ const beastiary = [
     },
     {
         name: "hero",
+        article: "a",
         hp: 1400,
         xp: 1200,
         loot: ["arrow", "bow", "crown armor", "crown helmet", "crown legs", "crown shield", "fire sword", "gold coin", "grapes", "green tunic", "lyre", "meat", "might ring", "red rose", "rope", "scarf", "scroll", "two handed sword", "war hammer", "wedding ring"],
@@ -304,6 +348,7 @@ const beastiary = [
     },
     {
         name: "hunter",
+        article: "a",
         hp: 150,
         xp: 150,
         loot: ["arrow", "bow", "brass armor", "brass helmet", "burst arrow", "dragon necklace", "leather helmet", "leather legs", "orange", "roll", "small ruby", "torch"],
@@ -311,6 +356,7 @@ const beastiary = [
     },
     {
         name: "hyaena",
+        article: "a",
         hp: 60,
         xp: 20,
         loot: ["meat"],
@@ -318,6 +364,7 @@ const beastiary = [
     },
     {
         name: "larva",
+        article: "a",
         hp: 70,
         xp: 44,
         loot: ["gold coin", "meat"],
@@ -325,6 +372,7 @@ const beastiary = [
     },
     {
         name: "lich",
+        article: "a",
         hp: 880,
         xp: 900,
         loot: ["black pearl", "blue robe", "castle shield", "dirty cape", "gold coin", "mind stone", "platinum amulet", "ring of healing", "spellbook", "staff", "strange helmet", "white pearl"],
@@ -332,6 +380,7 @@ const beastiary = [
     },
     {
         name: "lion",
+        article: "a",
         hp: 80,
         xp: 30,
         loot: ["meat", "ham"],
@@ -339,6 +388,7 @@ const beastiary = [
     },
     {
         name: "marid",
+        article: "a",
         hp: 550,
         xp: 300,
         loot: ["blue gem", "blue tapestry", "blueberry", "gold coin", "heavy machete", "mystic turban", "small oil lamp", "small sapphire", "wooden flute"],
@@ -346,6 +396,7 @@ const beastiary = [
     },
     {
         name: "minotaur",
+        article: "a",
         hp: 100,
         xp: 50,
         loot: ["axe", "brass helmet", "bronze amulet", "chain armor", "chain helmet", "gold coin", "leather legs", "mace", "meat", "plate shield", "shovel", "sword"],
@@ -353,6 +404,7 @@ const beastiary = [
     },
     {
         name: "minotaur archer",
+        article: "a",
         hp: 100,
         xp: 65,
         loot: ["bolt", "brass armor", "crossbow", "gold coin", "leather helmet", "leather legs", "meat", "scale armor", "soldier helmet"],
@@ -360,6 +412,7 @@ const beastiary = [
     },
     {
         name: "minotaur guard",
+        article: "a",
         hp: 185,
         xp: 160,
         loot: ["battle shield", "brass armor", "chain armor", "chain legs", "double axe", "fishing rod", "gold coin", "hatchet", "leather legs", "meat"],
@@ -367,6 +420,7 @@ const beastiary = [
     },
     {
         name: "minotaur mage",
+        article: "a",
         hp: 155,
         xp: 150,
         loot: ["brass armor", "carrot", "chain legs", "combat knife", "dead snake", "gold coin", "knife", "leather helmet", "leather legs", "torch"],
@@ -374,6 +428,7 @@ const beastiary = [
     },
     {
         name: "monk",
+        article: "a",
         hp: 240,
         xp: 200,
         loot: ["ankh", "bread", "brown flask", "gold coin", "leather armor", "life crystal", "lamp", "power ring", "sandals", "scroll", "staff"],
@@ -381,6 +436,7 @@ const beastiary = [
     },
     {
         name: "mummy",
+        article: "a",
         hp: 240,
         xp: 150,
         loot: ["black pearl", "black shield", "crystal ring", "gold coin", "magic light wand", "poison dagger", "short sword", "silver amulet", "silver brooch", "strange talisman"],
@@ -388,6 +444,7 @@ const beastiary = [
     },
     {
         name: "necromancer",
+        article: "a",
         hp: 580,
         xp: 580,
         loot: ["boots of haste", "clerical mace", "gold coin", "green mushroom", "mystic turban", "scale armor", "short sword", "skull staff", "conjurer wand"],
@@ -395,6 +452,7 @@ const beastiary = [
     },
     {
         name: "orc",
+        article: "an",
         hp: 70,
         xp: 25,
         loot: ["axe", "gold coin", "meat", "studded armor", "studded helmet", "studded shield"],
@@ -402,6 +460,7 @@ const beastiary = [
     },
     {
         name: "orc berserker",
+        article: "an",
         hp: 210,
         xp: 195,
         loot: ["battle axe", "chain armor", "chain helmet", "gold coin", "halberd", "ham", "lamp"],
@@ -409,6 +468,7 @@ const beastiary = [
     },
     {
         name: "orc leader",
+        article: "an",
         hp: 450,
         xp: 270,
         loot: ["backpack", "brass legs", "broadsword", "dagger", "fish", "gold coin", "longsword", "meat", "plate armor", "plate legs", "plate shield", "scimitar", "sword ring", "throwing knife", "warrior helmet"],
@@ -416,6 +476,7 @@ const beastiary = [
     },
     {
         name: "orc rider",
+        article: "an",
         hp: 180,
         xp: 110,
         loot: ["backpack", "battle shield", "gold coin", "meat", "obsidian lance", "orcish axe", "scale armor", "studded helmet", "torch", "wolf tooth chain"],
@@ -423,6 +484,7 @@ const beastiary = [
     },
     {
         name: "orc shaman",
+        article: "an",
         hp: 115,
         xp: 110,
         loot: ["book", "chain armor", "chain helmet", "corncob", "gold coin", "spear", "staff", "blue spell wand"],
@@ -430,6 +492,7 @@ const beastiary = [
     },
     {
         name: "orc spearman",
+        article: "an",
         hp: 105,
         xp: 38,
         loot: ["dirty fur", "gold coin", "machete", "meat", "spear", "studded helmet", "studded legs"],
@@ -437,6 +500,7 @@ const beastiary = [
     },
     {
         name: "orc warlord",
+        article: "an",
         hp: 950,
         xp: 670,
         loot: ["brass armor", "brass legs", "crusader helmet", "dark helmet", "dragon hammer", "fish", "gold coin", "meat", "orcish axe", "plate armor", "plate legs", "protection amulet", "scimitar", "stealth ring", "throwing star", "two handed sword"],
@@ -444,6 +508,7 @@ const beastiary = [
     },
     {
         name: "orc warrior",
+        article: "an",
         hp: 125,
         xp: 50,
         loot: ["bottle", "chain armor", "copper shield", "gold coin", "meat", "poison dagger", "sabre", "wooden shield"],
@@ -451,12 +516,14 @@ const beastiary = [
     },
     {
         name: "pig",
+        article: "a",
         hp: 25,
         loot: ["meat"],
         imageSrc: "/assets/imgs/beastiary/pig.gif"
     },
     {
         name: "poison spider",
+        article: "a",
         hp: 26,
         xp: 22,
         loot: ["gold coin"],
@@ -464,6 +531,7 @@ const beastiary = [
     },
     {
         name: "polar bear",
+        article: "a",
         hp: 85,
         xp: 28,
         loot: ["meat", "ham"],
@@ -471,6 +539,7 @@ const beastiary = [
     },
     {
         name: "priestess",
+        article: "a",
         hp: 390,
         xp: 420,
         loot: ["black shield", "book", "bowl", "clerical mace", "crystal ball", "crystal necklace", "dagger", "goat grass", "powder herb", "red apple", "sling herb", "talon", "wood mushroom", "wooden flute"],
@@ -478,12 +547,14 @@ const beastiary = [
     },
     {
         name: "rabbit",
+        article: "a",
         hp: 15,
         loot: ["carrot", "meat"],
         imageSrc: "/assets/imgs/beastiary/rabbit.gif"
     },
     {
         name: "rat",
+        article: "a",
         hp: 20,
         xp: 5,
         loot: ["cheese", "gold coin"],
@@ -491,6 +562,7 @@ const beastiary = [
     },
     {
         name: "rotworm",
+        article: "a",
         hp: 65,
         xp: 40,
         loot: ["copper shield", "gold coin", "ham", "katana", "legion helmet", "mace", "meat", "sword"],
@@ -498,6 +570,7 @@ const beastiary = [
     },
     {
         name: "scarab",
+        article: "a",
         hp: 320,
         xp: 120,
         loot: ["arrow", "daramian mace", "gold coin", "heavy machete", "meat", "scarab coin", "small amethyst", "small emerald"],
@@ -505,18 +578,21 @@ const beastiary = [
     },
     {
         name: "scorpion",
+        article: "a",
         hp: 45,
         xp: 45,
         imageSrc: "/assets/imgs/beastiary/scorpion.gif"
     },
     {
         name: "sheep",
+        article: "a",
         hp: 20,
         loot: ["meat"],
         imageSrc: "/assets/imgs/beastiary/sheep.gif"
     },
     {
         name: "skeleton",
+        article: "a",
         hp: 50,
         xp: 35,
         loot: ["bone", "brass shield", "gold coin", "hatchet", "mace", "sword", "torch", "viking helmet"],
@@ -524,6 +600,7 @@ const beastiary = [
     },
     {
         name: "skunk",
+        article: "a",
         hp: 20,
         xp: 3,
         loot: ["meat"],
@@ -531,18 +608,21 @@ const beastiary = [
     },
     {
         name: "slime",
+        article: "a",
         hp: 150,
         xp: 160,
         imageSrc: "/assets/imgs/beastiary/slime.gif"
     },
     {
         name: "snake",
+        article: "a",
         hp: 15,
         xp: 10,
         imageSrc: "/assets/imgs/beastiary/snake.gif"
     },
     {
         name: "stalker",
+        article: "a",
         hp: 120,
         xp: 90,
         loot: ["backpack", "blank rune", "brass legs", "brass shield", "gold coin", "katana", "leather legs", "obsidian lance", "throwing knife"],
@@ -550,6 +630,7 @@ const beastiary = [
     },
     {
         name: "stone golem",
+        article: "a",
         hp: 270,
         xp: 160,
         loot: ["carlin sword", "crystal ring", "gold coin", "power ring", "red gem", "scale armor", "small stone", "steel shield", "torch"],
@@ -557,6 +638,7 @@ const beastiary = [
     },
     {
         name: "swamp troll",
+        article: "a",
         hp: 55,
         xp: 25,
         loot: ["dagger", "fish", "fishing rod", "gold coin", "leather boots", "torch"],
@@ -564,6 +646,7 @@ const beastiary = [
     },
     {
         name: "troll",
+        article: "a",
         hp: 50,
         xp: 20,
         loot: ["gold coin", "hand axe", "leather boots", "leather helmet", "meat", "rope", "silver amulet", "spear", "studded club", "wooden shield"],
@@ -571,6 +654,7 @@ const beastiary = [
     },
     {
         name: "valkyrie",
+        article: "a",
         hp: 190,
         xp: 85,
         loot: ["chain armor", "chain helmet", "dagger", "double axe", "gold coin", "meat", "plate armor", "protection amulet", "red apple", "skull", "small diamond", "spear"],
@@ -578,6 +662,7 @@ const beastiary = [
     },
     {
         name: "vampire",
+        article: "a",
         hp: 450,
         xp: 290,
         loot: ["black pearl", "bowl", "bronze amulet", "emerald bangle", "gold coin", "grave flower", "ice rapier", "katana", "leather legs", "skull", "spike sword", "strange helmet", "vampire shield"],
@@ -585,6 +670,7 @@ const beastiary = [
     },
     {
         name: "war wolf",
+        article: "a",
         hp: 140,
         xp: 55,
         loot: ["meat", "ham"],
@@ -592,6 +678,7 @@ const beastiary = [
     },
     {
         name: "warlock",
+        article: "a",
         hp: 4000,
         xp: 3200,
         loot: ["blue robe", "bread", "candlestick", "cherry", "crystal ring", "dark mushroom", "energy ring", "gold coin", "golden armor", "inkwell", "mind stone", "poison dagger", "red tome", "ring of the sky", "skull staff", "small sapphire", "stone skin amulet", "talon", "wand of might"],
@@ -599,12 +686,14 @@ const beastiary = [
     },
     {
         name: "wasp",
+        article: "a",
         hp: 35,
         xp: 24,
         imageSrc: "/assets/imgs/beastiary/wasp.gif"
     },
     {
         name: "wild warrior",
+        article: "a",
         hp: 120,
         xp: 55,
         loot: ["axe", "brass armor", "brass shield", "leather boots", "doll", "gold coin", "iron helmet", "leather legs", "mace", "meat", "steel shield", "war hammer"],
@@ -612,6 +701,7 @@ const beastiary = [
     },
     {
         name: "winter wolf",
+        article: "a",
         hp: 30,
         xp: 20,
         loot: ["meat"],
@@ -619,6 +709,7 @@ const beastiary = [
     },
     {
         name: "witch",
+        article: "a",
         hp: 300,
         xp: 120,
         loot: ["broom", "cape", "cheese", "coat", "cookie", "garlic necklace", "gold coin", "leather boots", "sickle", "silver dagger", "star herb", "wolf tooth chain"],
@@ -626,6 +717,7 @@ const beastiary = [
     },
     {
         name: "wolf",
+        article: "a",
         hp: 25,
         xp: 18,
         loot: ["meat"],
@@ -633,6 +725,7 @@ const beastiary = [
     },
     {
         name: "yeti",
+        article: "a",
         hp: 950,
         xp: 460,
         loot: ["bunnyslippers", "gold coin", "ham", "meat", "snowball", "wolf tooth chain"],
@@ -640,6 +733,7 @@ const beastiary = [
     },
     {
         name: "alphadyte",
+        article: "an",
         hp: 750,
         xp: 480,
         loot: ["big bone", "battle shield", "plate armor", "meat", "gold coin", "small diamond", "skull", "small rock crystal"],
@@ -647,6 +741,7 @@ const beastiary = [
     },
     {
         name: "desert hunter",
+        article: "a",
         hp: 180,
         xp: 230,
         loot: ["gold coin", "leather helmet", "arrow", "power arrow", "meat", "burst arrow", "bow", "brass armor", "leather legs", "poison arrow", "foil"],
@@ -654,6 +749,7 @@ const beastiary = [
     },
     {
         name: "gorlak",
+        article: "a",
         hp: 80,
         xp: 40,
         loot: ["brown mushroom", "gold coin", "studded club", "small emerald", "fishbone", "worn leather boots", "moldy cheese"],
@@ -661,6 +757,7 @@ const beastiary = [
     },
     {
         name: "kobold",
+        article: "a",
         hp: 120,
         xp: 60,
         loot: ["gold coin", "meat", "spear", "wooden shield", "studded armor", "small ruby", "small sapphire", "studded legs"],
@@ -668,6 +765,7 @@ const beastiary = [
     },
     {
         name: "kobold stoneshooter",
+        article: "a",
         hp: 150,
         xp: 100,
         loot: ["gold coin", "brass armor", "meat", "brass legs", "brass helmet", "rapier", "small stone", "native armor", "copper shield", "protection amulet", "red grapefruit"],
@@ -675,6 +773,7 @@ const beastiary = [
     },
     {
         name: "magma beast",
+        article: "a",
         hp: 5500,
         xp: 3300,
         loot: ["gold coin", "talon", "tower shield", "burst arrow", "strange helmet", "dark armor", "broadsword", "obsidian lance", "small ruby", "stone skin amulet", "might ring", "red gem", "hammer of wrath"],
@@ -682,10 +781,12 @@ const beastiary = [
     },
     {
         name: "obliterator",
+        article: "an",
         imageSrc: "/assets/imgs/beastiary/obliterator.gif"
     },
     {
         name: "sandlord",
+        article: "a",
         hp: 4000,
         xp: 4800,
         loot: ["red robe", "bright sword", "talon", "small ruby"],
@@ -693,6 +794,7 @@ const beastiary = [
     },
     {
         name: "troglodyte",
+        article: "a",
         hp: 220,
         xp: 380,
         loot: ["fish", "spear", "bone", "gold coin", "bone shield", "remains of a fish", "scale armor", "mace", "brass legs", "rotten meat"],
@@ -700,6 +802,7 @@ const beastiary = [
     },
     {
         name: "underworm",
+        article: "an",
         hp: 2500,
         xp: 1700,
         loot: ["brass legs", "iron helmet", "gold coin", "meat", "battle hammer", "ham", "two handed sword", "brass armor", "skull", "skeleton", "big bone", "dark shield", "axe ring", "guardian halberd"],
@@ -707,12 +810,14 @@ const beastiary = [
     },
     {
         name: "ferumbras",
+        article: "",
         imageSrc: "/assets/imgs/beastiary/ferumbras.gif"
     },
     {
         name: "orshabaal",
+        article: "",
         hp: 22500,
-        xp: 6000,
+        xp: 9999,
         loot: ["gold coin", "platinum coin", "black pearl", "gold ingot", "orb", "small amethyst", "small diamond", "small emerald", "small sapphire", "talon", "ancient amulet", "blue gem", "boots of haste", "crystal ball", "crystal necklace", "crystal ring", "demon shield", "devil helmet", "double axe", "dragon hammer", "fire axe", "giant sword", "gold ring", "golden legs", "golden mug", "golden sickle", "green gem", "life crystal", "magic light wand", "magic plate armor", "mastermind shield", "might ring", "mind stone", "platinum amulet", "protection amulet", "purple tome", "ring of healing", "ring of the sky", "silver amulet", "silver dagger", "stone skin amulet", "strange symbol", "two handed sword", "teddy bear", "thunder hammer"],
         imageSrc: "/assets/imgs/beastiary/demon.gif"
     },

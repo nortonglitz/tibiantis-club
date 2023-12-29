@@ -128,7 +128,7 @@ const Finder = () => {
                                     <td colSpan={3}>
                                         <img
                                             className="mx-auto my-10"
-                                            src="/assets/imgs/loading/players_loading.gif" alt="loading players"
+                                            src="/assets/imgs/icons/players_loading.gif" alt="loading characters"
                                         />
                                     </td>
                                 </tr>
