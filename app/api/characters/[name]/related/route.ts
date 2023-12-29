@@ -1,7 +1,8 @@
 import { prisma } from '@/app/libs/dbClient'
 import { getMinutes, set } from 'date-fns'
+import { PlayerSession } from "@prisma/client"
 
-export const dynamic = 'force-dynamic'
+type PlayerSessionWithEndedAt = Omit<PlayerSession, 'endedAt'> & { endedAt: Date }
 
 // How many sessions char need to have to be analyzed
 const MIN_SESSIONS = 10
@@ -39,8 +40,13 @@ export async function GET(req: Request, query: Query) {
         /* Get all sessions */
 
         const sessions = await prisma.playerSession.findMany({
-            where: { characterId: character.id }
-        })
+            where: {
+                AND: [
+                    { characterId: character.id },
+                    { endedAt: { not: null } }
+                ]
+            }
+        }) as PlayerSessionWithEndedAt[]
 
         /* Check how many sessions this character has and if it's enough */
 
@@ -57,13 +63,13 @@ export async function GET(req: Request, query: Query) {
                         {
                             startedAt: {
                                 gte: set(endedAt, { milliseconds: 0 }),
-                                lte: set(endedAt, { minutes: getMinutes(endedAt) + 4, milliseconds: 999 })
+                                lte: set(endedAt, { minutes: getMinutes(endedAt) + 4, seconds: 0, milliseconds: 999 })
                             }
                         },
                         {
                             endedAt: {
                                 gte: set(startedAt, { milliseconds: 0 }),
-                                lte: set(startedAt, { minutes: getMinutes(endedAt) + 4, milliseconds: 999 })
+                                lte: set(startedAt, { minutes: getMinutes(startedAt) + 4, seconds: 0, milliseconds: 999 })
                             }
                         }
                     ]
