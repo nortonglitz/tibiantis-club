@@ -153,6 +153,8 @@ export async function GET() {
                         }
                     })
 
+                    console.log('Created new character', newCharacter.displayName, `at ${new Date()}`)
+
 
                     /* await prisma.playerSessionDay.create({
                         data: {
