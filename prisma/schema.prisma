@@ -22,8 +22,9 @@ model PlayerSession {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   characterId String    @db.ObjectId
   character   Character @relation(fields: [characterId], references: [id])
+  startLevel  Int
   startedAt   DateTime
-  endedAt     DateTime
+  endedAt     DateTime?
 
   @@map("playersSessions")
 }
@@ -39,36 +40,23 @@ model Death {
   @@map("deaths")
 }
 
-type Skills {
-  fist      Int?
-  club      Int?
-  sword     Int?
-  axe       Int?
-  distance  Int?
-  shielding Int?
-  fishing   Int?
-}
-
 model Character {
-  id               String          @id @default(auto()) @map("_id") @db.ObjectId
-  name             String          @unique
-  displayName      String          @unique
-  sex              Int
-  vocation         Int
-  level            Int
-  skills           Skills?
-  magicLevel       Int?
-  residence        Int
-  pk               Boolean?
-  premium          Boolean
-  online           Boolean
-  onlineUpdatedAt  DateTime
-  deaths           Death[]
-  accountCreatedAt DateTime?
-  banishedUntil    DateTime?
-  sessions         PlayerSession[]
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  name            String          @unique
+  displayName     String          @unique
+  sex             Int
+  vocation        Int
+  level           Int
+  residence       Int
+  pk              Boolean?
+  premium         Boolean
+  online          Boolean
+  onlineUpdatedAt DateTime
+  deaths          Death[]
+  banishedUntil   DateTime?
+  sessions        PlayerSession[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
 
   @@map("characters")
 }

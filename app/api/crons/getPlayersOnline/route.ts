@@ -151,9 +151,19 @@ export async function GET() {
                         onlineUpdatedAt: new Date()
                     }
 
-                    await prisma.character.create({
+                    const newCharacter = await prisma.character.create({
                         data: {
                             ...newPlayer
+                        }
+                    })
+
+                    /* Create a session for new character */
+
+                    await prisma.playerSession.create({
+                        data: {
+                            startLevel: Number(level),
+                            startedAt: new Date(),
+                            characterId: newCharacter.id
                         }
                     })
 
@@ -168,6 +178,16 @@ export async function GET() {
                             onlineUpdatedAt: new Date()
                         }
                     })
+
+                    /* Create a session for already exists character  */
+
+                    await prisma.playerSession.create({
+                        data: {
+                            startLevel: Number(level),
+                            startedAt: new Date(),
+                            characterId: characterExists.id
+                        }
+                    })
                 }
             })
         }
@@ -176,23 +196,29 @@ export async function GET() {
 
         if (oldPlayersOnline && oldPlayersOnline.length > 0) {
 
-            const createPlayersSession = oldPlayersOnline.map(({ id, onlineUpdatedAt }) => {
-                return {
-                    characterId: id,
-                    startedAt: onlineUpdatedAt,
-                    endedAt: new Date()
+            /* Update old players sessions and create array of IDs */
+
+            const oldPlayersIDsPromises = oldPlayersOnline.map(async ({ id }) => {
+                const oldPlayerSession = await prisma.playerSession.findFirst({
+                    where: { characterId: id },
+                    orderBy: {
+                        id: "desc"
+                    }
+                })
+
+                if (oldPlayerSession) {
+                    await prisma.playerSession.update({
+                        where: { id: oldPlayerSession.id },
+                        data: {
+                            endedAt: new Date()
+                        }
+                    })
                 }
-            })
 
-            await prisma.playerSession.createMany({
-                data: createPlayersSession
-            })
-
-            /* Update players info that logged off */
-
-            const IDsToUpdate = oldPlayersOnline.map(({ id, displayName }) => {
                 return id
             })
+
+            const oldPlayersIDs = await Promise.all(oldPlayersIDsPromises)
 
             /* const playerPageURL = `https://tibiantis.online/?page=character&name=${displayName.split(' ').join('+')}`
             const response = await fetch(playerPageURL, { cache: 'no-store' })
@@ -232,9 +258,10 @@ export async function GET() {
             }) */
 
             await prisma.character.updateMany({
-                where: { id: { in: IDsToUpdate } },
+                where: { id: { in: oldPlayersIDs } },
                 data: {
-                    online: false
+                    online: false,
+                    onlineUpdatedAt: new Date()
                 }
             })
         }
