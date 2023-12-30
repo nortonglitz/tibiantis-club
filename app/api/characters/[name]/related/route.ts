@@ -47,7 +47,9 @@ export async function GET(req: Request, query: Query) {
             return Response.json({ message: "Not enough sessions to find related characters.", relatedCharacters: [] }, { status: 200 })
         }
 
-        /* Check all related sessions that starts when his sessions ends, and vice versa */
+        /*  Check all related sessions that starts when his sessions ends, and vice versa. 
+            Also counts by each session that the search character has.
+        */
 
         const relatedSessionSearchesPromises = sessions.map(async ({ endedAt, startedAt }) => {
 
@@ -72,35 +74,13 @@ export async function GET(req: Request, query: Query) {
                         ]
                 }
             })
-
-            /* return await prisma.playerSession.findMany({
-                where: {
-                    OR:
-                        [
-                            {
-                                startedAt: {
-                                    gte: set(endedAt, { milliseconds: 0 }),
-                                    lte: set(endedAt, { minutes: getMinutes(endedAt) + 4, seconds: 0, milliseconds: 999 })
-                                }
-                            },
-                            {
-                                endedAt: {
-                                    gte: set(startedAt, { milliseconds: 0 }),
-                                    lte: set(startedAt, { minutes: getMinutes(startedAt) + 4, seconds: 0, milliseconds: 999 })
-                                }
-                            }
-                        ]
-
-                },
-                select: {
-                    characterId: true
-                }
-            }) */
         })
 
         /* Make an array of all sessions found (flat just breaks all into one array) */
 
         const possibleSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
+
+        /* Count the number of sessions each character has in common */
 
         const possibleSessionsCounter = possibleSessionsFound
             .reduce((acc, { characterId, _count }) => {
@@ -113,6 +93,9 @@ export async function GET(req: Request, query: Query) {
                 }
             }, {} as { [id: string]: number })
 
+
+        /* Remove characters that has less than the minimum required */
+
         Object.keys(possibleSessionsCounter).forEach(characterId => {
             if (possibleSessionsCounter[characterId] < MIN_RELATED_SESSIONS) {
                 delete possibleSessionsCounter[characterId]
@@ -121,60 +104,21 @@ export async function GET(req: Request, query: Query) {
 
         const relatedCharactersIDs = Object.keys(possibleSessionsCounter)
 
+        /* Return if don't find any character with the minimum required sessions */
+
         if (relatedCharactersIDs.length < 1) {
             Response.json({ relatedCharacters: [] })
         }
+
+        /* Return all characters that are related */
 
         const relatedCharacters = await prisma.character.findMany({
             where: { id: { in: relatedCharactersIDs } },
             select: { displayName: true, level: true, vocation: true }
         })
 
-
-        /* Count the number of sessions each character has related, and filter if it's not the same char */
-
-        /* const possibleCharacters = relatedSessionsFound.reduce((acc, { characterId }) => {
-
-            if (characterId === character.id) return acc
-
-            return {
-                ...acc,
-                [characterId]: (acc[characterId] || 0) + 1
-            }
-        }, {} as any)
-
-        const possibleCharactersKeys = Object.keys(possibleCharacters) */
-
-        /* Check how many sessions has related, if less than MIN delete it */
-
-        /* possibleCharactersKeys.forEach(characterId => {
-            if (possibleCharacters[characterId] < MIN_RELATED_SESSIONS) {
-                delete possibleCharacters[characterId]
-            }
-        }) */
-
-        /* const relatedCharactersId = Object.keys(possibleCharacters) */
-
-        /* Get related chars specs */
-
-        /* const relatedCharactersPromises = relatedCharactersId.map(async characterId => {
-            const characterDoc = await prisma.character.findUnique({
-                where: { id: characterId },
-                select: { displayName: true, level: true, vocation: true }
-            })
-
-            if (!characterDoc) return false
-
-            return ({
-                ...characterDoc,
-                relatedSessions: possibleCharacters[characterId]
-            })
-
-        })
-
-        const relatedCharacters = await Promise.all(relatedCharactersPromises) */
-
         return Response.json({ relatedCharacters })
+
     } catch (err: any) {
         console.log(err.code, err.message)
         Response.json({
