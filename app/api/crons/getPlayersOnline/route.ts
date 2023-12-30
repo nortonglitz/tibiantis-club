@@ -185,16 +185,7 @@ export async function GET() {
 
                     } else {
 
-                        /* Update this character to online, if it exists */
-                        await prisma.character.update({
-                            where: { id: characterExists.id },
-                            data: {
-                                online: true,
-                                onlineUpdatedAt: new Date()
-                            }
-                        })
-
-                        /* Get last session during server day */
+                        /* Get last session day during server online period */
 
                         const lastSessionDay = await prisma.playerSessionDay.findFirst({
                             where: {
@@ -210,10 +201,9 @@ export async function GET() {
                             }
                         })
 
-                        console.log("lastSessionDay", lastSessionDay)
 
                         if (!lastSessionDay) {
-                            await prisma.playerSessionDay.create({
+                            const newLastSessionDay = await prisma.playerSessionDay.create({
                                 data: {
                                     characterId: characterExists.id,
                                     endLevel: Number(level),
@@ -222,7 +212,18 @@ export async function GET() {
                                     playtime: 0
                                 }
                             })
+                            console.log("Created new lastSessionDay", newLastSessionDay)
                         }
+
+                        /* Update this character to online, if it exists */
+
+                        await prisma.character.update({
+                            where: { id: characterExists.id },
+                            data: {
+                                online: true,
+                                onlineUpdatedAt: new Date()
+                            }
+                        })
                     }
                 })
             }
