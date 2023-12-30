@@ -20,6 +20,7 @@ export async function GET() {
     /* Compare players online with official website */
 
     try {
+        const now = new Date()
         const { serverStart, serverEnd } = getServerDayPeriod()
 
         const playersOnlineURL = "https://tibiantis.online/?page=whoisonline"
@@ -169,7 +170,7 @@ export async function GET() {
                             residence: getCityNumber(residence),
                             premium: isPremiumAccount(accountStatus),
                             online: true,
-                            onlineUpdatedAt: new Date()
+                            onlineUpdatedAt: now
                         }
                     })
 
@@ -220,7 +221,7 @@ export async function GET() {
                         where: { id: characterExists.id },
                         data: {
                             online: true,
-                            onlineUpdatedAt: new Date()
+                            onlineUpdatedAt: now
                         }
                     })
                 }
@@ -317,7 +318,7 @@ export async function GET() {
                         residence: getCityNumber(residence),
                         premium: isPremiumAccount(accountStatus),
                         online: false,
-                        onlineUpdatedAt: new Date()
+                        onlineUpdatedAt: now
                     }
                 })
             })
