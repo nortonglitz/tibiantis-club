@@ -7,7 +7,7 @@ import { differenceInMinutes } from "date-fns"
 
 export const dynamic = 'force-dynamic'
 
-export const maxDuration = 300
+export const maxDuration = 40
 
 type PlayerStats = {
     displayName: string
@@ -16,8 +16,6 @@ type PlayerStats = {
 }
 
 export async function GET() {
-
-    console.time("update_time")
 
     /* Compare players online with official website */
 
@@ -326,8 +324,6 @@ export async function GET() {
 
             await Promise.all(oldPlayersUpdatePromises)
         }
-
-        console.timeEnd("update_time")
 
         return Response.json({
             message: "Players online updated."
