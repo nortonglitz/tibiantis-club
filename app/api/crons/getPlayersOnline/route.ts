@@ -7,7 +7,7 @@ import { differenceInMinutes } from "date-fns"
 
 export const dynamic = 'force-dynamic'
 
-export const maxDuration = 40
+export const maxDuration = 100
 
 type PlayerStats = {
     displayName: string
