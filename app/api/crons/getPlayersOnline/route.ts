@@ -17,6 +17,8 @@ type PlayerStats = {
 
 export async function GET() {
 
+    console.time("update_time")
+
     /* Compare players online with official website */
 
     try {
@@ -324,6 +326,8 @@ export async function GET() {
 
             await Promise.all(oldPlayersUpdatePromises)
         }
+
+        console.timeEnd("update_time")
 
         return Response.json({
             message: "Players online updated."
