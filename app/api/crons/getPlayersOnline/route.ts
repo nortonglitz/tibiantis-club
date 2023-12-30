@@ -205,7 +205,7 @@ export async function GET() {
 
 
                         if (!lastSessionDay) {
-                            const newLastSessionDay = await prisma.playerSessionDay.create({
+                            await prisma.playerSessionDay.create({
                                 data: {
                                     characterId: characterExists.id,
                                     endLevel: Number(level),
@@ -214,7 +214,6 @@ export async function GET() {
                                     playtime: 0
                                 }
                             })
-                            console.log("Created new lastSessionDay", newLastSessionDay)
                         }
 
                         /* Update this character to online, if it exists */
