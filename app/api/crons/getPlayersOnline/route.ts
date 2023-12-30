@@ -173,7 +173,6 @@ export async function GET() {
                             }
                         })
 
-
                         await prisma.playerSessionDay.create({
                             data: {
                                 characterId: newCharacter.id,
@@ -210,6 +209,8 @@ export async function GET() {
                                 ]
                             }
                         })
+
+                        console.log("lastSessionDay", lastSessionDay)
 
                         if (!lastSessionDay) {
                             await prisma.playerSessionDay.create({
