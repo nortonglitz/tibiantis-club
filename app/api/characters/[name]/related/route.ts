@@ -70,8 +70,7 @@ export async function GET(req: Request, query: Query) {
                                 }
                             }
                         ]
-
-                },
+                }
             })
 
             /* return await prisma.playerSession.findMany({
@@ -103,13 +102,28 @@ export async function GET(req: Request, query: Query) {
 
         const possibleSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
 
-        const relatedSessions = possibleSessionsFound.filter(session => session._count.characterId > 10)
+        const possibleSessionsCounter = possibleSessionsFound
+            .reduce((acc, { characterId, _count }) => {
 
-        if (relatedSessions.length < 1) {
+                if (characterId === character.id) return acc
+
+                return {
+                    ...acc,
+                    [characterId]: (acc[characterId] || 0) + _count.characterId
+                }
+            }, {} as { [id: string]: number })
+
+        Object.keys(possibleSessionsCounter).forEach(characterId => {
+            if (possibleSessionsCounter[characterId] < MIN_RELATED_SESSIONS) {
+                delete possibleSessionsCounter[characterId]
+            }
+        })
+
+        const relatedCharactersIDs = Object.keys(possibleSessionsCounter)
+
+        if (relatedCharactersIDs.length < 1) {
             Response.json({ relatedCharacters: [] })
         }
-
-        const relatedCharactersIDs = relatedSessions.map(relatedSession => relatedSession.characterId)
 
         const relatedCharacters = await prisma.character.findMany({
             where: { id: { in: relatedCharactersIDs } },
