@@ -50,22 +50,49 @@ export async function GET(req: Request, query: Query) {
         /* Check all related sessions that starts when his sessions ends, and vice versa */
 
         const relatedSessionSearchesPromises = sessions.map(async ({ endedAt, startedAt }) => {
+
+            const testRelatedSessions = await prisma.playerSession.groupBy({
+                by: 'characterId',
+                _count: { characterId: true },
+                where: {
+                    OR:
+                        [
+                            {
+                                startedAt: {
+                                    gte: set(endedAt, { milliseconds: 0 }),
+                                    lte: set(endedAt, { minutes: getMinutes(endedAt) + 4, seconds: 0, milliseconds: 999 })
+                                }
+                            },
+                            {
+                                endedAt: {
+                                    gte: set(startedAt, { milliseconds: 0 }),
+                                    lte: set(startedAt, { minutes: getMinutes(startedAt) + 4, seconds: 0, milliseconds: 999 })
+                                }
+                            }
+                        ]
+
+                },
+            })
+
+            console.log(testRelatedSessions)
+
             return await prisma.playerSession.findMany({
                 where: {
-                    OR: [
-                        {
-                            startedAt: {
-                                gte: set(endedAt, { milliseconds: 0 }),
-                                lte: set(endedAt, { minutes: getMinutes(endedAt) + 4, seconds: 0, milliseconds: 999 })
+                    OR:
+                        [
+                            {
+                                startedAt: {
+                                    gte: set(endedAt, { milliseconds: 0 }),
+                                    lte: set(endedAt, { minutes: getMinutes(endedAt) + 4, seconds: 0, milliseconds: 999 })
+                                }
+                            },
+                            {
+                                endedAt: {
+                                    gte: set(startedAt, { milliseconds: 0 }),
+                                    lte: set(startedAt, { minutes: getMinutes(startedAt) + 4, seconds: 0, milliseconds: 999 })
+                                }
                             }
-                        },
-                        {
-                            endedAt: {
-                                gte: set(startedAt, { milliseconds: 0 }),
-                                lte: set(startedAt, { minutes: getMinutes(startedAt) + 4, seconds: 0, milliseconds: 999 })
-                            }
-                        }
-                    ]
+                        ]
 
                 },
                 select: {

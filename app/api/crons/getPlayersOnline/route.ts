@@ -35,7 +35,7 @@ export async function GET() {
 
         const blockMsg = $('body').text()
 
-        if (blockMsg.includes("You are currently blocked.")) {
+        if (blockMsg.includes("You are currently blocked." || "You are being rate limited.")) {
             throw new Error('Tibiantis is blocked, could not start update.')
         }
 
@@ -147,7 +147,7 @@ export async function GET() {
 
                     const blockMsg = $('body').text()
 
-                    if (blockMsg.includes("You are currently blocked.")) {
+                    if (blockMsg.includes("You are currently blocked." || "You are being rate limited.")) {
                         throw new Error(`Tibiantis got blocked during ${displayName} creation.`)
                     }
 
@@ -264,7 +264,7 @@ export async function GET() {
 
                 /* Stops if site is blocked  */
 
-                if (blockMsg.includes("You are currently blocked.")) {
+                if (blockMsg.includes("You are currently blocked." || "You are being rate limited.")) {
                     throw new Error(`Tibiantis got blocked during ${displayName} update.`)
                 }
 
