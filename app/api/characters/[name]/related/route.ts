@@ -51,7 +51,7 @@ export async function GET(req: Request, query: Query) {
 
         const relatedSessionSearchesPromises = sessions.map(async ({ endedAt, startedAt }) => {
 
-            const testRelatedSessions = await prisma.playerSession.groupBy({
+            return await prisma.playerSession.groupBy({
                 by: 'characterId',
                 _count: { characterId: true },
                 where: {
@@ -74,9 +74,7 @@ export async function GET(req: Request, query: Query) {
                 },
             })
 
-            console.log(testRelatedSessions)
-
-            return await prisma.playerSession.findMany({
+            /* return await prisma.playerSession.findMany({
                 where: {
                     OR:
                         [
@@ -98,17 +96,30 @@ export async function GET(req: Request, query: Query) {
                 select: {
                     characterId: true
                 }
-            })
+            }) */
         })
 
         /* Make an array of all sessions found (flat just breaks all into one array) */
 
-        const relatedSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
+        const possibleSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
+
+        const relatedSessions = possibleSessionsFound.filter(session => session._count.characterId > 10)
+
+        if (relatedSessions.length < 1) {
+            Response.json({ relatedCharacters: [] })
+        }
+
+        const relatedCharactersIDs = relatedSessions.map(relatedSession => relatedSession.characterId)
+
+        const relatedCharacters = await prisma.character.findMany({
+            where: { id: { in: relatedCharactersIDs } },
+            select: { displayName: true, level: true, vocation: true }
+        })
 
 
         /* Count the number of sessions each character has related, and filter if it's not the same char */
 
-        const possibleCharacters = relatedSessionsFound.reduce((acc, { characterId }) => {
+        /* const possibleCharacters = relatedSessionsFound.reduce((acc, { characterId }) => {
 
             if (characterId === character.id) return acc
 
@@ -118,21 +129,21 @@ export async function GET(req: Request, query: Query) {
             }
         }, {} as any)
 
-        const possibleCharactersKeys = Object.keys(possibleCharacters)
+        const possibleCharactersKeys = Object.keys(possibleCharacters) */
 
         /* Check how many sessions has related, if less than MIN delete it */
 
-        possibleCharactersKeys.forEach(characterId => {
+        /* possibleCharactersKeys.forEach(characterId => {
             if (possibleCharacters[characterId] < MIN_RELATED_SESSIONS) {
                 delete possibleCharacters[characterId]
             }
-        })
+        }) */
 
-        const relatedCharactersId = Object.keys(possibleCharacters)
+        /* const relatedCharactersId = Object.keys(possibleCharacters) */
 
         /* Get related chars specs */
 
-        const relatedCharactersPromises = relatedCharactersId.map(async characterId => {
+        /* const relatedCharactersPromises = relatedCharactersId.map(async characterId => {
             const characterDoc = await prisma.character.findUnique({
                 where: { id: characterId },
                 select: { displayName: true, level: true, vocation: true }
@@ -147,7 +158,7 @@ export async function GET(req: Request, query: Query) {
 
         })
 
-        const relatedCharacters = await Promise.all(relatedCharactersPromises)
+        const relatedCharacters = await Promise.all(relatedCharactersPromises) */
 
         return Response.json({ relatedCharacters })
     } catch (err: any) {
