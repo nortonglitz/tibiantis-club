@@ -266,7 +266,6 @@ export async function GET() {
 
                 if (deathsTable.text() !== '') {
 
-                    console.log('Inside death table')
                     const newDeaths: Death[] = []
 
                     /* Look for deaths already saved to db */
@@ -358,6 +357,8 @@ export async function GET() {
 
                         newDeaths.push(newDeath)
                     })
+
+                    console.log(newDeaths)
 
                     /* Check if any new death was found */
 
