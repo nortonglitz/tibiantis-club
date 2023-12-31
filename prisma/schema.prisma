@@ -36,8 +36,9 @@ model Death {
   killersIds String[]  @db.ObjectId
   killers    Character @relation(fields: [killersIds], references: [id], name: "killers")
   level      Int
-  type       Int
-  cause      String[]
+  cause      Int
+  creature   Int?
+  field      Int?
 
   @@map("deaths")
 }

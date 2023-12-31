@@ -1,3 +1,5 @@
+import beastiary from "@/prisma/seeds/beastiary"
+
 export const getVocationNumber = (vocation: string) => {
     switch (vocation.toLocaleLowerCase()) {
         case 'none':
@@ -126,4 +128,73 @@ export const isPremiumAccount = (status: string) => {
     }
 
     return lowerCaseStatus !== "free account"
+}
+
+export const isField = (value: string) => {
+    const fields = ["poison", "fire", "energy"]
+    return fields.includes(value)
+}
+
+export const getDeathCauseNumber = (causeName: string) => {
+    switch (causeName) {
+        case "creature":
+            return 0
+        case "player":
+            return 1
+        case "field":
+            return 2
+    }
+
+    throw new Error(`Invalid cause name for: ${causeName}`)
+}
+
+export const getDeathCauseName = (causeNumber: number) => {
+    switch (causeNumber) {
+        case 0:
+            return "creature"
+        case 1:
+            return "player"
+        case 2:
+            return "field"
+    }
+
+    throw new Error(`Invalid cause number for: ${causeNumber}`)
+}
+
+export const getCreatureUsingArticle = (creatureWithArticle: string) => {
+    const creature = beastiary.find(({ article, name }) => {
+        return (creatureWithArticle === `${article} ${name}` || creatureWithArticle === name)
+    })
+
+    if (!creature) {
+        throw new Error(`Can not fint creature name for: ${creatureWithArticle}`)
+    }
+
+    return creature.ref
+}
+
+export const getFieldNumber = (fieldName: string) => {
+    switch (fieldName) {
+        case "fire":
+            return 0
+        case "poison":
+            return 1
+        case "energy":
+            return 2
+    }
+
+    throw new Error(`Can not fint field number for: ${fieldName}`)
+}
+
+export const getFieldName = (fieldNumber: number) => {
+    switch (fieldNumber) {
+        case 0:
+            return "fire"
+        case 1:
+            return "poison"
+        case 2:
+            return "energy"
+    }
+
+    throw new Error(`Can not fint field name for: ${fieldNumber}`)
 }
