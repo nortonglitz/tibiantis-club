@@ -32,6 +32,7 @@ type Death = {
 export async function GET() {
 
     try {
+        console.time("update_time")
         const now = new Date()
         const { serverStart, serverEnd } = getServerDayPeriod()
 
@@ -265,6 +266,7 @@ export async function GET() {
 
                 if (deathsTable.text() !== '') {
 
+                    console.log('Inside death table')
                     const newDeaths: Death[] = []
 
                     /* Look for deaths already saved to db */
@@ -451,6 +453,8 @@ export async function GET() {
 
             await Promise.all(oldPlayersUpdatePromises)
         }
+
+        console.timeEnd("update_time")
 
         return Response.json({
             message: "Players online updated."
