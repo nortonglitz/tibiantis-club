@@ -1,6 +1,5 @@
 import { prisma } from '@/app/libs/dbClient'
 import { getMinutes, set } from 'date-fns'
-import { PlayerSession } from "@prisma/client"
 
 // How many sessions char need to have to be analyzed
 const MIN_SESSIONS = 10
