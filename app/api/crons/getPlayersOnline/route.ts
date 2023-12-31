@@ -285,6 +285,8 @@ export async function GET() {
 
                         /* Go over each death row */
 
+                        let stopSearching = false
+
                         $(tr).find('td').each((j, td) => {
                             switch (j) {
 
@@ -295,7 +297,13 @@ export async function GET() {
 
                                     /* Check if the date is the same, so it can be skipped */
 
-                                    if (listedDeaths.find((listedDeath) => listedDeath.date === deathDate)) return false
+                                    if (listedDeaths.find((listedDeath) => listedDeath.date === deathDate)) {
+
+                                        /* Quit all deaths searching */
+
+                                        stopSearching = true
+                                        return false
+                                    }
                                     newDeath.date = deathDate
                                     break
 
@@ -351,6 +359,10 @@ export async function GET() {
                                     break
                             }
                         })
+
+                        /* Stop searching for more deaths */
+
+                        if (stopSearching) return false
 
                         /* Add new death to array */
 
