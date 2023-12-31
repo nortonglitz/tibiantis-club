@@ -358,7 +358,7 @@ export async function GET() {
                         newDeaths.push(newDeath)
                     })
 
-                    console.log(newDeaths)
+                    console.log("newDeaths", newDeaths)
 
                     /* Check if any new death was found */
 
@@ -399,6 +399,8 @@ export async function GET() {
                         })
 
                         const parsedDeaths = await Promise.all(parsedDeathsPromises)
+
+                        console.log("parsedDEaths", parsedDeaths)
 
                         /* Save all deaths of the character */
 
