@@ -32,7 +32,6 @@ type Death = {
 export async function GET() {
 
     try {
-        console.time("update_time")
         const now = new Date()
         const { serverStart, serverEnd } = getServerDayPeriod()
 
@@ -358,8 +357,6 @@ export async function GET() {
                         newDeaths.push(newDeath)
                     })
 
-                    console.log("newDeaths", newDeaths)
-
                     /* Check if any new death was found */
 
                     if (newDeaths.length > 0) {
@@ -399,8 +396,6 @@ export async function GET() {
                         })
 
                         const parsedDeaths = await Promise.all(parsedDeathsPromises)
-
-                        console.log("parsedDEaths", parsedDeaths)
 
                         /* Save all deaths of the character */
 
@@ -456,8 +451,6 @@ export async function GET() {
 
             await Promise.all(oldPlayersUpdatePromises)
         }
-
-        console.timeEnd("update_time")
 
         return Response.json({
             message: "Players online updated."
