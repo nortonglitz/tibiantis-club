@@ -61,7 +61,7 @@ model Character {
   sessions         PlayerSession[]
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
-  PlayerSessionDay PlayerSessionDay[]
+  playerSessionDay PlayerSessionDay[]
 
   @@map("characters")
 }
