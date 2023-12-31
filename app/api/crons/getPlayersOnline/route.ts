@@ -17,8 +17,6 @@ type PlayerStats = {
 
 export async function GET() {
 
-    /* Compare players online with official website */
-
     try {
         const now = new Date()
         const { serverStart, serverEnd } = getServerDayPeriod()
@@ -87,6 +85,8 @@ export async function GET() {
         const oldPlayersOnline = await prisma.character.findMany({ where: { online: true } })
 
         const newPlayers: PlayerStats[] = []
+
+        /* Compare players online with official website */
 
         $('.hover').each((i, tr) => {
             const playerStats = { displayName: '', vocation: 0, level: 0 }
