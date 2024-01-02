@@ -53,6 +53,7 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                         "
                     >
                         <td colSpan={1}>When</td>
+                        <td colSpan={1}>Level</td>
                         <td colSpan={1}>Killed by</td>
                     </tr>
                 </thead>
@@ -63,7 +64,7 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                         text-center
                     "
                 >
-                    {deaths && deaths.map(({ date, cause, killers, creature, field }, i) => (
+                    {deaths && deaths.map(({ date, cause, killers, creature, field, level }, i) => (
                         <tr
                             key={i}
                             className="
@@ -76,6 +77,9 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                             "
                         >
                             <td>{formatDistanceToNow(date)} ago</td>
+                            <td>
+                                {level}
+                            </td>
                             <>
                                 {cause === 0 && creature && (
                                     <td>

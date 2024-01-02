@@ -64,8 +64,6 @@ export async function GET(req: Request, query: Query) {
 
         const parsedDeaths = await Promise.all(deathsPromises)
 
-        console.log(parsedDeaths)
-
         return Response.json({ deaths: parsedDeaths }, { status: 200 })
 
     } catch (err: any) {
