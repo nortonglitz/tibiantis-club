@@ -6,7 +6,7 @@ import {
 } from "@/app/libs/enumAssist"
 import { getServerDayPeriod } from "@/app/libs/serverAnalysisHelper"
 import { getExpGained } from "@/app/libs/formulas"
-import { differenceInMinutes } from "date-fns"
+import { compareAsc, differenceInMinutes } from "date-fns"
 import { createCharacter } from "@/app/api/characters/createCharacter"
 
 export const dynamic = 'force-dynamic'
@@ -298,7 +298,7 @@ export async function GET() {
                                     /* Check if the date is the same, so it can be skipped */
 
                                     if (listedDeaths.find((listedDeath) => {
-                                        console.log(listedDeath.date, deathDate, listedDeath.date === deathDate)
+                                        console.log(listedDeath.date, deathDate, compareAsc(listedDeath.date, deathDate))
                                         return listedDeath.date === deathDate
                                     })) {
                                         /* Quit all deaths searching */
