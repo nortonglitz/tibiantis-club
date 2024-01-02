@@ -94,13 +94,13 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                                     <td>
                                         {killers.length > 1 ?
                                             <>
-                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[0].displayName}</LinkText>
+                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[0].displayName.replaceAll(' ', '_')}</LinkText>
                                                 and
-                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[1].displayName}</LinkText>
+                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[1].displayName.replaceAll(' ', '_')}</LinkText>
                                             </>
                                             :
                                             <>
-                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[0].displayName}</LinkText>
+                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[0].displayName.replaceAll(' ', '_')}</LinkText>
                                             </>
                                         }
                                     </td>
