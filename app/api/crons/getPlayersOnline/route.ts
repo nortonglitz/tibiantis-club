@@ -297,8 +297,10 @@ export async function GET() {
 
                                     /* Check if the date is the same, so it can be skipped */
 
-                                    if (listedDeaths.find((listedDeath) => listedDeath.date === deathDate)) {
-
+                                    if (listedDeaths.find((listedDeath) => {
+                                        console.log(listedDeath.date, deathDate, listedDeath.date === deathDate)
+                                        return listedDeath.date === deathDate
+                                    })) {
                                         /* Quit all deaths searching */
 
                                         stopSearching = true
