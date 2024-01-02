@@ -52,8 +52,8 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                             font-bold
                         "
                     >
-                        <td colSpan={1}>Date</td>
-                        <td colSpan={1}>Cause</td>
+                        <td colSpan={1}>When</td>
+                        <td colSpan={1}>Killed by</td>
                     </tr>
                 </thead>
                 <tbody
