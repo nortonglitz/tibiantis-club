@@ -151,13 +151,13 @@ const Finder = () => {
                                                     <Link
                                                         href={`/characters/${displayName.replaceAll(' ', '_')}`}
                                                         className="
-                                                px-2 
-                                                text-yellow-200
-                                                sm:text-lg
-                                                active:text-yellow-300
-                                                hover:underline
-                                                hover:underline-offset-4
-                                            "
+                                                            px-2 
+                                                            text-yellow-200
+                                                            sm:text-lg
+                                                            active:text-yellow-300
+                                                            hover:underline
+                                                            hover:underline-offset-4
+                                                        "
                                                     >
                                                         {displayName}
                                                     </Link>

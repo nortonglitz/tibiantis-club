@@ -27,12 +27,6 @@ export function useFindCharacter(name: string) {
             throw error
         }
 
-        if (res.status === 204) {
-            const error: any = new Error('Could not find character.')
-            error.status = res.status
-            throw error
-        }
-
         return res.json()
     }
 

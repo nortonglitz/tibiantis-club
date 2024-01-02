@@ -375,7 +375,7 @@ export async function GET() {
 
                         /* Convert killers into IDs and create if the character does not exists */
 
-                        const parsedDeathsPromises = newDeaths.map(async ({ killersDisplayName, ...rest }) => {
+                        const parsedDeathsPromises = newDeaths.map(async ({ killersDisplayName, date, level, victimId, ...rest }) => {
                             if (killersDisplayName) {
 
                                 /* Find if killer exists  */
@@ -392,19 +392,27 @@ export async function GET() {
                                         return newCharacter.id
                                     }
 
+                                    /* Create a kill for the killer */
+
+                                    await prisma.kill.create({
+                                        data: {
+                                            date: date,
+                                            victimLevel: level,
+                                            victimId: victimId,
+                                            killerId: killer.id
+                                        }
+                                    })
+
                                     return killer.id
                                 })
 
-                                /* Wait for creating/finding killers IDs */
+                                /* Wait for creating/finding killers IDs and creating kills */
 
                                 const killersIds = await Promise.all(killersPromises)
 
-                                return {
-                                    ...rest,
-                                    killersIds
-                                }
+                                return { ...rest, date, level, victimId, killersIds }
                             }
-                            return { ...rest }
+                            return { ...rest, date, level, victimId }
                         })
 
                         const parsedDeaths = await Promise.all(parsedDeathsPromises)

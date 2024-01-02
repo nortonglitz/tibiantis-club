@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import CharTable from "./charTable"
 import RelatedCharsTable from "./relatedCharsTable"
+import DeathsTable from "./deathsTable"
 
 type Props = { params: { displayName: string } }
 
@@ -28,6 +29,7 @@ export default function CharacterPage({ params: { displayName } }: Props) {
         >
             <CharTable displayName={parsedDisplayName} />
             <RelatedCharsTable displayName={parsedDisplayName} />
+            <DeathsTable displayName={parsedDisplayName} />
         </main>
     )
 }

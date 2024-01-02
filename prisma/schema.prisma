@@ -30,17 +30,27 @@ model PlayerSession {
 
 model Death {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  victimId   String    @db.ObjectId
-  victim     Character @relation(fields: [victimId], references: [id], name: "victim")
   date       DateTime
-  killersIds String[]  @db.ObjectId
-  killers    Character @relation(fields: [killersIds], references: [id], name: "killers")
   level      Int
   cause      Int
   creature   Int?
   field      Int?
+  victimId   String    @db.ObjectId
+  victim     Character @relation(fields: [victimId], references: [id])
+  killersIds String[]  @db.ObjectId
 
   @@map("deaths")
+}
+
+model Kill {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  date        DateTime
+  victimId    String    @db.ObjectId
+  victimLevel Int
+  killerId    String    @db.ObjectId
+  killer      Character @relation(fields: [killerId], references: [id])
+
+  @@map("kills")
 }
 
 model Character {
@@ -55,13 +65,13 @@ model Character {
   premium          Boolean
   online           Boolean
   onlineUpdatedAt  DateTime
-  deaths           Death[]            @relation(name: "victim")
-  frags            Death[]            @relation(name: "killers")
   banishedUntil    DateTime?
-  sessions         PlayerSession[]
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
+  sessions         PlayerSession[]
   playerSessionDay PlayerSessionDay[]
+  deaths           Death[]
+  kills            Kill[]
 
   @@map("characters")
 }

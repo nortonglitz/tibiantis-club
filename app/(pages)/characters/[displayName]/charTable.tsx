@@ -7,11 +7,11 @@ import { FaX } from "react-icons/fa6"
 import { formatDistanceToNow } from 'date-fns'
 import Link from "next/link"
 
-interface TableProps {
+interface CharTableProps {
     displayName: string
 }
 
-const CharTable: React.FC<TableProps> = ({ displayName }) => {
+const CharTable: React.FC<CharTableProps> = ({ displayName }) => {
 
     const { character, error } = useCharacter(displayName)
 
@@ -55,17 +55,17 @@ const CharTable: React.FC<TableProps> = ({ displayName }) => {
                     </thead>
                     <tbody
                         className="
-                        [&>tr>th]:text-left 
-                        [&>tr>th]:p-2
-                    "
+                            [&>tr>th]:text-left 
+                            [&>tr>th]:p-2
+                        "
                     >
                         <tr
                             className="
-                            bg-stone-300/10
-                            hover:outline
-                            hover:-outline-offset-1
-                            hover:outline-stone-400/80
-                        "
+                                bg-stone-300/10
+                                hover:outline
+                                hover:-outline-offset-1
+                                hover:outline-stone-400/80
+                            "
                         >
                             <th>
                                 Name
