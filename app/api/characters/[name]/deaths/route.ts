@@ -24,8 +24,6 @@ export async function GET(req: Request, query: Query) {
             throw new Error('Invalid character name.')
         }
 
-        console.log(character.id)
-
         const deaths = await prisma.death.findMany({
             where: {
                 victimId: character.id
@@ -36,7 +34,39 @@ export async function GET(req: Request, query: Query) {
             return Response.json({ deaths: [] }, { status: 200 })
         }
 
-        return Response.json({ deaths }, { status: 200 })
+        /* Include killer/killers display name */
+
+        const deathsPromises = deaths.map(async ({ killersIds, ...rest }) => {
+            if (killersIds) {
+                const killersPromises = killersIds.map(async killerId => {
+                    const killer = await prisma.character.findUnique({
+                        where: { id: killerId },
+                        select: { displayName: true }
+                    })
+
+                    if (!killer) return "unknown player"
+
+                    return killer
+                })
+
+                const killers = await Promise.all(killersPromises)
+
+                return {
+                    ...rest,
+                    killers
+                }
+            }
+
+            return {
+                ...rest
+            }
+        })
+
+        const parsedDeaths = await Promise.all(deathsPromises)
+
+        console.log(parsedDeaths)
+
+        return Response.json({ deaths: parsedDeaths }, { status: 200 })
 
     } catch (err: any) {
         console.error(err.message)

@@ -3,7 +3,7 @@
 import useSWR from 'swr'
 import { Death } from "@prisma/client"
 
-interface DeathWithKillersDisplayName extends Death {
+interface DeathWithKillersDisplayName extends Omit<Death, "killersIds"> {
     killers: { displayName: string }[]
 }
 

@@ -1,6 +1,8 @@
 "use client"
 
+import LinkText from "@/app/components/links/linkText"
 import { useCharacterDeaths } from "@/app/hooks/useCharacterDeaths"
+import { getCreatureName, getFieldName } from "@/app/libs/enumAssist"
 import { formatDistanceToNow } from "date-fns"
 
 interface DeathsTableProps {
@@ -61,7 +63,7 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                         text-center
                     "
                 >
-                    {deaths && deaths.map(({ date, cause }, i) => (
+                    {deaths && deaths.map(({ date, cause, killers, creature, field }, i) => (
                         <tr
                             key={i}
                             className="
@@ -74,7 +76,41 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                             "
                         >
                             <td>{formatDistanceToNow(date)} ago</td>
-                            <td>{cause}</td>
+                            <>
+                                {cause === 0 && creature && (
+                                    <td>
+                                        {<img
+                                            className="m-auto"
+                                            src={`/assets/imgs/beastiary/${getCreatureName(creature).replaceAll(' ', '_')}.gif`}
+                                            alt={getCreatureName(creature)}
+                                        />}
+                                    </td>
+                                )}
+                                {cause === 1 && (
+                                    <td>
+                                        {killers.length > 1 ?
+                                            <>
+                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[0].displayName}</LinkText>
+                                                and
+                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[1].displayName}</LinkText>
+                                            </>
+                                            :
+                                            <>
+                                                <LinkText href={`/characters/${killers[0].displayName}`}>{killers[0].displayName}</LinkText>
+                                            </>
+                                        }
+                                    </td>
+                                )}
+                                {cause === 2 && field !== null && (
+                                    <td>
+                                        {<img
+                                            className="m-auto"
+                                            src={`/assets/imgs/fields/${getFieldName(field).replaceAll(' ', '_')}.gif`}
+                                            alt={getFieldName(field)}
+                                        />}
+                                    </td>
+                                )}
+                            </>
                         </tr>
                     ))}
                 </tbody>

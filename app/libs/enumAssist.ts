@@ -173,6 +173,16 @@ export const getCreatureUsingArticle = (creatureWithArticle: string) => {
     return creature.ref
 }
 
+export const getCreatureName = (creatureRef: number) => {
+    const creature = beastiary.find(({ ref }) => ref === creatureRef)
+
+    if (!creature) {
+        throw new Error(`Can not fint field name creature ref: ${creatureRef}`)
+    }
+
+    return creature.name
+}
+
 export const getFieldNumber = (fieldName: string) => {
     switch (fieldName) {
         case "fire":

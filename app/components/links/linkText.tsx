@@ -10,8 +10,10 @@ const LinkText: React.FC<LinkTextProps> = ({
     return (
         <Link
             className={`
-            hover:text-yellow-200 
-            active:text-yellow-400
+            text-yellow-200
+            hover:underline
+            hover:underline-offset-4
+            active:text-yellow-300
             ${className}
         `}
             {...props}
