@@ -15,7 +15,9 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
     const { deaths, error, isLoading } = useCharacterDeaths(displayName)
 
     useEffect(() => {
-        deaths.sort((a, b) => compareDesc(a.date, b.date))
+        if (deaths && deaths.length > 1) {
+            deaths.sort((a, b) => compareDesc(a.date, b.date))
+        }
     }, [deaths])
 
     return (
