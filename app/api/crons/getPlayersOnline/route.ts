@@ -47,7 +47,7 @@ export async function GET() {
 
         const blockMsg = $('body').text()
 
-        if (blockMsg.includes("You are currently blocked." || "You are being rate limited.")) {
+        if (blockMsg.includes("You are currently blocked.") || blockMsg.includes("You are being rate limited.")) {
             throw new Error('Tibiantis is blocked, could not start update.')
         }
 
@@ -242,7 +242,7 @@ export async function GET() {
 
                 /* Stops if site is blocked  */
 
-                if (blockMsg.includes("You are currently blocked." || "You are being rate limited.")) {
+                if (blockMsg.includes("You are currently blocked.") || blockMsg.includes("You are being rate limited.")) {
                     throw new Error(`Tibiantis got blocked during ${displayName} update.`)
                 }
 
@@ -293,7 +293,14 @@ export async function GET() {
                                 /* Death date */
 
                                 case 0:
-                                    const deathDate = new Date(($(td).text().split('CET')[0]) + 'GMT+0100')
+                                    let deathDate: Date
+                                    const deathDateString = $(td).text()
+
+                                    if (deathDateString.includes('CET')) {
+                                        deathDate = new Date(deathDateString.replace('CET', 'GMT+0100'))
+                                    } else {
+                                        deathDate = new Date(deathDateString.replace('CEST', 'GMT+0200'))
+                                    }
 
                                     /* Check if the date is the same, so it can be skipped */
 
