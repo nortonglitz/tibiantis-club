@@ -19,7 +19,8 @@ const LinkCategory: React.FC<LinkCategoryProps> = ({ imgSrc, title, desc, classN
                     rounded-3xl 
                     cursor-pointer 
                     bg-stone-800 
-                    max-w-[12rem] 
+                    w-[12rem]
+                    h-[fit]
                     group 
                     select-none
                     active:bg-stone-700/50

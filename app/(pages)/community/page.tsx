@@ -41,6 +41,12 @@ export default function CommunityPage() {
                 href="#"
                 imgSrc="/assets/imgs/icons/exilium.gif"
             />
+            <LinkCategory
+                desc="List of recent deaths."
+                title="Latest Deaths"
+                href="/deaths/latest"
+                imgSrc="/assets/imgs/icons/latest_deaths.gif"
+            />
         </main>
     )
 }

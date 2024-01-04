@@ -53,7 +53,7 @@ const DayPlayersChart = () => {
                         Something went wrong
                     </div>
                     :
-                    dayPlayers.length < 1 ?
+                    dayPlayers && dayPlayers.length < 1 ?
                         <div className="
                                 w-[350px] 
                                 h-[200px] 
