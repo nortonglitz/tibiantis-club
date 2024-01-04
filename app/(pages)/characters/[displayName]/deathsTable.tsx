@@ -1,10 +1,9 @@
 "use client"
 
-import { useEffect } from 'react'
 import LinkText from "@/app/components/links/linkText"
 import { useCharacterDeaths } from "@/app/hooks/useCharacterDeaths"
 import { getCreatureName, getFieldName } from "@/app/libs/enumAssist"
-import { compareDesc, formatDistanceToNow } from "date-fns"
+import { formatDistanceToNow } from "date-fns"
 
 interface DeathsTableProps {
     displayName: string
@@ -13,12 +12,6 @@ interface DeathsTableProps {
 const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
 
     const { deaths, error, isLoading } = useCharacterDeaths(displayName)
-
-    useEffect(() => {
-        if (deaths && deaths.length > 1) {
-            deaths.sort((a, b) => compareDesc(a.date, b.date))
-        }
-    }, [deaths])
 
     return (
         <div
