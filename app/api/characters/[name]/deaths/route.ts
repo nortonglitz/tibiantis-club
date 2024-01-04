@@ -27,7 +27,11 @@ export async function GET(req: Request, query: Query) {
         const deaths = await prisma.death.findMany({
             where: {
                 victimId: character.id
-            }
+            },
+            orderBy: {
+                id: "desc"
+            },
+            take: 10
         })
 
         if (!deaths) {
