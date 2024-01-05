@@ -29,7 +29,7 @@ export async function GET(req: Request, query: Query) {
                 victimId: character.id
             },
             orderBy: {
-                id: "asc"
+                date: "asc"
             },
             take: 10
         })
