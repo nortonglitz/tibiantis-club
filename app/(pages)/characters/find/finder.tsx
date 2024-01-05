@@ -27,8 +27,9 @@ const Finder = () => {
     const { characters, isLoading } = useFindCharacter(debouncedCharacterName)
 
     const handleChangeName: ChangeEventHandler<HTMLInputElement> = (e) => {
-        if (e.target.value.length > 2) {
-            setFindCharacterName(e.target.value)
+        const parsedName = e.target.value.trim().toLowerCase()
+        if (parsedName.length > 2) {
+            setFindCharacterName(parsedName)
         }
     }
 
