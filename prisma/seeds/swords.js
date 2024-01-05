@@ -136,6 +136,14 @@ const swords = [
         imageSrc: '/assets/imgs/swords/magic_longsword.gif',
     },
     {
+        name: "magic sword",
+        atk: 48,
+        def: 35,
+        weight: 42.0,
+        twoHanded: false,
+        imageSrc: '/assets/imgs/swords/magic_sword.gif',
+    },
+    {
         name: "pharaoh sword",
         atk: 41,
         def: 23,
