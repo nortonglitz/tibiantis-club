@@ -270,10 +270,7 @@ export async function GET() {
                     /* Look for deaths already saved to db */
 
                     const listedDeaths = await prisma.death.findMany({
-                        where: { victimId: id },
-                        orderBy: {
-                            date: "asc"
-                        }
+                        where: { victimId: id }
                     })
 
                     deathsTable.each((i, tr) => {
