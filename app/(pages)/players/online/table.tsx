@@ -146,10 +146,10 @@ const Table: React.FC = () => {
                                                 </div>
                                             </td>
                                             <td>{level}</td>
-                                            <td className="hidden sm:block capitalize">
+                                            <td className="hidden sm:table-cell capitalize">
                                                 {getVocationName(vocation)}
                                             </td>
-                                            <td className="block sm:hidden capitalize">
+                                            <td className="table-cell sm:hidden capitalize">
                                                 {getVocationAbbreviation(getVocationName(vocation))}
                                             </td>
                                         </tr>
