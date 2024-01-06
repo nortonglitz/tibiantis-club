@@ -42,22 +42,22 @@ const CharTable: React.FC<CharTableProps> = ({ displayName }) => {
                 xl:w-[40vw]
             "
         >
+            <h3
+                className="
+                    font-yatra-one 
+                    text-2xl 
+                    whitespace-nowrap 
+                    text-yellow-200
+                "
+            >
+                Character Information
+            </h3>
+            <hr className="border-stone-700 mb-2" />
             {!error ?
                 <table className="w-full h-fit">
-                    <caption
-                        className="
-                            font-yatra-one 
-                            text-2xl 
-                            whitespace-nowrap 
-                            text-yellow-200 
-                        "
-                    >
-                        Character Information
-                        <hr className="border-stone-700 mt-2 mb-4" />
-                    </caption>
                     <thead>
                         <tr className="shadow-md">
-                            <td colSpan={2}></td>
+                            <th colSpan={2}></th>
                         </tr>
                     </thead>
                     <tbody

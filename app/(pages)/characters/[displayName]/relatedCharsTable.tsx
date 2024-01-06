@@ -26,27 +26,29 @@ const RelatedCharsTable = () => {
                 xl:w-[40vw]
             "
         >
+            <h3
+                className="
+                    font-yatra-one 
+                    text-2xl 
+                    whitespace-nowrap 
+                    text-yellow-200
+                "
+            >
+                Related Characters
+            </h3>
+            <hr className="border-stone-700 mb-2" />
             <div className="max-h-[40vh] md:max-h-[50vh] h-fit w-full overflow-y-auto">
-                <table className="w-full">
-                    <caption
-                        className="
-                            font-yatra-one 
-                            text-2xl 
-                            whitespace-nowrap 
-                            text-yellow-200 
-                        "
-                    >
-                        Related Characters
-                        <hr className="border-stone-700 mt-2 mb-4" />
-                    </caption>
-                    <thead>
+                <table className="w-full h-fit relative">
+                    <thead className="sticky top-0">
                         <tr
                             className="
+                                text-center
                                 shadow-md
-                                [&>th]:py-1
                                 uppercase
                                 font-yatra-one
                                 bg-stone-800
+                                font-bold
+                                [&>th]:pb-1
                             "
                         >
                             <th className="min-w-[100px]" scope="col">

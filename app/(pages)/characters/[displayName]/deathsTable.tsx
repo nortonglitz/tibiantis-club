@@ -27,33 +27,33 @@ const DeathsTable = () => {
                 xl:w-[40vw]
             "
         >
+            <h3
+                className="
+                    font-yatra-one 
+                    text-2xl 
+                    whitespace-nowrap 
+                    text-yellow-200
+                "
+            >
+                Latest Deaths
+            </h3>
+            <hr className="border-stone-700 mb-2" />
             <div className="max-h-[40vh] md:max-h-[50vh] h-fit w-full overflow-y-auto">
-                <table className="w-full h-fit">
-                    <caption
-                        className="
-                            font-yatra-one 
-                            text-2xl 
-                            whitespace-nowrap 
-                            text-yellow-200
-                        "
-                    >
-                        Deaths
-                        <hr className="border-stone-700 mt-2 mb-4" />
-                    </caption>
-                    <thead>
+                <table className="w-full h-fit relative">
+                    <thead className="sticky top-0">
                         <tr className="
                                 text-center
                                 shadow-md
-                                [&>th]:py-1
                                 uppercase
                                 font-yatra-one
                                 bg-stone-800
                                 font-bold
+                                [&>th]:pb-1
                             "
                         >
-                            <td colSpan={1}>When</td>
-                            <td colSpan={1}>Level</td>
-                            <td colSpan={1}>Killed by</td>
+                            <th colSpan={1}>When</th>
+                            <th colSpan={1}>Level</th>
+                            <th colSpan={1}>Killed by</th>
                         </tr>
                     </thead>
                     <tbody
