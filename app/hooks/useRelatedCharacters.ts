@@ -9,11 +9,14 @@ type RelatedCharacter = {
     relatedSessions: number
 }
 
-export function useRelatedCharacters(displayName: string) {
-
-    const parsedDisplayName = displayName.replaceAll(' ', '_').toLowerCase()
+export function useRelatedCharacters(id: string) {
 
     const fetcher = async (url: string) => {
+
+        if (id.length < 24) {
+            throw new Error("Invalid character Id.")
+        }
+
         const res = await fetch(url)
 
         if (!res.ok) {
@@ -24,7 +27,7 @@ export function useRelatedCharacters(displayName: string) {
 
         return res.json()
     }
-    const { data, isLoading, error } = useSWRImmutable(`/api/characters/${parsedDisplayName}/related`, fetcher)
+    const { data, isLoading, error } = useSWRImmutable(`/api/characters/id/${id}/related`, fetcher)
 
 
     return { relatedCharacters: data?.relatedCharacters as RelatedCharacter[], isLoading, error }

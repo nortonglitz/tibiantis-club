@@ -3,15 +3,13 @@
 import LinkText from "@/app/components/links/linkText"
 import { useCharacterDeaths } from "@/app/hooks/useCharacterDeaths"
 import { getCreatureName, getFieldName } from "@/app/libs/enumAssist"
+import useCharacterStore from "@/app/stores/useCharacterStore"
 import { formatDistanceToNow } from "date-fns"
 
-interface DeathsTableProps {
-    displayName: string
-}
+const DeathsTable = () => {
 
-const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
-
-    const { deaths, error, isLoading } = useCharacterDeaths(displayName)
+    const { character } = useCharacterStore()
+    const { deaths, error, isLoading } = useCharacterDeaths(character ? character.id : '')
 
     return (
         <div
@@ -64,7 +62,7 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                         text-center
                     "
                 >
-                    {isLoading ?
+                    {isLoading || !character ?
                         <>
                             {[1, 2, 3].map((key) => (
                                 <tr className="odd:bg-stone-300/10 even:bg-stone-400/10" key={key}>
@@ -80,7 +78,7 @@ const DeathsTable: React.FC<DeathsTableProps> = ({ displayName }) => {
                                 <td colSpan={3} className="text-center py-2 bg-stone-300/10">Something went wrong.</td>
                             </tr>
                             :
-                            deaths.length < 1 ?
+                            deaths && deaths.length < 1 ?
                                 <tr>
                                     <td colSpan={3} className="text-center py-2 bg-stone-300/10">
                                         No deaths has been found.

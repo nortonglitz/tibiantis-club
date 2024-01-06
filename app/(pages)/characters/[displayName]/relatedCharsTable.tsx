@@ -2,15 +2,13 @@
 
 import { useRelatedCharacters } from "@/app/hooks/useRelatedCharacters"
 import { getVocationName } from "@/app/libs/enumAssist"
+import useCharacterStore from "@/app/stores/useCharacterStore"
 import Link from "next/link"
 
-interface RelatedCharsTableProps {
-    displayName: string
-}
+const RelatedCharsTable = () => {
 
-const RelatedCharsTable: React.FC<RelatedCharsTableProps> = ({ displayName }) => {
-
-    const { relatedCharacters, isLoading, error } = useRelatedCharacters(displayName)
+    const { character } = useCharacterStore()
+    const { relatedCharacters, isLoading, error } = useRelatedCharacters(character ? character.id : '')
 
     return (
         <div
@@ -67,7 +65,7 @@ const RelatedCharsTable: React.FC<RelatedCharsTableProps> = ({ displayName }) =>
                         [&>tr>th]:p-2
                     "
                 >
-                    {isLoading ?
+                    {isLoading || !character ?
                         <>
                             {[1, 2, 3].map((key) => (
                                 <tr className="odd:bg-stone-300/10 even:bg-stone-400/10" key={key}>
@@ -83,7 +81,7 @@ const RelatedCharsTable: React.FC<RelatedCharsTableProps> = ({ displayName }) =>
                                 <td colSpan={3} className="text-center py-2 bg-stone-300/10">Something went wrong.</td>
                             </tr>
                             :
-                            relatedCharacters.length < 1 ?
+                            relatedCharacters && relatedCharacters.length < 1 ?
                                 <tr>
                                     <td colSpan={3} className="text-center py-2 bg-stone-300/10">
                                         No characters has been found.
@@ -91,7 +89,7 @@ const RelatedCharsTable: React.FC<RelatedCharsTableProps> = ({ displayName }) =>
                                 </tr>
                                 :
                                 <>
-                                    {relatedCharacters.map(({ displayName, level, vocation }, i) => (
+                                    {relatedCharacters && relatedCharacters.map(({ displayName, level, vocation }, i) => (
                                         <tr
                                             key={i}
                                             className="

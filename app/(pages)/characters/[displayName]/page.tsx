@@ -28,8 +28,8 @@ export default function CharacterPage({ params: { displayName } }: Props) {
             "
         >
             <CharTable displayName={parsedDisplayName} />
-            <RelatedCharsTable displayName={parsedDisplayName} />
-            <DeathsTable displayName={parsedDisplayName} />
+            <RelatedCharsTable />
+            <DeathsTable />
         </main>
     )
 }

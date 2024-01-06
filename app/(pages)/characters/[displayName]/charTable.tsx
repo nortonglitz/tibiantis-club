@@ -1,11 +1,13 @@
 "use client"
 
+import { useEffect } from "react"
 import { useCharacter } from "@/app/hooks/useCharacter"
 import { getCityName, getSexName, getVocationName } from "@/app/libs/enumAssist"
 import { FaCheck } from "react-icons/fa"
 import { FaX } from "react-icons/fa6"
 import { formatDistanceToNow } from 'date-fns'
 import Link from "next/link"
+import useCharacterStore from "@/app/stores/useCharacterStore"
 
 interface CharTableProps {
     displayName: string
@@ -14,6 +16,11 @@ interface CharTableProps {
 const CharTable: React.FC<CharTableProps> = ({ displayName }) => {
 
     const { character, error } = useCharacter(displayName)
+    const { setCharacter } = useCharacterStore()
+
+    useEffect(() => {
+        setCharacter(character)
+    }, [character, setCharacter])
 
     function capitalizeFirstLetter(string: string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
