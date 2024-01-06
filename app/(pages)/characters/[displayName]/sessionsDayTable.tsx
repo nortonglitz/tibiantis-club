@@ -117,7 +117,13 @@ const SessionsDayTable = () => {
                                                     hover:outline-stone-400/80
                                                 "
                                             >
-                                                <td>{differenceInCalendarDays(TODAY, createdAt)} ago</td>
+                                                <td>
+                                                    {differenceInCalendarDays(TODAY, createdAt) === 0 ?
+                                                        'today'
+                                                        :
+                                                        differenceInCalendarDays(TODAY, createdAt)
+                                                    }
+                                                </td>
                                                 <td>
                                                     {startLevel}
                                                 </td>
