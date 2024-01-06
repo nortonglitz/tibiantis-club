@@ -37,10 +37,13 @@ const RelatedCharsTable = () => {
                         via-transparent
                     `}
                 >
-                    {character && character.sex === 0 ?
-                        <img className="w-[32px] h-[32px] object-contain" src="/assets/imgs/icons/related_chars_male.gif" alt="related chars" />
+                    {!character ?
+                        <img src="/assets/imgs/icons/char_info_loading.gif" alt="loading info" />
                         :
-                        <img className="w-[32px] h-[32px] object-contain" src="/assets/imgs/icons/related_chars_female.gif" alt="related chars" />
+                        character.sex === 0 ?
+                            <img src="/assets/imgs/icons/related_chars_male.gif" alt="char info" />
+                            :
+                            <img src="/assets/imgs/icons/related_chars_female.gif" alt="char info" />
                     }
                 </div>
                 <h3

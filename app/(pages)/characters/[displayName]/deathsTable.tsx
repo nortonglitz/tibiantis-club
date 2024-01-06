@@ -38,10 +38,13 @@ const DeathsTable = () => {
                         via-transparent
                     `}
                 >
-                    {character && character.sex === 0 ?
-                        <img src="/assets/imgs/icons/char_deaths_male.gif" alt="deaths" />
+                    {!character ?
+                        <img src="/assets/imgs/icons/char_info_loading.gif" alt="loading info" />
                         :
-                        <img src="/assets/imgs/icons/char_deaths_female.gif" alt="deaths" />
+                        character.sex === 0 ?
+                            <img src="/assets/imgs/icons/char_deaths_male.gif" alt="char info" />
+                            :
+                            <img src="/assets/imgs/icons/char_deaths_female.gif" alt="char info" />
                     }
                 </div>
                 <h3
