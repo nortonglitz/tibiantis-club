@@ -130,7 +130,21 @@ const SessionsDayTable = () => {
                                                 <td>
                                                     {startLevel}
                                                 </td>
-                                                <td>
+                                                <td
+                                                    className={`
+                                                        ${playtime > 240 ?
+                                                            'text-orange-400'
+                                                            :
+                                                            playtime >= 360 && playtime < 540 ?
+                                                                'text-orange-500'
+                                                                :
+                                                                playtime >= 540 ?
+                                                                    'text-orange-600'
+                                                                    :
+                                                                    ''
+                                                        }
+                                                    `}
+                                                >
                                                     {
                                                         intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).hours
                                                         &&
