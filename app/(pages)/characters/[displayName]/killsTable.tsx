@@ -51,7 +51,7 @@ const DeathsTable = () => {
                     >
                         <td colSpan={1}>When</td>
                         <td colSpan={1}>Level</td>
-                        <td colSpan={1}>Victim</td>
+                        <td colSpan={1}>Name</td>
                     </tr>
                 </thead>
                 <tbody
