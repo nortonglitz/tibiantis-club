@@ -122,17 +122,25 @@ const SessionsDayTable = () => {
                                                     {startLevel}
                                                 </td>
                                                 <td>
-                                                    {intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).hours}h
-                                                    {intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).minutes}
+                                                    {
+                                                        intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).hours
+                                                        &&
+                                                        `${intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).hours}h`
+                                                    }
+                                                    {
+                                                        intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).minutes
+                                                        &&
+                                                        `${intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).minutes}m`
+                                                    }
                                                 </td>
                                                 <td>
                                                     {expGained === 0 ?
                                                         expGained.toLocaleString()
                                                         :
                                                         expGained > 0 ?
-                                                            <b className="text-green-500">{expGained.toLocaleString()}</b>
+                                                            <i className="text-green-500">{expGained.toLocaleString()}</i>
                                                             :
-                                                            <b className="text-red-500">{expGained.toLocaleString()}</b>
+                                                            <i className="text-red-500">{expGained.toLocaleString()}</i>
                                                     }
                                                 </td>
                                             </tr>
