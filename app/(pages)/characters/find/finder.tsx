@@ -1,7 +1,7 @@
 "use client"
 
 import { ChangeEventHandler, useState } from "react"
-import { getVocationName } from "@/app/libs/enumAssist"
+import { getVocationName, getVocationAbbreviation } from "@/app/libs/enumAssist"
 import Link from "next/link"
 import { useDebounce } from "use-debounce"
 
@@ -165,7 +165,12 @@ const Finder = () => {
                                                 </div>
                                             </td>
                                             <td>{level}</td>
-                                            <td className="capitalize">{getVocationName(vocation)}</td>
+                                            <td className="hidden sm:block capitalize">
+                                                {getVocationName(vocation)}
+                                            </td>
+                                            <td className="block sm:hidden capitalize">
+                                                {getVocationAbbreviation(getVocationName(vocation))}
+                                            </td>
                                         </tr>
                                     ))
                                     :

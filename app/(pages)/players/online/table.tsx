@@ -4,7 +4,7 @@ import { useState } from "react"
 
 import { FaSortAlphaDown, FaSortAlphaUp, FaSortNumericDown, FaSortNumericUp, FaSortAmountUp, FaSortAmountDown } from "react-icons/fa"
 import { usePlayersOnline } from "@/app/hooks/usePlayersOnline"
-import { getVocationName } from "@/app/libs/enumAssist"
+import { getVocationName, getVocationAbbreviation } from "@/app/libs/enumAssist"
 import Link from "next/link"
 
 type Field = "name" | "vocation" | "level"
@@ -146,7 +146,12 @@ const Table: React.FC = () => {
                                                 </div>
                                             </td>
                                             <td>{level}</td>
-                                            <td className="capitalize">{getVocationName(vocation)}</td>
+                                            <td className="hidden sm:block capitalize">
+                                                {getVocationName(vocation)}
+                                            </td>
+                                            <td className="block sm:hidden capitalize">
+                                                {getVocationAbbreviation(getVocationName(vocation))}
+                                            </td>
                                         </tr>
                                     ))
                                     :

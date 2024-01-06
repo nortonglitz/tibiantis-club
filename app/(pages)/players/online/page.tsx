@@ -20,8 +20,8 @@ export default function PlayersOnlinePage() {
                 sm:gap-8
             "
         >
-            <div className="flex flex-col gap-4 sm:gap-8">
-                <div className="flex flex-wrap gap-5 justify-around">
+            <div className="flex flex-col items-center gap-4 sm:gap-8">
+                <div className="flex flex-wrap gap-5 justify-around w-full">
                     <ServerInfo />
                     <DayPlayersChart />
                 </div>

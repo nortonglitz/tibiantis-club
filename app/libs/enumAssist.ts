@@ -1,7 +1,30 @@
 import beastiary from "@/prisma/seeds/beastiary"
 
-export const getVocationNumber = (vocation: string) => {
-    switch (vocation.toLocaleLowerCase()) {
+export const getVocationAbbreviation = (vocationName: string) => {
+    switch (vocationName.toLowerCase()) {
+        case 'none':
+            return 'none'
+        case 'knight':
+            return 'knight'
+        case 'elite knight':
+            return 'EK'
+        case 'sorcerer':
+            return 'sorcerer'
+        case 'master sorcerer':
+            return 'MS'
+        case 'druid':
+            return 'druid'
+        case 'elder druid':
+            return 'ED'
+        case 'paladin':
+            return 'paladin'
+        case 'royal paladin':
+            return 'RP'
+    }
+}
+
+export const getVocationNumber = (vocationName: string) => {
+    switch (vocationName.toLowerCase()) {
         case 'none':
             return 0
         case 'knight':
@@ -22,7 +45,7 @@ export const getVocationNumber = (vocation: string) => {
             return 8
     }
 
-    throw new Error(`Invalid vocation name for: ${vocation}`)
+    throw new Error(`Invalid vocation name for: ${vocationName}`)
 }
 
 export const getVocationName = (vocNumber: number) => {
