@@ -138,9 +138,9 @@ const SessionsDayTable = () => {
                                                         expGained.toLocaleString()
                                                         :
                                                         expGained > 0 ?
-                                                            <i className="text-green-500">{expGained.toLocaleString()}</i>
+                                                            <i className="text-green-500">+{expGained.toLocaleString()}</i>
                                                             :
-                                                            <i className="text-red-500">{expGained.toLocaleString()}</i>
+                                                            <i className="text-red-500">-{expGained.toLocaleString()}</i>
                                                     }
                                                 </td>
                                             </tr>
