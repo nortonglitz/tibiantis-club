@@ -69,7 +69,7 @@ const SessionsDayTable = () => {
                         >
                             <th colSpan={1}>When</th>
                             <th colSpan={1}>Level</th>
-                            <th colSpan={1}>Playtime</th>
+                            <th colSpan={1}>Duration</th>
                             <th colSpan={1}>Exp</th>
                         </tr>
                     </thead>
