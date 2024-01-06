@@ -13,8 +13,9 @@ const DeathsTable = () => {
     return (
         <div
             className="
-                bg-stone-800 
-                p-4 
+                bg-stone-800
+                px-4
+                pb-4 
                 rounded-3xl 
                 border 
                 border-stone-600/30 
@@ -26,16 +27,31 @@ const DeathsTable = () => {
                 xl:w-[40vw]
             "
         >
-            <h3
-                className="
-                    font-yatra-one 
-                    text-2xl 
-                    whitespace-nowrap 
-                    text-yellow-200
-                "
-            >
-                Latest Kills
-            </h3>
+            <div className="flex items-center">
+                <div
+                    className={`
+                        p-2
+                        bg-gradient-radial
+                        rounded-full
+                        from-stone-500
+                        via-transparent
+                    `}
+                >
+                    <img src="/assets/imgs/icons/char_kills.gif" alt="kills" />
+                </div>
+                <h3
+                    className="
+                        mt-2
+                        ml-1
+                        font-yatra-one 
+                        text-2xl 
+                        whitespace-nowrap 
+                        text-yellow-200
+                    "
+                >
+                    Latest Kills
+                </h3>
+            </div>
             <hr className="border-stone-700 mb-2" />
             <div className="max-h-[40vh] md:max-h-[50vh] h-fit w-full overflow-y-auto">
                 <table className="w-full h-fit relative">

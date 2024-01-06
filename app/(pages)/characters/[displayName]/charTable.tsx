@@ -30,7 +30,8 @@ const CharTable: React.FC<CharTableProps> = ({ displayName }) => {
         <div
             className="
                 bg-stone-800 
-                p-4 
+                px-4
+                pb-4 
                 rounded-3xl 
                 border 
                 border-stone-600/30 
@@ -42,16 +43,35 @@ const CharTable: React.FC<CharTableProps> = ({ displayName }) => {
                 xl:w-[40vw]
             "
         >
-            <h3
-                className="
-                    font-yatra-one 
-                    text-2xl 
-                    whitespace-nowrap 
-                    text-yellow-200
-                "
-            >
-                Character Information
-            </h3>
+            <div className="flex items-center">
+                <div
+                    className={`
+                        p-2
+                        bg-gradient-radial
+                        rounded-full
+                        from-stone-500
+                        via-transparent
+                    `}
+                >
+                    {character && character.sex === 0 ?
+                        <img src="/assets/imgs/icons/char_info_male.gif" alt="char info" />
+                        :
+                        <img src="/assets/imgs/icons/char_info_female.gif" alt="char info" />
+                    }
+                </div>
+                <h3
+                    className="
+                        mt-2
+                        ml-1
+                        font-yatra-one 
+                        text-2xl 
+                        whitespace-nowrap 
+                        text-yellow-200
+                    "
+                >
+                    Character Information
+                </h3>
+            </div>
             <hr className="border-stone-700 mb-2" />
             {!error ?
                 <table className="w-full h-fit">
