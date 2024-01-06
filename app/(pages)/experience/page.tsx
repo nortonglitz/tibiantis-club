@@ -66,11 +66,11 @@ export default function ExperiencePage() {
                                                 z-20
                                             "
                                         >
-                                            +{Intl.NumberFormat().format(i === 0 ? 0 : exp - exp1[i - 1].exp)}
+                                            +{(i === 0 ? 0 : exp - exp1[i - 1].exp).toLocaleString()}
                                         </div>
                                         {lvl}
                                     </td>
-                                    <td>{Intl.NumberFormat().format(exp)}</td>
+                                    <td>{exp.toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -126,11 +126,11 @@ export default function ExperiencePage() {
                                                 z-20
                                             "
                                         >
-                                            +{Intl.NumberFormat().format(i === 0 ? exp - exp1[99].exp : exp - exp2[i - 1].exp)}
+                                            +{(i === 0 ? exp - exp1[99].exp : exp - exp2[i - 1].exp).toLocaleString()}
                                         </div>
                                         {lvl}
                                     </td>
-                                    <td>{Intl.NumberFormat().format(exp)}</td>
+                                    <td>{(exp).toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -186,11 +186,11 @@ export default function ExperiencePage() {
                                                 z-20
                                             "
                                         >
-                                            +{Intl.NumberFormat().format(i === 0 ? exp - exp2[99].exp : exp - exp3[i - 1].exp)}
+                                            +{(i === 0 ? exp - exp2[99].exp : exp - exp3[i - 1].exp).toLocaleString()}
                                         </div>
                                         {lvl}
                                     </td>
-                                    <td>{Intl.NumberFormat().format(exp)}</td>
+                                    <td>{(exp).toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>

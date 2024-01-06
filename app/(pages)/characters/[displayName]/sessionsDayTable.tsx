@@ -1,9 +1,8 @@
 "use client"
 
-import LinkText from "@/app/components/links/linkText"
 import { useCharacterSessionsDay } from "@/app/hooks/useCharacterSessionsDay"
 import useCharacterStore from "@/app/stores/useCharacterStore"
-import { differenceInCalendarDays } from "date-fns"
+import { differenceInCalendarDays, intervalToDuration } from "date-fns"
 
 const TODAY = new Date()
 
@@ -122,15 +121,18 @@ const SessionsDayTable = () => {
                                                 <td>
                                                     {startLevel}
                                                 </td>
-                                                <td>{playtime}</td>
+                                                <td>
+                                                    {intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).hours}h
+                                                    {intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).minutes}
+                                                </td>
                                                 <td>
                                                     {expGained === 0 ?
                                                         expGained.toLocaleString()
                                                         :
                                                         expGained > 0 ?
-                                                            <b className="text-green-500">expGained.toLocaleString()</b>
+                                                            <b className="text-green-500">{expGained.toLocaleString()}</b>
                                                             :
-                                                            <b className="text-red-500">expGained.toLocaleString()</b>
+                                                            <b className="text-red-500">{expGained.toLocaleString()}</b>
                                                     }
                                                 </td>
                                             </tr>
