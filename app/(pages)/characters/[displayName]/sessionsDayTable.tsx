@@ -144,7 +144,7 @@ const SessionsDayTable = () => {
                                                 </td>
                                                 <td>
                                                     {expGained === 0 ?
-                                                        expGained.toLocaleString()
+                                                        '-'
                                                         :
                                                         expGained > 0 ?
                                                             <i className="text-green-500">+{expGained.toLocaleString()}</i>
