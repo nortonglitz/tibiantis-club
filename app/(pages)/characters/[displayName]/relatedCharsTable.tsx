@@ -26,7 +26,7 @@ const RelatedCharsTable = () => {
                 xl:w-[40vw]
             "
         >
-            <div className="max-h-[60vh] md:max-h-[50vh] h-fit w-full overflow-y-auto">
+            <div className="max-h-[75vh] md:max-h-[50vh] h-fit w-full overflow-y-auto">
                 <table className="w-full">
                     <caption
                         className="

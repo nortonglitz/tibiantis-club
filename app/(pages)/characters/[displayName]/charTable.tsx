@@ -42,210 +42,208 @@ const CharTable: React.FC<CharTableProps> = ({ displayName }) => {
                 xl:w-[40vw]
             "
         >
-            <div className="max-h-[60vh] md:max-h-[50vh] h-fit w-full overflow-y-auto">
-                {!error ?
-                    <table className="w-full h-fit">
-                        <caption
+            {!error ?
+                <table className="w-full h-fit">
+                    <caption
+                        className="
+                            font-yatra-one 
+                            text-2xl 
+                            whitespace-nowrap 
+                            text-yellow-200 
+                        "
+                    >
+                        Character Information
+                        <hr className="border-stone-700 mt-2 mb-4" />
+                    </caption>
+                    <thead>
+                        <tr className="shadow-md">
+                            <td colSpan={2}></td>
+                        </tr>
+                    </thead>
+                    <tbody
+                        className="
+                            [&>tr>th]:text-left 
+                            [&>tr>th]:p-2
+                        "
+                    >
+                        <tr
                             className="
-                                font-yatra-one 
-                                text-2xl 
-                                whitespace-nowrap 
-                                text-yellow-200 
+                                bg-stone-300/10
+                                hover:outline
+                                hover:-outline-offset-1
+                                hover:outline-stone-400/80
                             "
                         >
-                            Character Information
-                            <hr className="border-stone-700 mt-2 mb-4" />
-                        </caption>
-                        <thead>
-                            <tr className="shadow-md">
-                                <td colSpan={2}></td>
-                            </tr>
-                        </thead>
-                        <tbody
+                            <th>
+                                Name
+                            </th>
+                            <td>
+                                {
+                                    !character ?
+                                        <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                        :
+                                        character.displayName
+                                }
+                            </td>
+                        </tr>
+                        <tr
                             className="
-                                [&>tr>th]:text-left 
-                                [&>tr>th]:p-2
-                            "
+                            bg-stone-400/10
+                            hover:outline
+                            hover:-outline-offset-1
+                            hover:outline-stone-400/80
+                        "
                         >
-                            <tr
-                                className="
-                                    bg-stone-300/10
-                                    hover:outline
-                                    hover:-outline-offset-1
-                                    hover:outline-stone-400/80
-                                "
-                            >
-                                <th>
-                                    Name
-                                </th>
-                                <td>
-                                    {
-                                        !character ?
-                                            <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                            <th>
+                                Status
+                            </th>
+                            <td>
+                                <div className="flex items-center">
+                                    {!character ?
+                                        <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                        :
+                                        character.online ?
+                                            <span className="text-tibia-green">Online</span>
                                             :
-                                            character.displayName
+                                            <span className="text-red-400">Offline</span>
                                     }
-                                </td>
-                            </tr>
-                            <tr
-                                className="
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            className="
+                                bg-stone-300/10
+                                hover:outline
+                                hover:-outline-offset-1
+                                hover:outline-stone-400/80
+                            "
+                        >
+                            <th>
+                                Level
+                            </th>
+                            <td>
+                                {!character ? <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /> : character.level}
+                            </td>
+                        </tr>
+                        <tr
+                            className="
                                 bg-stone-400/10
                                 hover:outline
                                 hover:-outline-offset-1
                                 hover:outline-stone-400/80
                             "
-                            >
-                                <th>
-                                    Status
-                                </th>
-                                <td>
-                                    <div className="flex items-center">
-                                        {!character ?
-                                            <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
-                                            :
-                                            character.online ?
-                                                <span className="text-tibia-green">Online</span>
-                                                :
-                                                <span className="text-red-400">Offline</span>
-                                        }
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                className="
-                                    bg-stone-300/10
-                                    hover:outline
-                                    hover:-outline-offset-1
-                                    hover:outline-stone-400/80
-                                "
-                            >
-                                <th>
-                                    Level
-                                </th>
-                                <td>
-                                    {!character ? <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /> : character.level}
-                                </td>
-                            </tr>
-                            <tr
-                                className="
-                                    bg-stone-400/10
-                                    hover:outline
-                                    hover:-outline-offset-1
-                                    hover:outline-stone-400/80
-                                "
-                            >
-                                <th>
-                                    Sex
-                                </th>
-                                <td className="capitalize">
-                                    {!character ? <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /> : getSexName(character.sex)}
-                                </td>
-                            </tr>
-                            <tr
-                                className="
-                                    bg-stone-300/10
-                                    hover:outline
-                                    hover:-outline-offset-1
-                                    hover:outline-stone-400/80
-                                "
-                            >
-                                <th>
-                                    Vocation
-                                </th>
-                                <td className="capitalize">
-                                    {!character ?
-                                        <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /> :
-                                        getVocationName(character.vocation)
-                                    }
-                                </td>
-                            </tr>
-                            <tr
-                                className="
-                                    bg-stone-400/10
-                                    hover:outline
-                                    hover:-outline-offset-1
-                                    hover:outline-stone-400/80
-                                "
-                            >
-                                <th>
-                                    Residence
-                                </th>
-                                <td className="capitalize">
-                                    {!character ?
+                        >
+                            <th>
+                                Sex
+                            </th>
+                            <td className="capitalize">
+                                {!character ? <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /> : getSexName(character.sex)}
+                            </td>
+                        </tr>
+                        <tr
+                            className="
+                                bg-stone-300/10
+                                hover:outline
+                                hover:-outline-offset-1
+                                hover:outline-stone-400/80
+                            "
+                        >
+                            <th>
+                                Vocation
+                            </th>
+                            <td className="capitalize">
+                                {!character ?
+                                    <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" /> :
+                                    getVocationName(character.vocation)
+                                }
+                            </td>
+                        </tr>
+                        <tr
+                            className="
+                                bg-stone-400/10
+                                hover:outline
+                                hover:-outline-offset-1
+                                hover:outline-stone-400/80
+                            "
+                        >
+                            <th>
+                                Residence
+                            </th>
+                            <td className="capitalize">
+                                {!character ?
+                                    <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                    :
+                                    getCityName(character.residence)
+                                }
+                            </td>
+                        </tr>
+                        <tr
+                            className="
+                                bg-stone-300/10
+                                hover:outline
+                                hover:-outline-offset-1
+                                hover:outline-stone-400/80
+                            "
+                        >
+                            <th>
+                                Premium
+                            </th>
+                            <td className="text-sm">
+                                {!character ?
+                                    <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                    :
+                                    character.premium ?
+                                        <span className="text-tibia-green"><FaCheck /></span>
+                                        :
+                                        <span className="text-red-400"><FaX /></span>
+                                }
+                            </td>
+                        </tr>
+                        <tr
+                            className="
+                                bg-stone-400/10
+                                hover:outline
+                                hover:-outline-offset-1
+                                hover:outline-stone-400/80
+                            "
+                        >
+                            <th>
+                                {!character ?
+                                    <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
+                                    :
+                                    character.online ? "Playing for" : "Offline for"
+                                }
+                            </th>
+                            <td className="text-sm">
+                                {
+                                    !character ?
                                         <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
                                         :
-                                        getCityName(character.residence)
-                                    }
-                                </td>
-                            </tr>
-                            <tr
-                                className="
-                                    bg-stone-300/10
-                                    hover:outline
-                                    hover:-outline-offset-1
-                                    hover:outline-stone-400/80
+                                        capitalizeFirstLetter(formatDistanceToNow(new Date(character.onlineUpdatedAt)))
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                :
+                <div className="flex flex-col items-center">
+                    <p>No character has been found.</p>
+                    <p>Try searching on
+                        <Link
+                            href="/characters/find"
+                            className="
+                                    ml-1
+                                    text-yellow-200
+                                    hover:underline
+                                    active:text-yellow-300
                                 "
-                            >
-                                <th>
-                                    Premium
-                                </th>
-                                <td className="text-sm">
-                                    {!character ?
-                                        <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
-                                        :
-                                        character.premium ?
-                                            <span className="text-tibia-green"><FaCheck /></span>
-                                            :
-                                            <span className="text-red-400"><FaX /></span>
-                                    }
-                                </td>
-                            </tr>
-                            <tr
-                                className="
-                                    bg-stone-400/10
-                                    hover:outline
-                                    hover:-outline-offset-1
-                                    hover:outline-stone-400/80
-                                "
-                            >
-                                <th>
-                                    {!character ?
-                                        <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
-                                        :
-                                        character.online ? "Playing for" : "Offline for"
-                                    }
-                                </th>
-                                <td className="text-sm">
-                                    {
-                                        !character ?
-                                            <div className="w-[5rem] bg-stone-500/30 animate-pulse h-[0.875rem] rounded-full" />
-                                            :
-                                            capitalizeFirstLetter(formatDistanceToNow(new Date(character.onlineUpdatedAt)))
-                                    }
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    :
-                    <div className="flex flex-col items-center">
-                        <p>No character has been found.</p>
-                        <p>Try searching on
-                            <Link
-                                href="/characters/find"
-                                className="
-                                        ml-1
-                                        text-yellow-200
-                                        hover:underline
-                                        active:text-yellow-300
-                                    "
-                            >
-                                Find Character
-                            </Link>
-                            .
-                        </p>
-                    </div>
-                }
-            </div>
+                        >
+                            Find Character
+                        </Link>
+                        .
+                    </p>
+                </div>
+            }
         </div>
     )
 }
