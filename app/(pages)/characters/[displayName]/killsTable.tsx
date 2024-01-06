@@ -3,7 +3,7 @@
 import LinkText from "@/app/components/links/linkText"
 import { useCharacterKills } from "@/app/hooks/useCharacterKills"
 import useCharacterStore from "@/app/stores/useCharacterStore"
-import { formatDistanceToNow } from "date-fns"
+import { formatDistanceToNowStrict } from "date-fns"
 
 const DeathsTable = () => {
 
@@ -114,7 +114,7 @@ const DeathsTable = () => {
                                                     hover:outline-stone-400/80
                                                 "
                                             >
-                                                <td>{formatDistanceToNow(date)} ago</td>
+                                                <td>{formatDistanceToNowStrict(date)} ago</td>
                                                 <td>
                                                     {victimLevel}
                                                 </td>

@@ -4,7 +4,7 @@ import LinkText from "@/app/components/links/linkText"
 import { useCharacterDeaths } from "@/app/hooks/useCharacterDeaths"
 import { getCreatureName, getFieldName } from "@/app/libs/enumAssist"
 import useCharacterStore from "@/app/stores/useCharacterStore"
-import { formatDistanceToNow } from "date-fns"
+import { formatDistanceToNowStrict } from "date-fns"
 
 const DeathsTable = () => {
 
@@ -119,7 +119,7 @@ const DeathsTable = () => {
                                                     hover:outline-stone-400/80
                                                 "
                                             >
-                                                <td>{formatDistanceToNow(date)} ago</td>
+                                                <td>{formatDistanceToNowStrict(date)} ago</td>
                                                 <td>
                                                     {level}
                                                 </td>
