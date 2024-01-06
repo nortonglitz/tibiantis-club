@@ -1,13 +1,13 @@
 "use client"
 
 import useSWR from 'swr'
-import { Death } from "@prisma/client"
+import { Kill } from "@prisma/client"
 
-interface DeathWithKillersDisplayName extends Omit<Death, "id" | "victimId" | "killersIds"> {
-    killers: { displayName: string }[]
+interface KillsWithVictimDisplayName extends Omit<Kill, "id" | "victimId" | "killerId"> {
+    victim: { displayName: string }
 }
 
-export function useCharacterDeaths(id: string) {
+export function useCharacterKills(id: string) {
 
     const fetcher = async (url: string) => {
 
@@ -31,5 +31,5 @@ export function useCharacterDeaths(id: string) {
         focusThrottleInterval: 5 * 60 * 1000
     })
 
-    return { deaths: data?.deaths as DeathWithKillersDisplayName[], isLoading, error }
+    return { kills: data?.kills as KillsWithVictimDisplayName[], isLoading, error }
 }

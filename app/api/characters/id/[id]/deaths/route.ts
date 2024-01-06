@@ -20,10 +20,18 @@ export async function GET(req: Request, query: Query) {
             orderBy: {
                 date: "desc"
             },
+            select: {
+                cause: true,
+                creature: true,
+                date: true,
+                field: true,
+                killersIds: true,
+                level: true,
+            },
             take: 10
         })
 
-        if (!deaths) {
+        if (!deaths || deaths.length < 1) {
             return Response.json({ deaths: [] }, { status: 200 })
         }
 
