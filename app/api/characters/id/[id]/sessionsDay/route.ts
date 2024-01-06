@@ -28,7 +28,7 @@ export async function GET(req: Request, query: Query) {
                 playtime: true,
 
             },
-            take: 10
+            take: 7
         })
 
         if (!sessionsDay || sessionsDay.length < 1) {
