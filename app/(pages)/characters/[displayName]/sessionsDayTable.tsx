@@ -132,7 +132,7 @@ const SessionsDayTable = () => {
                                                 </td>
                                                 <td
                                                     className={`
-                                                        ${playtime > 240 ?
+                                                        ${playtime > 240 && playtime < 360 ?
                                                             'text-orange-400'
                                                             :
                                                             playtime >= 360 && playtime < 540 ?
