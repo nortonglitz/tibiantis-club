@@ -121,7 +121,7 @@ const SessionsDayTable = () => {
                                                     {differenceInCalendarDays(TODAY, createdAt) === 0 ?
                                                         'today'
                                                         :
-                                                        differenceInCalendarDays(TODAY, createdAt)
+                                                        `${differenceInCalendarDays(TODAY, createdAt)} ago`
                                                     }
                                                 </td>
                                                 <td>
