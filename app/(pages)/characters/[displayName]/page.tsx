@@ -3,6 +3,7 @@ import CharTable from "./charTable"
 import RelatedCharsTable from "./relatedCharsTable"
 import DeathsTable from "./deathsTable"
 import KillsTable from "./killsTable"
+import SessionsDayTable from "./sessionsDayTable"
 
 type Props = { params: { displayName: string } }
 
@@ -29,6 +30,7 @@ export default function CharacterPage({ params: { displayName } }: Props) {
             "
         >
             <CharTable displayName={parsedDisplayName} />
+            <SessionsDayTable />
             <RelatedCharsTable />
             <DeathsTable />
             <KillsTable />
