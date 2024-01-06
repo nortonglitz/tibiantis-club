@@ -26,7 +26,7 @@ export function useCharacterKills(id: string) {
         return res.json()
     }
 
-    const { data, isLoading, error } = useSWR(`/api/characters/id/${id}/deaths`, fetcher, {
+    const { data, isLoading, error } = useSWR(`/api/characters/id/${id}/kills`, fetcher, {
         dedupingInterval: 5 * 60 * 1000,
         focusThrottleInterval: 5 * 60 * 1000
     })

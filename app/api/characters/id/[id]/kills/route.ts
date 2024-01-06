@@ -9,7 +9,7 @@ export async function GET(req: Request, query: Query) {
 
         const { params: { id } } = query
 
-        console.log("id", id)
+        /* Check if id is long enough */
 
         if (id.length < 24) {
             console.log("idLength", id.length)
@@ -28,11 +28,13 @@ export async function GET(req: Request, query: Query) {
             }
         })
 
-        console.log("kills", kills)
+        /* Return if don't find any kills */
 
         if (!kills || kills.length < 1) {
             return Response.json({ kills: [] }, { status: 200 })
         }
+
+        /* Get all victims name */
 
         const killsPromises = kills.map(async ({ victimId, ...rest }) => {
             const victimName = await prisma.character.findUnique({
@@ -48,10 +50,9 @@ export async function GET(req: Request, query: Query) {
             }
         })
 
+        /* All kills with victims name */
+
         const killsParsed = await Promise.all(killsPromises)
-
-        console.log('killsParsed', killsParsed)
-
 
         return Response.json({ kills: killsParsed }, { status: 200 })
 
