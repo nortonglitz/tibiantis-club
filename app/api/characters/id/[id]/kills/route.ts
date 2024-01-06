@@ -9,7 +9,10 @@ export async function GET(req: Request, query: Query) {
 
         const { params: { id } } = query
 
+        console.log("id", id)
+
         if (id.length < 24) {
+            console.log("idLength", id.length)
             return Response.json({ message: "Invalid character Id.", kills: [] }, { status: 406 })
         }
 
@@ -24,6 +27,8 @@ export async function GET(req: Request, query: Query) {
                 date: "desc"
             }
         })
+
+        console.log("kills", kills)
 
         if (!kills || kills.length < 1) {
             return Response.json({ kills: [] }, { status: 200 })
@@ -43,10 +48,12 @@ export async function GET(req: Request, query: Query) {
             }
         })
 
-        const parsedKills = await Promise.all(killsPromises)
+        const killsParsed = await Promise.all(killsPromises)
+
+        console.log('killsParsed', killsParsed)
 
 
-        return Response.json({ kills: parsedKills }, { status: 200 })
+        return Response.json({ kills: killsParsed }, { status: 200 })
 
     } catch (err: any) {
         console.error(err.message)
