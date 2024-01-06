@@ -11,10 +11,6 @@ export function getExpGained(startLevel: number, endLevel: number) {
     const startExp = expByLvl(startLevel)
     const endExp = expByLvl(endLevel)
 
-    if (startLevel < endLevel) {
-        return endExp - startExp
-    }
-
-    return startExp - endExp
+    return endExp - startExp
 
 }
