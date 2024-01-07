@@ -158,7 +158,7 @@ export async function GET() {
                             endLevel: Number(level),
                             startLevel: Number(level),
                             expGained: 0,
-                            playtime: 0
+                            duration: 0
                         }
                     })
 
@@ -188,7 +188,7 @@ export async function GET() {
                                 endLevel: Number(level),
                                 startLevel: Number(level),
                                 expGained: 0,
-                                playtime: 0
+                                duration: 0
                             }
                         })
                     }
@@ -442,7 +442,7 @@ export async function GET() {
 
                 /* Time he played last session */
 
-                const lastPlaytime = differenceInMinutes(oldPlayerLastSession.endedAt, oldPlayerLastSession.startedAt)
+                const lastDuration = differenceInMinutes(oldPlayerLastSession.endedAt, oldPlayerLastSession.startedAt)
 
                 /* Update his day session */
 
@@ -452,7 +452,7 @@ export async function GET() {
                         data: {
                             endLevel: Number(level),
                             expGained: getExpGained(oldPlayerSessionDay.startLevel, Number(level)),
-                            playtime: oldPlayerSessionDay.playtime + lastPlaytime
+                            duration: oldPlayerSessionDay.duration + lastDuration
                         }
                     })
                 } else {

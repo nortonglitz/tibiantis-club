@@ -25,7 +25,7 @@ export async function GET(req: Request, query: Query) {
                 startLevel: true,
                 endLevel: true,
                 expGained: true,
-                playtime: true,
+                duration: true
 
             },
             take: 7

@@ -91,7 +91,7 @@ model PlayerSessionDay {
   characterId String    @db.ObjectId
   character   Character @relation(fields: [characterId], references: [id])
   expGained   Int
-  playtime    Int //Time in minutes
+  duration    Int //Time in minutes
   endLevel    Int
   startLevel  Int
   updatedAt   DateTime  @updatedAt

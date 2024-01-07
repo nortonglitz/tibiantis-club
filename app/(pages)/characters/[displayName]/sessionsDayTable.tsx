@@ -105,7 +105,7 @@ const SessionsDayTable = () => {
                                     </tr>
                                     :
                                     <>
-                                        {sessionsDay && sessionsDay.map(({ createdAt, playtime, expGained, startLevel }, i) => (
+                                        {sessionsDay && sessionsDay.map(({ createdAt, duration, expGained, startLevel }, i) => (
                                             <tr
                                                 key={i}
                                                 className="
@@ -132,28 +132,31 @@ const SessionsDayTable = () => {
                                                 </td>
                                                 <td
                                                     className={`
-                                                        ${playtime > 240 && playtime < 360 ?
+                                                        ${duration > 360 && duration < 540 ?
                                                             'text-orange-400'
                                                             :
-                                                            playtime >= 360 && playtime < 540 ?
+                                                            duration >= 540 && duration < 720 ?
                                                                 'text-orange-500'
                                                                 :
-                                                                playtime >= 540 ?
+                                                                duration >= 720 && duration < 900 ?
                                                                     'text-orange-600'
                                                                     :
-                                                                    ''
+                                                                    duration > 900 ?
+                                                                        'text-orange-700'
+                                                                        :
+                                                                        ''
                                                         }
                                                     `}
                                                 >
                                                     {
-                                                        intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).hours
+                                                        intervalToDuration({ start: 0, end: duration * 60 * 1000 }).hours
                                                         &&
-                                                        `${intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).hours}h`
+                                                        `${intervalToDuration({ start: 0, end: duration * 60 * 1000 }).hours}h`
                                                     }
                                                     {
-                                                        intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).minutes
+                                                        intervalToDuration({ start: 0, end: duration * 60 * 1000 }).minutes
                                                         &&
-                                                        `${intervalToDuration({ start: 0, end: playtime * 60 * 1000 }).minutes}m`
+                                                        `${intervalToDuration({ start: 0, end: duration * 60 * 1000 }).minutes}m`
                                                     }
                                                 </td>
                                                 <td>
