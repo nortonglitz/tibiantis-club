@@ -86,7 +86,7 @@ export const getSexName = (sexNumber: number) => {
 }
 
 export const getSexNumber = (sex: string) => {
-    switch (sex.toLocaleLowerCase()) {
+    switch (sex.toLowerCase()) {
         case "male":
             return 0
         case "female":
@@ -121,7 +121,7 @@ export const getCityName = (cityNumber: number) => {
 }
 
 export const getCityNumber = (cityName: string) => {
-    switch (cityName.toLocaleLowerCase()) {
+    switch (cityName.toLowerCase()) {
         case "rookgaard":
             return 0
         case "thais":
@@ -144,7 +144,7 @@ export const getCityNumber = (cityName: string) => {
 }
 
 export const isPremiumAccount = (status: string) => {
-    const lowerCaseStatus = status.toLocaleLowerCase()
+    const lowerCaseStatus = status.toLowerCase()
 
     if (lowerCaseStatus !== 'free account' && lowerCaseStatus !== 'premium account') {
         throw new Error(`Invalid account status for: ${status}`)

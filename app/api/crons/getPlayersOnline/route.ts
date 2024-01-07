@@ -388,7 +388,7 @@ export async function GET() {
 
                                 const killersPromises = killersDisplayName.map(async displayName => {
                                     const killer = await prisma.character.findFirst({
-                                        where: { name: displayName.toLocaleLowerCase() }
+                                        where: { name: displayName.toLowerCase() }
                                     })
 
                                     /* If killer does not exists, create one */

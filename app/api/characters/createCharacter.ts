@@ -54,7 +54,7 @@ export async function createCharacter({
 
     return await prisma.character.create({
         data: {
-            name: displayName.toLocaleLowerCase(),
+            name: displayName.toLowerCase(),
             displayName: displayName,
             sex: sex ? getSexNumber(sex) : getSexNumber(fetchedSex),
             vocation: vocation ? getVocationNumber(vocation) : getVocationNumber(fetchedVocation),
