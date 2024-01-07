@@ -94,12 +94,12 @@ const SessionsDayTable = () => {
                             :
                             error ?
                                 <tr>
-                                    <td colSpan={3} className="text-center py-2 bg-stone-300/10">Something went wrong.</td>
+                                    <td colSpan={4} className="text-center py-2 bg-stone-300/10">Something went wrong.</td>
                                 </tr>
                                 :
                                 !sessionsDay || sessionsDay.length < 1 ?
                                     <tr>
-                                        <td colSpan={3} className="text-center py-2 bg-stone-300/10">
+                                        <td colSpan={4} className="text-center py-2 bg-stone-300/10">
                                             No sessions day has been found.
                                         </td>
                                     </tr>
