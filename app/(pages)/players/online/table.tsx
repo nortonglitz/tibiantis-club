@@ -68,7 +68,7 @@ const Table: React.FC = () => {
                                 select-none
                             "
                         >
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('name')}>
+                            <th className="min-w-[80px]" scope="col" onClick={() => handleSort('name')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block  [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Name
                                     {sortProps.field === 'name' ? sortProps.order === 'asc' ?
@@ -77,7 +77,7 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('level')}>
+                            <th className="min-w-[80px]" scope="col" onClick={() => handleSort('level')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Level
                                     {sortProps.field === 'level' ? sortProps.order === 'asc' ?
@@ -86,7 +86,7 @@ const Table: React.FC = () => {
                                     }
                                 </div>
                             </th>
-                            <th className="min-w-[100px]" scope="col" onClick={() => handleSort('vocation')}>
+                            <th className="min-w-[80px]" scope="col" onClick={() => handleSort('vocation')}>
                                 <div className="w-fit relative m-auto [&>svg]:hidden sm:[&>svg]:block [&>svg]:absolute [&>svg]:top-[0.1rem] [&>svg]:-right-6">
                                     Vocation
                                     {sortProps.field === 'vocation' ? sortProps.order === 'asc' ?
