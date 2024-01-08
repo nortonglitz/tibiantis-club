@@ -24,7 +24,7 @@ export async function GET() {
         const playersOnline1 = await prisma.character.findMany({
             where: { online: true },
             orderBy: { level: 'desc' },
-            take: 200
+            take: 100
         })
 
         const playersOnline1UpdatePromises = playersOnline1.map(async ({ displayName, id }) => {
@@ -226,7 +226,7 @@ export async function GET() {
         await Promise.all(playersOnline1UpdatePromises)
 
         return Response.json({
-            message: "200/800 players online updated."
+            message: "100/700 players online updated."
         }, { status: 200 })
 
     } catch (err: any) {
