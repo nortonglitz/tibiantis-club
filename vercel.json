@@ -6,18 +6,14 @@
         },
         {
             "path": "/api/crons/updatePlayersOnline1",
-            "schedule": "1/5 * * * *"
-        },
-        {
-            "path": "/api/crons/updatePlayersOnline2",
             "schedule": "2/5 * * * *"
         },
         {
-            "path": "/api/crons/updatePlayersOnline3",
+            "path": "/api/crons/updatePlayersOnline2",
             "schedule": "3/5 * * * *"
         },
         {
-            "path": "/api/crons/updatePlayersOnline4",
+            "path": "/api/crons/updatePlayersOnline3",
             "schedule": "4/5 * * * *"
         }
     ]
