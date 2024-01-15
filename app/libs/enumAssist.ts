@@ -190,7 +190,7 @@ export const getCreatureUsingArticle = (creatureWithArticle: string) => {
     })
 
     if (!creature) {
-        throw new Error(`Can not fint creature name for: ${creatureWithArticle}`)
+        throw new Error(`Can not find creature name for: ${creatureWithArticle}`)
     }
 
     return creature.ref
@@ -200,7 +200,7 @@ export const getCreatureName = (creatureRef: number) => {
     const creature = beastiary.find(({ ref }) => ref === creatureRef)
 
     if (!creature) {
-        throw new Error(`Can not fint field name creature ref: ${creatureRef}`)
+        throw new Error(`Can not find field name creature ref: ${creatureRef}`)
     }
 
     return creature.name
@@ -216,7 +216,7 @@ export const getFieldNumber = (fieldName: string) => {
             return 2
     }
 
-    throw new Error(`Can not fint field number for: ${fieldName}`)
+    throw new Error(`Can not find field number for: ${fieldName}`)
 }
 
 export const getFieldName = (fieldNumber: number) => {
@@ -229,5 +229,18 @@ export const getFieldName = (fieldNumber: number) => {
             return "energy"
     }
 
-    throw new Error(`Can not fint field name for: ${fieldNumber}`)
+    throw new Error(`Can not find field name for: ${fieldNumber}`)
+}
+
+export const getSpellGroupName = (spellNumber: number) => {
+    switch (spellNumber) {
+        case 0:
+            return "support"
+        case 1:
+            return "healing"
+        case 2:
+            return "attack"
+    }
+
+    throw new Error(`Can not find spell name for: ${spellNumber}`)
 }

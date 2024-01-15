@@ -17,7 +17,8 @@ const spells = [
         mana: 300,
         price: 1200,
         charges: 2,
-        mlUse: 4
+        mlUse: 4,
+        imgSrc: "/assets/imgs/runes/animate_dead.gif"
     },
     {
         name: "antidote",
@@ -41,7 +42,8 @@ const spells = [
         mana: 50,
         price: 600,
         charges: 1,
-        mlUse: 0
+        mlUse: 0,
+        imgSrc: "/assets/imgs/runes/antidote.gif"
     },
     {
         name: "berserk",
@@ -77,7 +79,7 @@ const spells = [
         price: 200
     },
     {
-        name: "chamaleon rune",
+        name: "chameleon rune",
         invocation: "exeta res",
         vocations: [5, 6],
         group: 0,
@@ -87,7 +89,8 @@ const spells = [
         mana: 150,
         price: 1300,
         charges: 1,
-        mlUse: 4
+        mlUse: 4,
+        imgSrc: "/assets/imgs/runes/chameleon.gif"
     },
     {
         name: "conjure arrow",
@@ -122,7 +125,8 @@ const spells = [
         mana: 100,
         price: 1300,
         charges: 1,
-        mlUse: 5
+        mlUse: 5,
+        imgSrc: "/assets/imgs/runes/convince_creature.gif"
     },
     {
         name: "creature illusion",
@@ -133,7 +137,7 @@ const spells = [
         isPremium: false,
         mlCast: 10,
         mana: 100,
-        price: 1000
+        price: 1000,
     },
     {
         name: "desintegrate rune",
@@ -146,7 +150,8 @@ const spells = [
         mana: 100,
         price: 900,
         charges: 3,
-        mlUse: 4
+        mlUse: 4,
+        imgSrc: "/assets/imgs/runes/desintegrate.gif"
     },
     {
         name: "desintegrate",
@@ -170,7 +175,8 @@ const spells = [
         mana: 60,
         price: 350,
         charges: 3,
-        mlUse: 3
+        mlUse: 3,
+        imgSrc: "/assets/imgs/runes/destroy_field.gif"
     },
     {
         name: "discharge",
@@ -206,6 +212,20 @@ const spells = [
         price: 1000
     },
     {
+        name: "energy bomb rune",
+        invocation: "adevo mas vis",
+        vocations: [3, 4],
+        group: 2,
+        isRune: true,
+        isPremium: true,
+        mlCast: 18,
+        mana: 220,
+        price: 2300,
+        charges: 2,
+        mlUse: 10,
+        imgSrc: "/assets/imgs/runes/energy_bomb.gif"
+    },
+    {
         name: "energy field rune",
         invocation: "adevo grav vis",
         vocations: [3, 4, 5, 6],
@@ -216,7 +236,8 @@ const spells = [
         mana: 80,
         price: 700,
         charges: 3,
-        mlUse: 3
+        mlUse: 3,
+        imgSrc: "/assets/imgs/runes/energy_field.gif"
     },
     {
         name: "energy strike",
@@ -240,7 +261,8 @@ const spells = [
         mana: 250,
         price: 2500,
         charges: 4,
-        mlUse: 9
+        mlUse: 9,
+        imgSrc: "/assets/imgs/runes/energy_wall.gif"
     },
     {
         name: "energy wave",
@@ -264,7 +286,8 @@ const spells = [
         mana: 100,
         price: 1000,
         charges: 3,
-        mlUse: 4
+        mlUse: 4,
+        imgSrc: "/assets/imgs/runes/evenom.gif"
     },
     {
         name: "explosion rune",
@@ -277,7 +300,8 @@ const spells = [
         mana: 180,
         price: 1800,
         charges: 3,
-        mlUse: 6
+        mlUse: 6,
+        imgSrc: "/assets/imgs/runes/explosion.gif"
     },
     {
         name: "explosive arrow",
@@ -323,7 +347,8 @@ const spells = [
         mana: 60,
         price: 500,
         charges: 3,
-        mlUse: 1
+        mlUse: 1,
+        imgSrc: "/assets/imgs/runes/fire_field.gif"
     },
     {
         name: "fire wall rune",
@@ -336,7 +361,8 @@ const spells = [
         mana: 200,
         price: 200,
         charges: 4,
-        mlUse: 6
+        mlUse: 6,
+        imgSrc: "/assets/imgs/runes/fire_wall.gif"
     },
     {
         name: "fire wave",
@@ -360,7 +386,8 @@ const spells = [
         mana: 60,
         price: 800,
         charges: 3,
-        mlUse: 2
+        mlUse: 2,
+        imgSrc: "/assets/imgs/runes/fireball.gif"
     },
     {
         name: "fire bomb rune",
@@ -373,7 +400,8 @@ const spells = [
         mana: 150,
         price: 1500,
         charges: 2,
-        mlUse: 5
+        mlUse: 5,
+        imgSrc: "/assets/imgs/runes/fire_bomb.gif"
     },
     {
         name: "flame strike",
@@ -430,7 +458,8 @@ const spells = [
         mana: 120,
         price: 1200,
         charges: 2,
-        mlUse: 4
+        mlUse: 4,
+        imgSrc: "/assets/imgs/runes/great_fireball.gif"
     },
     {
         name: "great light",
@@ -466,7 +495,7 @@ const spells = [
         price: 800
     },
     {
-        name: "heavy magic missile",
+        name: "heavy magic missile rune",
         invocation: "adori gran",
         vocations: [3, 4, 5, 6, 7, 8],
         group: 2,
@@ -476,7 +505,8 @@ const spells = [
         mana: 70,
         price: 600,
         charges: 5,
-        mlUse: 1
+        mlUse: 1,
+        imgSrc: "/assets/imgs/runes/heavy_magic_missile.gif"
     },
     {
         name: "intense healing",
@@ -500,7 +530,8 @@ const spells = [
         mana: 60,
         price: 600,
         charges: 1,
-        mlUse: 1
+        mlUse: 1,
+        imgSrc: "/assets/imgs/runes/intense_healing.gif"
     },
     {
         name: "invisible",
@@ -557,7 +588,8 @@ const spells = [
         mana: 40,
         price: 200,
         charges: 5,
-        mlUse: 0
+        mlUse: 0,
+        imgSrc: "/assets/imgs/runes/light_magic_missile.gif"
     },
     {
         name: "magic rope",
@@ -592,7 +624,8 @@ const spells = [
         mana: 250,
         price: 2100,
         charges: 4,
-        mlUse: 9
+        mlUse: 9,
+        imgSrc: "/assets/imgs/runes/magic_wall.gif"
     },
     {
         name: "mass healing",
@@ -616,7 +649,8 @@ const spells = [
         mana: 600,
         price: 1900,
         charges: 1,
-        mlUse: 18
+        mlUse: 18,
+        imgSrc: "/assets/imgs/runes/paralyze.gif"
     },
     {
         name: "poison field rune",
@@ -629,7 +663,8 @@ const spells = [
         mana: 50,
         price: 300,
         charges: 3,
-        mlUse: 0
+        mlUse: 0,
+        imgSrc: "/assets/imgs/runes/poison_field.gif"
     },
     {
         name: "poison storm",
@@ -653,7 +688,8 @@ const spells = [
         mana: 160,
         price: 1600,
         charges: 4,
-        mlUse: 5
+        mlUse: 5,
+        imgSrc: "/assets/imgs/runes/poison_wall.gif"
     },
     {
         name: "poison bomb rune",
@@ -666,7 +702,8 @@ const spells = [
         mana: 130,
         price: 1000,
         charges: 2,
-        mlUse: 4
+        mlUse: 4,
+        imgSrc: "/assets/imgs/runes/poison_bomb.gif"
     },
     {
         name: "poisoned arrow",
@@ -701,7 +738,8 @@ const spells = [
         mana: 150,
         price: 1800,
         charges: 2,
-        mlUse: 7
+        mlUse: 7,
+        imgSrc: "/assets/imgs/runes/soulfire.gif"
     },
     {
         name: "strong haste",
@@ -725,7 +763,8 @@ const spells = [
         mana: 220,
         price: 3000,
         charges: 1,
-        mlUse: 15
+        mlUse: 15,
+        imgSrc: "/assets/imgs/runes/sudden_death.gif"
     },
     {
         name: "summon creature",
@@ -770,7 +809,8 @@ const spells = [
         mana: 100,
         price: 1500,
         charges: 1,
-        mlUse: 4
+        mlUse: 4,
+        imgSrc: "/assets/imgs/runes/ultimate_healing.gif"
     },
     {
         name: "ultimate light",
@@ -806,3 +846,5 @@ const spells = [
         price: 2000
     }
 ]
+
+module.exports = spells
