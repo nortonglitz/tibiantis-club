@@ -6,7 +6,10 @@ export const prisma =
     globalForPrisma.prisma || new PrismaClient({
         datasources: {
             db: {
-                url: process.env.NODE_ENV !== 'production' ? process.env.MONGODB_URI_DEV : process.env.MONGODB_URI
+                url: process.env.NODE_ENV !== 'production' ?
+                    process.env.MONGODB_URI_DEV
+                    :
+                    process.env.MONGODB_URI
             }
         }
     })
