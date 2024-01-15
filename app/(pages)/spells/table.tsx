@@ -280,7 +280,7 @@ const Table: React.FC = () => {
                                     </td>
                                     <td className="text-left text-base sm:text-lg">
                                         <span className="capitalize">{name}</span>
-                                        <span className="italic text-sm"> ({invocation})</span>
+                                        <span className="italic text-sm text-yellow-100"> {invocation}</span>
                                     </td>
                                     <td>{getSpellGroupName(group)}</td>
                                     <td>{isRune ? "rune" : "instant"}</td>
