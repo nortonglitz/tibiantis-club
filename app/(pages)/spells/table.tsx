@@ -155,7 +155,7 @@ const Table: React.FC = () => {
 
     return (
         <>
-            <div className="flex gap-4 w-full overflow-auto md:justify-center">
+            <div className="flex gap-4 w-full overflow-auto md:justify-center py-2">
                 <Tag
                     selected={vocation === 'all'}
                     name="all"
