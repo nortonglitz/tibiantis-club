@@ -188,7 +188,7 @@ const Table: React.FC = () => {
                 />
             </div>
             <div className="px-3 pt-1 bg-stone-800 rounded-3xl border border-stone-200/10 w-full sm:w-fit">
-                <div className="max-h-[75vh] h-fit w-full sm:w-[75vw] overflow-y-auto rounded-xl">
+                <div className="max-h-[70vh] h-fit w-full sm:w-[75vw] overflow-y-auto rounded-xl">
                     <table className="relative text-center w-full">
                         <thead className="top-0 sticky z-10">
                             <tr
@@ -291,7 +291,7 @@ const Table: React.FC = () => {
                             ))}
                         </tbody>
                         <tfoot>
-                            <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-1 z-10" >
+                            <tr className="sticky bottom-0 bg-stone-800 italic text-sm pb-10 z-10" >
                                 <td colSpan={7} className="py-2" />
                             </tr>
                         </tfoot>
