@@ -11,9 +11,10 @@ export default function SpellsPage() {
         <main
             className="
                 flex
-                justify-center
-                py-1
-                sm:p-10
+                flex-col
+                items-center
+                gap-4
+                py-4
             "
         >
             <Table />

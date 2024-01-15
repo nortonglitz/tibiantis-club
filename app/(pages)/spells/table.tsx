@@ -28,12 +28,11 @@ const Tag: React.FC<TagProps> = ({
         <div
             onClick={onClick}
             className={`
-                min-w-[7rem]
                 transition-all
                 bg-stone-800
                 flex
                 items-center
-                w-fit
+                min-w-fit
                 p-2
                 border
                 border-stone-600/30
@@ -155,8 +154,8 @@ const Table: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center gap-4">
-            <div className="flex gap-4">
+        <>
+            <div className="flex gap-4 w-full overflow-auto md:justify-center">
                 <Tag
                     selected={vocation === 'all'}
                     name="all"
@@ -299,7 +298,7 @@ const Table: React.FC = () => {
                     </table>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
