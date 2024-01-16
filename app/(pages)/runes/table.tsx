@@ -162,7 +162,7 @@ const Table: React.FC = () => {
                                         }
                                         {mana ?
                                             intervalToDuration({ start: 0, end: Number(mana) * 20 * 4 * 1000 }).minutes ?
-                                                intervalToDuration({ start: 0, end: Number(mana) * 20 * 4 * 1000 }).minutes
+                                                intervalToDuration({ start: 0, end: Number(mana) * 20 * 4 * 1000 }).minutes + 'm'
                                                 : ''
                                             : ''
                                         }
