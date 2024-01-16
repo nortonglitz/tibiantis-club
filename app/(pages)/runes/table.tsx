@@ -70,7 +70,7 @@ const Table: React.FC = () => {
     return (
         <>
             <div className="px-3 pt-1 bg-stone-800 rounded-3xl border border-stone-200/10 w-full sm:w-fit">
-                <div className="max-h-[70vh] h-fit w-full sm:w-[75vw] overflow-y-auto rounded-xl">
+                <div className="max-h-[80vh] h-fit w-full sm:w-[75vw] overflow-y-auto rounded-xl">
                     <table className="relative text-center w-full">
                         <thead className="top-0 sticky z-10">
                             <tr
