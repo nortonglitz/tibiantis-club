@@ -38,7 +38,7 @@ const Tag: React.FC<TagProps> = ({
                 border-stone-600/30
                 rounded-3xl
                 cursor-pointer
-                ${selected ? 'text-yellow-300' : 'text-yellow-200/30'}
+                ${selected ? 'text-yellow-200' : 'text-yellow-200/30'}
                 ${selected ? '' : 'hover:text-yellow-200'}       
                 active:text-yellow-300
                 hover:border-stone-600/70
