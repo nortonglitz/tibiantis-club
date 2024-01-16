@@ -93,7 +93,7 @@ const Sidebar = () => {
                     <Category onClick={closeSidebar} href="/experience" src="/assets/imgs/icons/xp_big.gif" title="experience" />
                     <Category onClick={closeSidebar} href="#" src="/assets/imgs/icons/library.gif" title="library" />
                     <Category onClick={closeSidebar} href="/spells" src="/assets/imgs/icons/spellbook.gif" title="spells" />
-                    <Category onClick={closeSidebar} href="#" src="/assets/imgs/icons/runes.gif" title="runes" />
+                    <Category onClick={closeSidebar} href="/runes" src="/assets/imgs/icons/runes.gif" title="runes" />
                     <Category onClick={closeSidebar} href="/foods" src="/assets/imgs/icons/foods.gif" title="foods" />
                     <Category onClick={closeSidebar} href="/equipments" src="/assets/imgs/icons/shield_of_honour.gif" title="equipments" />
                 </div>
