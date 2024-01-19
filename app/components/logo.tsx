@@ -3,32 +3,19 @@ import Link from "next/link"
 const Logo = () => {
     return (
         <Link href="/">
-            <span
-                className="
-                    select-none
-                    relative
-                    font-yatra-one
-                    text-2xl
-                    cursor-pointer
-                "
-            >
-                <div className="hidden sm:block">Tibiantis</div>
-                <div className="block sm:hidden text-4xl">T</div>
-                <span
-                    className="
-                        text-yellow-200
-                        absolute
-                        left-[40%]
-                        top-[20%]
-                        sm:left-[90%]
-                        font-bold
-                        italic
-                        -rotate-12
-                    "
-                >
-                    Club
+            <div className="flex items-center font-yatra-one text-2xl">
+                <img src="/assets/imgs/logos/logo_stroked.png" alt="tibiantis online" className="h-[2.5rem]" />
+                <span className="hidden sm:block mt-2 ml-2">
+                    Tibiantis
+                    <span
+                        className="
+                        text-[#FFC639]
+                        "
+                    >
+                        Club
+                    </span>
                 </span>
-            </span>
+            </div>
         </Link>
     )
 }
