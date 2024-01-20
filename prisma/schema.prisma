@@ -41,13 +41,14 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  characters    Character[]
 
   @@map("users")
 }
@@ -124,6 +125,8 @@ model Character {
   playerSessionDay PlayerSessionDay[]
   deaths           Death[]
   kills            Kill[]
+  userId           String?            @db.ObjectId
+  user             User?              @relation(fields: [userId], references: [id])
 
   @@map("characters")
 }
