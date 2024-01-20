@@ -5,6 +5,7 @@ import './globals.css'
 import ModalLogin from "./components/modals/login/modalLogin"
 import ModalRegister from "./components/modals/register/modalRegister"
 import Sidebar from "./components/sidebar/sidebar"
+import NextAuthProvider from "@/app/auth/nextAuthProvider"
 
 const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
 const yatraOne = Yatra_One({ subsets: ['latin'], weight: '400', variable: '--font-yatra-one' })
@@ -30,12 +31,14 @@ export default function RootLayout({
           text-white
         `}
       >
-        <Navbar />
-        <Sidebar />
-        <ModalLogin />
-        <ModalRegister />
-        <div className="p-7" />
-        {children}
+        <NextAuthProvider>
+          <Navbar />
+          <Sidebar />
+          <ModalLogin />
+          <ModalRegister />
+          <div className="p-7" />
+          {children}
+        </NextAuthProvider>
       </body>
     </html >
   )

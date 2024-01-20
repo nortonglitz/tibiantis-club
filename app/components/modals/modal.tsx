@@ -1,4 +1,5 @@
 import { LuX } from "react-icons/lu"
+import CircleSpinner from "@/app/components/spinners/circleSpinner"
 
 interface ModalProps {
     children: React.ReactNode
@@ -6,6 +7,7 @@ interface ModalProps {
     subtitle?: string
     onClose: () => void
     open: boolean
+    loading?: boolean
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -13,6 +15,7 @@ const Modal: React.FC<ModalProps> = ({
     title,
     subtitle,
     onClose,
+    loading = false,
     open
 }) => {
     return (
@@ -43,17 +46,40 @@ const Modal: React.FC<ModalProps> = ({
             >
                 <div
                     className="
+                        w-[80vw]
+                        sm:w-fit
+                        sm:min-w-[20vw]
                         bg-stone-800
                         rounded-3xl
                         p-4
                         shadow-md
                         border
                         border-stone-600
+                        relative
                     "
                 >
+                    {loading &&
+                        <div
+                            className="
+                                rounded-3xl
+                                absolute
+                                left-0
+                                top-0
+                                flex
+                                items-center
+                                justify-center
+                                w-full
+                                h-full
+                                bg-stone-950/30
+                                z-[200]
+                            "
+                        >
+                            <CircleSpinner size="xl" />
+                        </div>
+                    }
                     <div className="flex justify-between items-center">
                         <h1 className="font-yatra-one text-2xl text-yellow-200">{title}</h1>
-                        <button onClick={onClose}>
+                        <button onClick={onClose} disabled={loading}>
                             <LuX
                                 className="
                                     rounded-full

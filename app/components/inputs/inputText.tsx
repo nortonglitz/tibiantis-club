@@ -34,6 +34,7 @@ const InputText: React.FC<InputTextProps> = ({
                     ring-stone-700
                     focus:ring-stone-400
                     placeholder:text-stone-600
+                    disabled:cursor-not-allowed
                     ${classNameInput}
                 `}
                 {...props}
