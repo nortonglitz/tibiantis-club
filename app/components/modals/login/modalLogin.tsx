@@ -80,7 +80,7 @@ const ModalLogin = () => {
                         setRegisterIsOpen(true)
                         setIsOpen(false)
                     }}
-                    title="Sign up with custom E-mail"
+                    title="Sign up with E-mail"
                     icon="@"
                 />
             </div>

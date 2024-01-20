@@ -46,7 +46,7 @@ const Modal: React.FC<ModalProps> = ({
             >
                 <div
                     className="
-                        w-[80vw]
+                        w-[90vw]
                         sm:w-fit
                         sm:min-w-[20vw]
                         bg-stone-800
