@@ -40,7 +40,9 @@ const Tag: React.FC<TagProps> = ({
                 cursor-pointer
                 ${selected ? 'text-yellow-200' : 'text-yellow-200/30'}
                 ${selected ? '' : 'hover:text-yellow-200'}       
-                active:text-yellow-300
+                active:bg-stone-700/50
+                hover:shadow-md
+                hover:shadow-stone-950
                 hover:border-stone-600/70
                 select-none
                 capitalize

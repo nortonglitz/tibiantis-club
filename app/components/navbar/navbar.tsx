@@ -41,10 +41,7 @@ const Navbar = () => {
                         </>
                     }
                     {status === "loading" &&
-                        <>
-                            <div className="w-[5rem] m-auto bg-stone-500/30 animate-pulse h-[2rem] rounded-full" />
-                            <div className="w-[30px] m-auto bg-stone-500/30 animate-pulse h-[30px] rounded-full" />
-                        </>
+                        <div className="w-[30px] m-auto bg-stone-500/30 animate-pulse h-[30px] rounded-full" />
                     }
                     {status === "authenticated" && session.user && session.user.image &&
                         <UserMenu
