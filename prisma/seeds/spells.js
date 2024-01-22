@@ -162,7 +162,7 @@ const spells = [
         isPremium: true,
         mlCast: 7,
         mana: 60,
-        price: 0
+        price: 500
     },
     {
         name: "destroy field rune",
@@ -187,7 +187,7 @@ const spells = [
         isPremium: true,
         mlCast: 3,
         mana: 30,
-        price: 0
+        price: 300
     },
     {
         name: "enchant staff",
@@ -323,7 +323,7 @@ const spells = [
         isPremium: true,
         mlCast: 3,
         mana: 30,
-        price: 0
+        price: 400
     },
     {
         name: "find person",
