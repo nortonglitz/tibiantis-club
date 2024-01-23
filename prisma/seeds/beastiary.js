@@ -840,7 +840,7 @@ const beastiary = [
         ref: 94,
         hp: 120,
         xp: 60,
-        loot: ["gold coin", "meat", "spear", "wooden shield", "studded armor", "small ruby", "small sapphire", "studded legs", "dirty fur"],
+        loot: ["gold coin", "meat", "spear", "wooden shield", "silver dagger", "studded armor", "small ruby", "small sapphire", "studded legs", "dirty fur"],
         imageSrc: "/assets/imgs/beastiary/kobold.gif"
     },
     {
