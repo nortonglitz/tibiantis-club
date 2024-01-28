@@ -26,6 +26,7 @@ const Sidebar = () => {
                     bg-stone-900
                     border-l
                     w-52
+                    overflow-y-auto
                     border-stone-600
                     z-[200]
                     top-0
