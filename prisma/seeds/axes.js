@@ -145,9 +145,9 @@ const axes = [
     },
     {
         name: "orcish axe",
-        atk: 34,
-        def: 10,
-        weight: 80.0,
+        atk: 23,
+        def: 12,
+        weight: 45.0,
         twoHanded: false,
         imageSrc: '/assets/imgs/axes/orcish_axe.gif',
     },
