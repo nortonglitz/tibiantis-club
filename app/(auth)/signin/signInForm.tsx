@@ -11,6 +11,7 @@ import { loginSchema, LoginSchema } from "@/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { emailSignIn } from "@/actions/signIn"
 import { MdMarkEmailRead } from "react-icons/md"
+import { Note } from "@/components"
 
 const EmailSent = () => {
     return (
