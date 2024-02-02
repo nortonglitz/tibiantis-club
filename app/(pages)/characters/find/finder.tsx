@@ -73,7 +73,7 @@ const Finder = () => {
                 <InputText
                     placeholder="Character Name"
                     className="py-2 flex-1"
-                    classNameInput="py-2"
+                    wrapperClassName="py-2"
                     onChange={handleChangeName}
                 />
                 <p className="mt-1 text-sm text-stone-400 text-justify">The maximum amount of returned characters is 10 and the search will just happen once you type more than 2 letters.</p>
