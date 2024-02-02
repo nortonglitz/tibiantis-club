@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import EmailProvider from "next-auth/providers/email"
 import { PrismaClient } from "@prisma/client"
 import { PrismaAdapter } from "@auth/prisma-adapter"
+import { sendVerificationRequest } from "@/mail"
 
 const prisma = new PrismaClient()
 
@@ -27,7 +28,7 @@ export const {
                     pass: process.env.SMTP_PASSWORD
                 }
             },
-
+            sendVerificationRequest,
         })
     ],
     pages: {
