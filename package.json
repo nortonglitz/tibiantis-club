@@ -10,18 +10,22 @@
     "seed": "node prisma/seeds/index.js"
   },
   "dependencies": {
-    "@next-auth/prisma-adapter": "^1.0.7",
+    "@auth/prisma-adapter": "^1.2.0",
+    "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.6.0",
     "cheerio": "^1.0.0-rc.12",
     "date-fns": "^3.0.3",
     "next": "14.0.3",
-    "next-auth": "^4.24.5",
+    "next-auth": "^5.0.0-beta.5",
+    "nodemailer": "^6.9.9",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.49.3",
     "react-icons": "^4.12.0",
     "recharts": "^2.10.3",
     "swr": "^2.2.4",
     "use-debounce": "^10.0.0",
+    "zod": "^3.22.4",
     "zustand": "^4.4.6"
   },
   "devDependencies": {
@@ -31,7 +35,6 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
-    "nodemailer": "^6.9.8",
     "postcss": "^8",
     "prisma": "^5.6.0",
     "tailwindcss": "^3.3.0",

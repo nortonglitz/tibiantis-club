@@ -1,76 +1,64 @@
 "use client"
 
-import { useState } from "react"
+import { forwardRef } from "react"
 import { DetailedHTMLProps, InputHTMLAttributes } from "react"
-import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { BsXCircleFill } from "react-icons/bs"
 
 interface InputTextProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-    type?: "password" | "text",
-    classNameInput?: string
+    errorMsg?: string
+    wrapperClassName?: string
 }
 
-const InputText: React.FC<InputTextProps> = ({
-    type = "text",
-    className,
-    classNameInput,
-    ...props
-}) => {
-
-    const [showPassword, setShowPassword] = useState(false)
-
+const InputText = forwardRef<HTMLInputElement, InputTextProps>((
+    {
+        className,
+        wrapperClassName,
+        required,
+        errorMsg,
+        ...props
+    },
+    ref
+) => {
+    const error = Boolean(errorMsg)
     return (
-        <div className={`relative ${className}`}>
+        <div
+            className={`
+                [&>p]:mt-1
+                [&>p]:mx-4
+                [&>p]:text-sm
+                [&>p]:text-red-500
+                ${wrapperClassName}
+            `}
+        >
             <input
-                type={type === 'text' ? 'text' : showPassword ? 'text' : 'password'}
+                ref={ref}
                 className={`
-                    w-full
-                    py-1
+                    py-2
                     px-4
                     rounded-full
-                    focus:outline-none
                     bg-stone-900
                     ring-[1px]
                     transition
-                    ring-stone-700
-                    focus:ring-stone-400
+                    ${error ? "ring-red-500" : "ring-stone-700"}
+                    
+                    focus:outline-none
+                    ${error ? "focus:ring-red-600" : "focus:ring-stone-400"}
+                    
+
                     placeholder:text-stone-600
+                    
                     disabled:cursor-not-allowed
-                    ${classNameInput}
+                    disabled:opacity-50
+                    
+                    ${className}
                 `}
                 {...props}
             />
-            {type === 'password' &&
-                <div
-                    className="
-                        absolute 
-                        top-0 
-                        right-0 
-                        text-xl
-                        h-full 
-                        flex 
-                        items-center 
-                        cursor-pointer
-                    "
-                >
-                    <div
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="
-                            transition-all
-                            p-[0.35rem]
-                            mr-1
-                            rounded-full
-                            text-stone-600
-                            hover:text-stone-500
-                            active:bg-stone-800
-                            select-none
-                        "
-                    >
-                        {showPassword ? <FaEye /> : <FaEyeSlash />}
-                    </div>
-                </div>
-            }
+            {error && <p>{errorMsg}</p>}
         </div>
     )
-}
+})
+
+InputText.displayName = "InputText"
 
 export default InputText

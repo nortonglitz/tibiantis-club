@@ -2,16 +2,19 @@
 
 import Button from '@/app/components/buttons/button'
 import useLoginStore from "@/app/stores/useLoginStore"
+import Link from "next/link"
 
-const ButtonLogin = () => {
+const ButtonSignIn = () => {
 
     const { setIsOpen } = useLoginStore()
 
     return (
-        <Button variant="outlined" onClick={() => setIsOpen(true)}>
-            Login
+        <Button>
+            <Link href="/signin">
+                Join us!
+            </Link>
         </Button>
     )
 }
 
-export default ButtonLogin
+export default ButtonSignIn

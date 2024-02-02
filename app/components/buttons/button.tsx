@@ -24,10 +24,14 @@ const Button: React.FC<ButtonProps> = ({
                 px-4
                 rounded-full
                 transition-all
+
                 active:shadow-md
                 active:shadow-stone-950 
                 active:border-stone-600/40
+
                 disabled:cursor-not-allowed
+                disabled:opacity-50
+                
                 ${isStandard &&
                 `
                     hover:bg-stone-600

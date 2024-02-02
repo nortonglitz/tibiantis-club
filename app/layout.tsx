@@ -27,8 +27,8 @@ export default function RootLayout({
           ${sora.className}
           ${sora.variable}
           ${yatraOne.variable}
-          bg-stone-900
           text-white
+          bg-stone-900  
         `}
       >
         <NextAuthProvider>
