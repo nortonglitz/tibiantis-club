@@ -28,13 +28,12 @@ export const {
                     pass: process.env.SMTP_PASSWORD
                 }
             },
-            sendVerificationRequest,
+            sendVerificationRequest
         })
     ],
     pages: {
-        signIn: '/',
-        verifyRequest: '/',
-        newUser: '/',
+        signIn: '/signin',
+        verifyRequest: '/signin',
         signOut: '/'
     }
 })
