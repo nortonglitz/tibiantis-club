@@ -72,7 +72,7 @@ const Finder = () => {
                 <hr className="mt-2 mb-4 border-stone-600/30" />
                 <InputText
                     placeholder="Character Name"
-                    className="py-2 flex-1"
+                    className="py-2 flex-1 w-full"
                     wrapperClassName="py-2"
                     onChange={handleChangeName}
                 />

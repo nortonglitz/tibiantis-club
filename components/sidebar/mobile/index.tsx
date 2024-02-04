@@ -2,10 +2,10 @@
 
 import Category from './category'
 import useSidebarStore from "@/app/stores/useSidebarStore"
-import ListenerClickOutside from "../listeners/listenerClickOutside"
+import ListenerClickOutside from "@/components/listeners/listenerClickOutside"
 import { usePlayersOnlineQuantity } from "@/app/hooks/usePlayersOnlineQuantity"
 
-const Sidebar = () => {
+export const SidebarMobile = () => {
 
     const { isOpen, setIsOpen } = useSidebarStore()
 
@@ -102,5 +102,3 @@ const Sidebar = () => {
         </ListenerClickOutside >
     )
 }
-
-export default Sidebar

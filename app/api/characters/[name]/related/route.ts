@@ -2,10 +2,10 @@ import { prisma } from '@/app/libs/dbClient'
 import { getMinutes, set } from 'date-fns'
 
 // How many sessions char need to have to be analyzed
-const MIN_SESSIONS = 10
+const MIN_SESSIONS = 15
 
 // How many sessions another char has related to be considered a possible second char
-const MIN_RELATED_SESSIONS = 10
+const MIN_RELATED_SESSIONS = 40
 
 type Query = { params: { name: string } }
 

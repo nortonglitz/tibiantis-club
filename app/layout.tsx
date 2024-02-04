@@ -4,7 +4,7 @@ import Navbar from '@/app/components/navbar/navbar'
 import './globals.css'
 import ModalLogin from "./components/modals/login/modalLogin"
 import ModalRegister from "./components/modals/register/modalRegister"
-import Sidebar from "./components/sidebar/sidebar"
+import { SidebarMobile } from "@/components"
 import { SessionProvider } from "@/auth"
 
 const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <SessionProvider>
           <Navbar />
-          <Sidebar />
+          <SidebarMobile />
           <ModalLogin />
           <ModalRegister />
           <div className="p-7" />
