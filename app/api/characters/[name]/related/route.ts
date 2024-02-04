@@ -5,7 +5,7 @@ import { getMinutes, set } from 'date-fns'
 const MIN_SESSIONS = 200
 
 // How many sessions another char has related to be considered a possible second char
-const MIN_RELATED_SESSIONS = 25000
+const MIN_RELATED_SESSIONS = 250000
 
 type Query = { params: { name: string } }
 
