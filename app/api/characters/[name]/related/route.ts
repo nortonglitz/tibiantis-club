@@ -79,15 +79,11 @@ export async function GET(req: Request, query: Query) {
 
         /* Make an array of all sessions found (flat just breaks all into one array) */
 
-        const possibleSessionsFound = await Promise.all(relatedSessionSearchesPromises)
-
-        console.log(possibleSessionsFound)
-
-        const possibleSessionsFoundFlated = possibleSessionsFound.flat()
+        const possibleSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
 
         /* Count the number of sessions each character has in common */
 
-        const possibleSessionsCounter = possibleSessionsFoundFlated
+        const possibleSessionsCounter = possibleSessionsFound
             .reduce((acc, { characterId, _count }) => {
 
                 if (characterId === character.id) return acc
@@ -99,9 +95,6 @@ export async function GET(req: Request, query: Query) {
             }, {} as { [id: string]: number })
 
 
-        console.log(possibleSessionsCounter)
-
-
         /* Remove characters that has less than the minimum required */
 
         Object.keys(possibleSessionsCounter).forEach(characterId => {
@@ -109,8 +102,6 @@ export async function GET(req: Request, query: Query) {
                 delete possibleSessionsCounter[characterId]
             }
         })
-
-        console.log(possibleSessionsCounter)
 
         const relatedCharactersIDs = Object.keys(possibleSessionsCounter)
 
