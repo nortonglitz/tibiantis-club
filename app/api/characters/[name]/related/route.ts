@@ -1,8 +1,10 @@
 import { prisma } from '@/app/libs/dbClient'
 import { getMinutes, set } from 'date-fns'
 
+// TODO: FIX REALTED IT'S NOT WORKING PROPERLY
+
 // How many sessions char need to have to be analyzed
-const MIN_SESSIONS = 200
+const MIN_SESSIONS = 30
 
 // How many sessions another char has related to be considered a possible second char
 const MIN_RELATED_SESSIONS = 250000
@@ -77,11 +79,15 @@ export async function GET(req: Request, query: Query) {
 
         /* Make an array of all sessions found (flat just breaks all into one array) */
 
-        const possibleSessionsFound = (await Promise.all(relatedSessionSearchesPromises)).flat()
+        const possibleSessionsFound = await Promise.all(relatedSessionSearchesPromises)
+
+        console.log(possibleSessionsFound)
+
+        const possibleSessionsFoundFlated = possibleSessionsFound.flat()
 
         /* Count the number of sessions each character has in common */
 
-        const possibleSessionsCounter = possibleSessionsFound
+        const possibleSessionsCounter = possibleSessionsFoundFlated
             .reduce((acc, { characterId, _count }) => {
 
                 if (characterId === character.id) return acc
@@ -93,6 +99,9 @@ export async function GET(req: Request, query: Query) {
             }, {} as { [id: string]: number })
 
 
+        console.log(possibleSessionsCounter)
+
+
         /* Remove characters that has less than the minimum required */
 
         Object.keys(possibleSessionsCounter).forEach(characterId => {
@@ -100,6 +109,8 @@ export async function GET(req: Request, query: Query) {
                 delete possibleSessionsCounter[characterId]
             }
         })
+
+        console.log(possibleSessionsCounter)
 
         const relatedCharactersIDs = Object.keys(possibleSessionsCounter)
 
